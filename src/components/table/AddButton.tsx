@@ -24,7 +24,7 @@ export default function AddButtonPopover() {
     <div className="relative inline-block">
       <button
         onClick={() => setOpen(!open)}
-        className={`text-white p-1 rounded-full hover:bg-secondary transition ${
+        className={`text-moreWhite p-1 rounded-full hover:bg-secondary transition ${
           open ? "bg-secondary" : ""
         }`}
         aria-label="Open Add Options"
@@ -35,7 +35,7 @@ export default function AddButtonPopover() {
       {open && (
         <div
           ref={popoverRef}
-          className="absolute right-0 mt-2 w-55 bg-secondary text-white rounded-md shadow-lg z-50"
+          className="absolute right-0 mt-2 w-55 bg-secondary text-moreWhite rounded-md shadow-lg z-50"
         >
           <button
             onClick={() => {

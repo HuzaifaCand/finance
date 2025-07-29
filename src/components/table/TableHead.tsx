@@ -6,7 +6,7 @@ export default function TableHead() {
           Desc
         </th>
         <th className="py-4 px-4 text-left font-semibold ">Category</th>
-        <th className="py-4 px-4 text-left font-semibold ">Payment Method</th>
+        <th className="py-4 px-4 text-left font-semibold ">Method</th>
         <th className="py-4 px-4 text-left font-semibold">Cost</th>
         <th className="py-4 px-4 text-center font-semibold rounded-tr-xl"></th>
       </tr>
