@@ -1,21 +1,25 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #d0f4f0; /* Soft teal primary */
-  --color-body: #e7f9f8; /* Very light background for body */
-  --color-secondary: #122628; /* Deep teal-black for secondary elements */
-  --color-accent: #4de0c7; /* Bright teal accent */
-  --color-stroke: #3a5e5a; /* Deep muted teal for borders and strokes */
-  --color-highlight: #b2f0e7; /* Soft minty highlight */
-  --color-deepAccent: #36b3a2; /* Strong teal accent */
-  --color-muted: #658c86; /* Cool muted gray-teal for secondary text */
+  --color-primary: #d0f4f0;
+  --color-body: #e7f9f8;
+  --color-secondary: #122628;
+  --color-accent: #4de0c7;
+  --color-stroke: #3a5e5a;
+  --color-highlight: #b2f0e7;
+  --color-deepAccent: #36b3a2;
+  --color-muted: #658c86;
   --color-background: #00120a;
   --color-moreWhite: #e6f4ff;
+  /*accent colors below*/
+  --color-teal: #7fd7d3;
+  --color-tealBg: #103130;
+
+  /*other accent colors in case they are needed*/
 
   --color-purple: #b39ddb;
   --color-purpleBg: #2d223a;
-  --color-teal: #7fd7d3;
-  --color-tealBg: #103130;
+
   --color-red: #ef7d7d;
   --color-redBg: #2d1e1e;
   --color-orange: #f7b267;
@@ -24,4 +28,17 @@
   --color-blueBg: #1a2135;
   --color-fresh: #a8e6cf;
   --color-freshBg: #1a332e;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(18, 38, 40, 1);
+  border-radius: 10px;
 }

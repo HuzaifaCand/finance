@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
+import { Manrope } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 
-const geist = Geist({
+const manrope = Manrope({
   subsets: ["latin"],
   display: "swap",
   weight: ["200", "300", "400", "500", "600", "700", "800"],
@@ -29,7 +29,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={geist.className}>{children}</body>
+      <body className={manrope.className}>
+        <main className="min-h-screen bg-background">{children}</main>
+      </body>
     </html>
   );
 }
