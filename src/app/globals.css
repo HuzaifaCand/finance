@@ -42,3 +42,7 @@
   background-color: rgba(18, 38, 40, 1);
   border-radius: 10px;
 }
+
+td {
+  font-variant-numeric: tabular-nums;
+}
