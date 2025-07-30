@@ -1,14 +1,14 @@
 export default function TableHead() {
   return (
     <thead className="bg-secondary/60 text-moreWhite text-xs">
-      <tr className="backdrop-blur-sm bg-secondary/20">
+      <tr>
         <th className="py-4 px-4 text-left font-semibold rounded-tl-xl">
           Desc
         </th>
         <th className="py-4 px-4 text-left font-semibold ">Category</th>
         <th className="py-4 px-4 text-left font-semibold ">Method</th>
         <th className="py-4 px-4 text-left font-semibold">Cost</th>
-        <th className="py-4 px-4 text-center font-semibold rounded-tr-xl"></th>
+        <th className="py-4 px-4  font-semibold rounded-tr-xl"></th>
       </tr>
     </thead>
   );

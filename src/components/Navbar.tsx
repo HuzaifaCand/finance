@@ -38,7 +38,7 @@ export default function Navbar() {
   }, [pathname]);
 
   return (
-    <nav className="top-0 z-50 border-b border-muted/20 px-4 lg:px-16 py-2 bg-background">
+    <nav className="top-0 z-50  px-6 lg:px-16 pt-3 pb-2 bg-background">
       <div className="flex items-center justify-between gap-4">
         {/* Logo */}
         <div className="text-moreWhite text-lg font-bold">

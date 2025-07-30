@@ -3,10 +3,17 @@
 import { useState, useRef, useEffect } from "react";
 import { Plus } from "lucide-react";
 
-export default function AddButtonPopover() {
+interface AddButtonPopoverProps {
+  onActionSelect: (action: "addExpense" | "quickAdd") => void;
+}
+
+export default function AddButtonPopover({
+  onActionSelect,
+}: AddButtonPopoverProps) {
   const [open, setOpen] = useState(false);
   const popoverRef = useRef<HTMLDivElement>(null);
 
+  // Close on outside click
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (
@@ -19,6 +26,25 @@ export default function AddButtonPopover() {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  // Keyboard shortcuts (Alt+A and Alt+Q)
+  useEffect(() => {
+    const handleKeydown = (e: KeyboardEvent) => {
+      if (e.altKey && e.key.toLowerCase() === "a") {
+        e.preventDefault();
+        onActionSelect("addExpense");
+        setOpen(false);
+      }
+      if (e.altKey && e.key.toLowerCase() === "q") {
+        e.preventDefault();
+        onActionSelect("quickAdd");
+        setOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeydown);
+    return () => window.removeEventListener("keydown", handleKeydown);
+  }, [onActionSelect]);
 
   return (
     <div className="relative inline-block">
@@ -39,9 +65,8 @@ export default function AddButtonPopover() {
         >
           <button
             onClick={() => {
-              // open Add Expense modal
+              onActionSelect("addExpense");
               setOpen(false);
-              console.log("Open Add Expense");
             }}
             className="w-full text-left text-xs px-5 py-2 hover:bg-background/60 transition flex items-center justify-between"
           >
@@ -50,9 +75,8 @@ export default function AddButtonPopover() {
           </button>
           <button
             onClick={() => {
-              // open Quick Add modal
+              onActionSelect("quickAdd");
               setOpen(false);
-              console.log("Open Quick Add");
             }}
             className="w-full text-left text-xs px-5 py-2 hover:bg-background/60 transition flex items-center justify-between"
           >

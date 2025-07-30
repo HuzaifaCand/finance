@@ -1,7 +1,8 @@
 import TableBody from "./TableBody";
 import TableHead from "./TableHead";
-import AddButtonPopover from "./AddButton";
+
 import DateHead from "./DateHead";
+import ExpenseModalController from "./ExpenseModalController";
 
 export default function MainTable() {
   return (
@@ -12,12 +13,12 @@ export default function MainTable() {
         </div>
 
         <div className="flex justify-end p-2">
-          <AddButtonPopover />
+          <ExpenseModalController />
         </div>
 
         {/* 🧾 Table Container */}
         <div className="max-h-[420px] overflow-y-auto overflow-x-auto custom-scrollbar scroll-auto">
-          <table className="min-w-full border border-stroke rounded-xl overflow-hidden">
+          <table className="min-w-full rounded-xl overflow-hidden">
             <TableHead />
             <TableBody />
           </table>
