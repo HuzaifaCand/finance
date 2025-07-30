@@ -10,7 +10,7 @@
   --color-deepAccent: #36b3a2;
   --color-muted: #658c86;
   --color-background: #00120a;
-  --color-moreWhite: #e6f4ff;
+  --color-moreWhite: #e6f4ff; /* MAIN TEXT COLOR */
   /*accent colors below*/
   --color-teal: #7fd7d3;
   --color-tealBg: #103130;
@@ -45,4 +45,21 @@
 
 td {
   font-variant-numeric: tabular-nums;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+select option {
+  background-color: #00120a; /* match your dark theme */
+  color: #e6f4ff; /* your text color */
+  font-size: 0.75rem;
 }
