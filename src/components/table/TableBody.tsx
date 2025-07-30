@@ -8,7 +8,7 @@ export default function TableBody() {
         <tr
           key={idx}
           className={`${
-            idx % 2 === 0 ? "bg-background" : "bg-stroke/5"
+            idx % 2 === 0 ? "bg-background" : "bg-tealBg/5"
           } hover:bg-secondary/30 hover:shadow-sm transition duration-200`}
         >
           <td className="py-2 px-4 text-xs">{item.name}</td>

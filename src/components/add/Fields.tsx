@@ -19,7 +19,7 @@ export const Desc = forwardRef<HTMLInputElement>((_, ref) => {
         required
         id="description"
         type="text"
-        placeholder="e.g. Biryani lunch"
+        placeholder="e.g. Lunch - Canteen"
         className={clsx(fieldClass, "placeholder-muted")}
         ref={ref}
       />
