@@ -3,10 +3,10 @@ import PageTransitionWrapper from "@/components/PageTransitionWrapper";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Your Statistics",
+  title: "Your Budgets",
 };
 
-export default function StatsPage() {
+export default function BudgetingPage() {
   return (
     <PageTransitionWrapper>
       <div className="w-full flex justify-center px-4 py-2">
@@ -14,7 +14,7 @@ export default function StatsPage() {
           <div className="pt-8">
             <div className="flex justify-between items-center">
               <h1 className="sm:text-3xl text-xl font-bold tracking-tight text-moreWhite">
-                Statistics
+                Budgeting
               </h1>
               <Navbar />
             </div>
