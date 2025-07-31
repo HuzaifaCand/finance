@@ -3,15 +3,23 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect } from "react";
+import { BarChart, Wallet, List } from "lucide-react";
 
 const routes = [
   {
-    name: "Tracker",
+    name: "Expense Tracker",
     href: "/tracker",
+    icon: <List width={20} height={20} />,
   },
   {
     name: "Statistics",
     href: "/stats",
+    icon: <BarChart width={20} height={20} />,
+  },
+  {
+    name: "Budgeting",
+    href: "/budgets",
+    icon: <Wallet width={20} height={20} />,
   },
 ];
 
@@ -39,22 +47,21 @@ export default function Navbar() {
 
   return (
     <>
-      <div className="text-moreWhite text-lg font-bold"></div>
-
       {/* Tab-like nav items */}
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2 ">
         {routes.map((route, i) => (
           <Link
+            title={route.name}
             key={i}
             href={route.href}
-            className={`sm:px-8 px-3 py-1.5 font-semibold rounded-sm sm:text-sm text-xs transition-all duration-200
+            className={`p-2 sm:p-3 font-semibold rounded-full active:scale-95 active:bg-secondary sm:text-sm text-xs transition-all duration-200
                 ${
                   isActive(route.href)
-                    ? "bg-secondary/70 text-white shadow-lg"
+                    ? "bg-secondary text-white shadow-lg"
                     : "text-muted hover:bg-muted/10 hover:text-moreWhite"
                 }`}
           >
-            {route.name}
+            {route.icon}
           </Link>
         ))}
       </div>
