@@ -42,3 +42,5 @@ export const tempItems: Items[] = [
   { name: "Coffee", category: "Beverage", method: "Octopus", cost: 22.0 },
   { name: "Taxi", category: "Transport", method: "Cash", cost: 52.0 },
 ];
+
+export const totalCost = tempItems.reduce((sum, item) => sum + item.cost, 0);

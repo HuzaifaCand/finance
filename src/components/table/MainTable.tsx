@@ -3,6 +3,7 @@ import TableHead from "./TableHead";
 
 import DateHead from "./DateHead";
 import ExpenseModalController from "./ExpenseModalController";
+import { totalCost } from "@/data/temp";
 
 export default function MainTable() {
   return (
@@ -10,6 +11,10 @@ export default function MainTable() {
       <div className="w-full max-w-5xl bg-background rounded-xl overflow-hidden relative">
         <div className="pt-8">
           <DateHead />
+          <h3 className="text-muted text-sm mt-3 hidden sm:inline">
+            You have spent <span className="text-primary/80">{totalCost}</span>{" "}
+            HKD today
+          </h3>
         </div>
 
         <div className="flex justify-end p-2">
@@ -22,6 +27,10 @@ export default function MainTable() {
             <TableHead />
             <TableBody />
           </table>
+        </div>
+        <div className="sm:hidden flex justify-between items-center mt-4 py-4 text-md">
+          <span className="text-muted">Total Today:</span>
+          <span className="text-primary/80 font-semibold">{totalCost} HKD</span>
         </div>
       </div>
     </div>

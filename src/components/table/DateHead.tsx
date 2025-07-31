@@ -6,7 +6,7 @@ const today = new Date().toLocaleDateString("en-GB", {
 
 export default function DateHead() {
   return (
-    <h1 className=" md:text-3xl text-xl font-bold text-moreWhite tracking-tight">
+    <h1 className=" md:text-3xl text-2xl font-bold text-moreWhite tracking-tight">
       {today}
     </h1>
   );

@@ -3,12 +3,12 @@ import ActionIcons from "./ActionIcons";
 
 export default function TableBody() {
   return (
-    <tbody className="bg-background text-moreWhite text-xs divide-y divide-muted/10">
+    <tbody className="bg-background text-moreWhite text-xs ">
       {tempItems.map((item, idx) => (
         <tr
           key={idx}
           className={`${
-            idx % 2 === 0 ? "bg-background" : "bg-tealBg/5"
+            idx % 2 === 0 ? "bg-background" : "bg-tealBg/15"
           } hover:bg-secondary/30 hover:shadow-sm transition duration-200`}
         >
           <td className="py-2 px-4 text-xs">{item.name}</td>
