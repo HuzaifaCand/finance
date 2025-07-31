@@ -38,29 +38,26 @@ export default function Navbar() {
   }, [pathname]);
 
   return (
-    <nav className="top-0 z-50  px-6 lg:px-16 pt-3 pb-2 bg-background">
-      <div className="flex items-center justify-between gap-4">
-        {/* Logo */}
-        <div className="text-moreWhite text-lg font-bold"></div>
+    <>
+      <div className="text-moreWhite text-lg font-bold"></div>
 
-        {/* Tab-like nav items */}
-        <div className="flex items-center gap-2">
-          {routes.map((route, i) => (
-            <Link
-              key={i}
-              href={route.href}
-              className={`md:px-8 px-5 py-1.5 font-semibold rounded-sm text-xs transition-all duration-200
+      {/* Tab-like nav items */}
+      <div className="flex items-center gap-2">
+        {routes.map((route, i) => (
+          <Link
+            key={i}
+            href={route.href}
+            className={`sm:px-8 px-3 py-1.5 font-semibold rounded-sm sm:text-sm text-xs transition-all duration-200
                 ${
                   isActive(route.href)
                     ? "bg-secondary/70 text-white shadow-lg"
                     : "text-muted hover:bg-muted/10 hover:text-moreWhite"
                 }`}
-            >
-              {route.name}
-            </Link>
-          ))}
-        </div>
+          >
+            {route.name}
+          </Link>
+        ))}
       </div>
-    </nav>
+    </>
   );
 }

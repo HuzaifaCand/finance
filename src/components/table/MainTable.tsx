@@ -4,16 +4,22 @@ import TableHead from "./TableHead";
 import DateHead from "./DateHead";
 import ExpenseModalController from "./ExpenseModalController";
 import { totalCost } from "@/data/temp";
+import Navbar from "../Navbar";
 
 export default function MainTable() {
   return (
     <div className="w-full flex justify-center px-4 py-2">
       <div className="w-full max-w-5xl bg-background rounded-xl overflow-hidden relative">
         <div className="pt-8">
-          <DateHead />
-          <div className="hidden sm:inline text-sm">
-            <span className="text-muted ">Total Today: </span>
-            <span className="text-primary/80">{totalCost} HKD</span>
+          <div className="flex justify-between gap-2 items-center">
+            <div>
+              <DateHead />
+              <div className="hidden sm:inline text-sm">
+                <span className="text-muted ">Total Today: </span>
+                <span className="text-primary/80">{totalCost} HKD</span>
+              </div>
+            </div>
+            <Navbar />
           </div>
         </div>
 
@@ -22,7 +28,7 @@ export default function MainTable() {
         </div>
 
         {/* 🧾 Table Container */}
-        <div className="max-h-[420px] overflow-y-auto overflow-x-auto custom-scrollbar">
+        <div className="max-h-[420px] overflow-y-auto overflow-x-auto custom-scrollbar ">
           <table className="min-w-full rounded-xl overflow-hidden">
             <TableHead />
             <TableBody />
