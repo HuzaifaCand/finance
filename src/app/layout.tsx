@@ -3,7 +3,6 @@ import { Manrope } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/sidebar/Sidebar"; // Make sure path is correct
-import MobileDrawer from "@/components/sidebar/MobileDrawer";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -27,9 +26,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={manrope.className}>
-        <main className="min-h-screen bg-background flex gap-5">
+        <main className="min-h-screen bg-background flex gap-5 ">
           <Sidebar />
-          <MobileDrawer />
 
           {/* Main content area */}
           <div className="flex-1 min-h-screen">

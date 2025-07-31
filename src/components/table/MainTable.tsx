@@ -22,7 +22,7 @@ export default function MainTable() {
         </div>
 
         {/* 🧾 Table Container */}
-        <div className="max-h-[420px] overflow-y-auto overflow-x-auto custom-scrollbar scroll-auto">
+        <div className="max-h-[420px] overflow-y-auto overflow-x-auto custom-scrollbar">
           <table className="min-w-full rounded-xl overflow-hidden">
             <TableHead />
             <TableBody />
