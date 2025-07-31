@@ -23,7 +23,7 @@ export default function MainTable() {
           </div>
         </div>
 
-        <div className="flex justify-end p-2">
+        <div className="flex justify-end p-4">
           <ExpenseModalController />
         </div>
 

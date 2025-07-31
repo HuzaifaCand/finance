@@ -55,7 +55,7 @@ export default function AddButtonPopover({
         }`}
         aria-label="Open Add Options"
       >
-        <Plus className="w-5 h-5" />
+        <Plus className="w-6 h-6" />
       </button>
 
       {open && (
