@@ -71,7 +71,9 @@ export default function AddButtonPopover({
             className="w-full text-left text-xs px-5 py-2 hover:bg-background/60 transition flex items-center justify-between"
           >
             Add Expense{" "}
-            <span className=" text-muted hidden md:inline">Alt+A</span>
+            <span className=" text-muted text-[10px] hidden md:inline">
+              Alt+A
+            </span>
           </button>
           <button
             onClick={() => {
@@ -81,7 +83,9 @@ export default function AddButtonPopover({
             className="w-full text-left text-xs px-5 py-2 hover:bg-background/60 transition flex items-center justify-between"
           >
             Quick Add{" "}
-            <span className=" text-muted hidden md:inline">Alt+Q</span>
+            <span className=" text-muted text-[10px] hidden md:inline">
+              Alt+Q
+            </span>
           </button>
         </div>
       )}
