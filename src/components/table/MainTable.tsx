@@ -12,9 +12,8 @@ export default function MainTable() {
         <div className="pt-8">
           <DateHead />
           <div className="mt-1 hidden sm:inline text-sm">
-            <span className="text-muted ">You have spent </span>
-            <span className="text-primary/80">{totalCost} </span>
-            <span className="text-muted">HKD today</span>
+            <span className="text-muted ">Total Today: </span>
+            <span className="text-primary/80">{totalCost} HKD</span>
           </div>
         </div>
 
@@ -29,8 +28,9 @@ export default function MainTable() {
             <TableBody />
           </table>
         </div>
-        <div className="sm:hidden absolute bottom-2 right-4 bg-background px-4 py-2 rounded-lg shadow-md text-sm flex gap-2 items-center">
-          <span className="text-muted">Total:</span>
+
+        <div className="sm:hidden flex justify-end mt-4 px-4 pb-4 text-md">
+          <span className="text-muted mr-1">Total Today:</span>
           <span className="text-primary/80 font-semibold">{totalCost} HKD</span>
         </div>
       </div>
