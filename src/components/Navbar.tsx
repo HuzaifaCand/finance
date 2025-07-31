@@ -39,8 +39,9 @@ export default function Navbar() {
 
   return (
     <nav className="top-0 z-50  px-6 lg:px-16 pt-3 pb-2 bg-background">
-      <div className="flex justify-end ">
+      <div className="flex items-center justify-between gap-4">
         {/* Logo */}
+        <div className="text-moreWhite text-lg font-bold"></div>
 
         {/* Tab-like nav items */}
         <div className="flex items-center gap-2">
