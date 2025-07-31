@@ -51,10 +51,10 @@ export default function Navbar() {
             <Link
               key={i}
               href={route.href}
-              className={`px-5 py-1.5 rounded-sm text-xs transition-all duration-200
+              className={`md:px-8 px-5 py-1.5 font-semibold rounded-sm text-xs transition-all duration-200
                 ${
                   isActive(route.href)
-                    ? "bg-secondary/70 text-white shadow-md"
+                    ? "bg-secondary/70 text-white shadow-lg"
                     : "text-muted hover:bg-muted/10 hover:text-moreWhite"
                 }`}
             >

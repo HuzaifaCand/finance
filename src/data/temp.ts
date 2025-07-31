@@ -41,8 +41,4 @@ export const tempItems: Items[] = [
   { name: "Dessert", category: "Food", method: "Cash", cost: 35.0 },
   { name: "Coffee", category: "Beverage", method: "Octopus", cost: 22.0 },
   { name: "Taxi", category: "Transport", method: "Cash", cost: 52.0 },
-  { name: "Dinner - Thai", category: "Food", method: "Credit", cost: 94.0 },
-
-  { name: "Snack", category: "Food", method: "Cash", cost: 18.0 },
-  { name: "Breakfast Bun", category: "Food", method: "Octopus", cost: 8.0 },
 ];

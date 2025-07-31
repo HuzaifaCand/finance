@@ -78,7 +78,7 @@ export function PayMeth() {
         required
         id="payment"
         type="text"
-        placeholder="e.g. Octopus, Cash, Visa"
+        placeholder="e.g. Octopus, Cash, Card"
         className={clsx(fieldClass, "placeholder-muted")}
       />
     </div>
@@ -96,6 +96,7 @@ export function Cost() {
         required
         id="cost"
         type="number"
+        step="any"
         className={clsx(fieldClass, "placeholder-muted")}
       />
     </div>

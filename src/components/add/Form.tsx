@@ -17,13 +17,13 @@ export default function AddForm() {
         </h1>
 
         {/* Row 1: Description + Category */}
-        <div className="flex flex-row gap-4">
+        <div className="flex flex-col sm:flex-row gap-4">
           <Desc ref={descRef} />
           <Cat />
         </div>
 
         {/* Row 2: Payment Method + Cost */}
-        <div className="flex flex-row gap-4">
+        <div className="flex flex-col sm:flex-row gap-4">
           <PayMeth />
           <Cost />
         </div>
