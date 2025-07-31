@@ -33,14 +33,14 @@ export default function AddForm() {
           type="submit"
           className="w-full bg-tealBg text-moreWhite font-semibold py-2 text-sm rounded-lg focus:outline-none border border-tealBg focus:bg-tealBg/80 focus:border-stroke active:scale-95 transition"
         >
-          Submit
+          Add
         </button>
-        <div className="hidden md:block mt-2">
-          <p className="text-muted text-[10px] italic">
-            Use <kbd className="px-1">Tab</kbd> to move between fields.
-          </p>
+        <div className="hidden mt-2 md:flex md:justify-between md:items-center">
           <p className="text-muted text-[10px] italic">
             Use<kbd className="px-1">Esc</kbd> to cancel.
+          </p>
+          <p className="text-muted text-[10px] italic">
+            Use <kbd className="px-1">Tab</kbd> to move between fields.
           </p>
         </div>
       </form>

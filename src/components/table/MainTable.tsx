@@ -11,7 +11,7 @@ export default function MainTable() {
       <div className="w-full max-w-5xl bg-background rounded-xl overflow-hidden relative">
         <div className="pt-8">
           <DateHead />
-          <div className="mt-1 hidden sm:inline text-sm">
+          <div className="hidden sm:inline text-sm">
             <span className="text-muted ">Total Today: </span>
             <span className="text-primary/80">{totalCost} HKD</span>
           </div>
@@ -29,7 +29,7 @@ export default function MainTable() {
           </table>
         </div>
 
-        <div className="sm:hidden flex justify-end mt-4 px-4 pb-4 text-md">
+        <div className="sm:hidden flex justify-end mt-6 px-4 pb-4 text-md">
           <span className="text-muted mr-1">Total Today:</span>
           <span className="text-primary/80 font-semibold">{totalCost} HKD</span>
         </div>
