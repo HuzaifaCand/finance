@@ -1,4 +1,5 @@
 import Modal from "../Modal";
+import AddBudgetForm from "./AddBudgetForm";
 
 interface AddBudgetModalProps {
   isOpen: boolean;
@@ -11,7 +12,7 @@ export default function AddBudgetModal({
 }: AddBudgetModalProps) {
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
-      <h1 className="text-lg font-bold text-moreWhite">Add Budget</h1>
+      <AddBudgetForm />
     </Modal>
   );
 }
