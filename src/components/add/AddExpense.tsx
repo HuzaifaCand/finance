@@ -1,5 +1,3 @@
-// components/addform/AddExpense.tsx
-
 import Modal from "../Modal";
 import AddForm from "./Form";
 
