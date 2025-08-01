@@ -8,7 +8,7 @@ export default function MobileDrawer() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="lg:hidden pt-4 pl-4">
+    <div className="lg:hidden pt-4 pl-4 overflow-y-auto scrollbar-thin scrollbar-track-transparent scrollbar-thumb-secondary/50 hover:scrollbar-thumb-secondary/70 ">
       <button onClick={() => setOpen(true)} className="text-primary">
         <Menu size={20} />
       </button>

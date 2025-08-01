@@ -16,7 +16,7 @@ export default function BudgetCard({
   return (
     <div
       onClick={onClick}
-      className="rounded-2xl bg-secondary/60 py-10 px-6 min-h-[300px] flex flex-col text-moreWhite shadow-lg hover:cursor-pointer"
+      className="rounded-2xl bg-secondary/60 py-10 px-6 min-h-[330px] flex flex-col text-moreWhite shadow-lg hover:cursor-pointer"
     >
       {/* Top Bar */}
       <div className="flex justify-between text-sm text-muted mb-4">
@@ -25,7 +25,7 @@ export default function BudgetCard({
       </div>
 
       {/* Center Content */}
-      <div className="text-center mb-2 mt-4">
+      <div className="text-center mb-2 mt-8">
         <h2 className="text-xl font-semibold">{category}</h2>
         <p className="text-2xl font-bold text-primary">{total} HKD</p>
       </div>

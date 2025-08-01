@@ -1,31 +1,76 @@
+import Link from "next/link";
+
 export default function Content() {
   return (
-    <div className="space-y-12 pr-4 mt-16">
-      <h1 className="text-moreWhite font-bold text-md">
-        Hey, <span className="text-teal">[Name]</span>
-      </h1>
-
-      <div className="flex flex-col gap-2 text-muted-foreground text-sm font-medium">
-        <button className="text-left hover:text-primary text-muted transition-colors">
-          Shortcuts{" "}
-          <kbd className="text-primary/80 bg-secondary/60 text-[10px] ml-2 px-1 rounded py-0.5 hidden lg:inline">
-            Alt+S
-          </kbd>
-        </button>
-        <button className="text-left hover:text-primary text-muted transition-colors">
-          Why track finances
-        </button>
-        <button className="text-left hover:text-primary text-muted transition-colors">
-          About
-        </button>
+    <div className="space-y-6 pr-4 flex flex-col h-full">
+      {/* Greeting */}
+      <div className="mt-8">
+        <h1 className="text-moreWhite pr-2 font-bold text-lg">
+          Hey, Danyal 👋
+        </h1>
+        <p className="text-muted text-xs mt-1">Welcome!</p>
+        <hr className="my-3 border-teal/30" />
       </div>
-      <hr className="my-4 text-teal/30" />
-      <div className="space-y-4">
-        <p className="text-moreWhite text-xs">
-          Built by <span className="text-teal/80">Syed Huzaifa</span>
-        </p>
 
-        <p className="text-[11px] text-muted hidden lg:inline">
+      {/* Navigation */}
+      <div>
+        <p className="text-xs uppercase tracking-wider text-muted/80 mb-2">
+          Navigation
+        </p>
+        <div className="space-y-1 text-xs text-muted flex flex-col gap-1 font-medium">
+          <Link
+            href="/"
+            className="text-left hover:text-primary transition-colors"
+          >
+            Dashboard
+          </Link>
+          <Link
+            href="/budgets"
+            className="text-left hover:text-primary transition-colors"
+          >
+            Budget
+          </Link>
+          <Link
+            href="/stats"
+            className="text-left hover:text-primary transition-colors"
+          >
+            Stats
+          </Link>
+        </div>
+      </div>
+
+      {/* Info Section */}
+      <div>
+        <p className="text-xs uppercase tracking-wider text-muted mb-2">
+          Help & Info
+        </p>
+        <div className="space-y-1 text-xs text-muted flex flex-col gap-1 font-medium">
+          <button className="text-left hover:text-primary transition-colors">
+            How to Use
+          </button>
+          <button className="text-left hidden lg:inline hover:text-primary transition-colors">
+            Shortcuts
+            <kbd className="ml-2 bg-secondary/60 text-primary/80 text-[10px] px-1 rounded py-0.5 hidden lg:inline">
+              Alt+S
+            </kbd>
+          </button>
+          <button className="text-left hover:text-primary transition-colors">
+            Why Track Finances?
+          </button>
+          <button className="text-left hover:text-primary transition-colors">
+            About
+          </button>
+        </div>
+      </div>
+
+      {/* Footer */}
+      <div className="mt-auto pt-8 pb-6 text-xs text-muted-foreground">
+        <hr className="my-4 border-teal/30" />
+        <p className="text-primary">
+          Built by{" "}
+          <span className="text-teal/80 font-medium">Syed Huzaifa</span>
+        </p>
+        <p className="mt-2 hidden lg:block text-muted">
           <kbd className="px-1 py-0.5 bg-secondary/60 text-primary/80 rounded">
             Ctrl+B
           </kbd>{" "}
