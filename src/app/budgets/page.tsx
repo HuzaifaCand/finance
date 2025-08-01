@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import PageTransitionWrapper from "@/components/PageTransitionWrapper";
 import { Metadata } from "next";
+import BudgetGrid from "@/components/budget/BudgetGrid";
 
 export const metadata: Metadata = {
   title: "Your Budgets",
@@ -18,6 +19,8 @@ export default function BudgetingPage() {
               </h1>
               <Navbar />
             </div>
+
+            <BudgetGrid />
           </div>
         </div>
       </div>

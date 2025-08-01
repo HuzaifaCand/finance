@@ -12,8 +12,8 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "Finance Tracker",
-  description: "Optimized and Extremely efficient finance tracker",
+  title: "Expense Tracker",
+  description: "Optimized and Extremely efficient expense tracker",
   icons: {
     icon: "/logo.svg",
   },
