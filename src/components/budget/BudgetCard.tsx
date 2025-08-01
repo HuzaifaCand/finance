@@ -1,33 +1,26 @@
+import { Budget } from "@/data/temp";
+
 interface BudgetCardProps {
-  category: string;
-  total: number;
-  spent: number;
+  budget: Budget;
   onClick?: () => void;
 }
 
-export default function BudgetCard({
-  category,
-  total,
-  spent,
-  onClick,
-}: BudgetCardProps) {
-  const progress = Math.min(spent / total, 1);
-
+export default function BudgetCard({ budget, onClick }: BudgetCardProps) {
   return (
     <div
       onClick={onClick}
-      className="rounded-2xl bg-secondary/60 py-10 px-6 min-h-[330px] flex flex-col text-moreWhite shadow-lg hover:cursor-pointer"
+      className="rounded-2xl bg-secondary/60 py-10 px-6 min-h-[330px] flex flex-col text-moreWhite shadow-lg hover:cursor-pointer  transition-all hover:bg-secondary duration-300"
     >
       {/* Top Bar */}
       <div className="flex justify-between text-sm text-muted mb-4">
-        <span className="text-primary">Day 4</span>
-        <span>Week 0</span>
+        <span className="text-primary">Day {budget.day}</span>
+        <span>Week {budget.week}</span>
       </div>
 
       {/* Center Content */}
       <div className="text-center mb-2 mt-8">
-        <h2 className="text-xl font-semibold">{category}</h2>
-        <p className="text-2xl font-bold text-primary">{total} HKD</p>
+        <h2 className="text-xl font-semibold">{budget.category}</h2>
+        <p className="text-2xl font-bold text-primary">{budget.total} HKD</p>
       </div>
 
       {/* Progress */}
@@ -35,11 +28,13 @@ export default function BudgetCard({
         <div className="h-3 w-full bg-muted rounded-full">
           <div
             className="h-3 bg-teal-400 rounded-full transition-all duration-300"
-            style={{ width: `${progress * 100}%` }}
+            style={{
+              width: `${Math.min(budget.spent / budget.total, 1) * 100}%`,
+            }}
           />
         </div>
         <p className="mt-2 text-sm text-center text-muted font-medium">
-          Spent - {spent} HKD
+          Spent - {budget.spent} HKD
         </p>
       </div>
 
