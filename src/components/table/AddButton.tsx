@@ -61,7 +61,7 @@ export default function AddButtonPopover({
       {open && (
         <div
           ref={popoverRef}
-          className="absolute right-0 mt-2 w-55 bg-secondary text-moreWhite rounded-md shadow-lg z-50"
+          className="absolute right-0 mt-2 md:w-55 w-40 bg-secondary text-moreWhite rounded-md shadow-lg z-50"
         >
           <button
             onClick={() => {

@@ -26,8 +26,8 @@ export default function BudgetCard({
 
       {/* Center Content */}
       <div className="text-center mb-2 mt-4">
-        <h2 className="text-lg font-medium">{category}</h2>
-        <p className="text-xl font-bold text-primary">{total} HKD</p>
+        <h2 className="text-xl font-semibold">{category}</h2>
+        <p className="text-2xl font-bold text-primary">{total} HKD</p>
       </div>
 
       {/* Progress */}
@@ -38,7 +38,7 @@ export default function BudgetCard({
             style={{ width: `${progress * 100}%` }}
           />
         </div>
-        <p className="mt-2 text-sm text-center text-muted">
+        <p className="mt-2 text-sm text-center text-muted font-medium">
           Spent - {spent} HKD
         </p>
       </div>
