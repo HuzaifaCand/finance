@@ -2,10 +2,7 @@
 
 import { useState } from "react";
 import BudgetGrid from "./BudgetGrid";
-
-const TotalBudget = () => (
-  <div className="p-4 text-moreWhite">Total Budget View Coming Soon</div>
-);
+import TotalBudgetCard from "./TotalBudgetCard";
 
 export default function BudgetTabs() {
   const [activeTab, setActiveTab] = useState<"total" | "categories">("total");
@@ -40,7 +37,7 @@ export default function BudgetTabs() {
 
       {/* Content Area */}
       <div className="px-6 pb-8">
-        {activeTab === "categories" ? <BudgetGrid /> : <TotalBudget />}
+        {activeTab === "categories" ? <BudgetGrid /> : <TotalBudgetCard />}
       </div>
     </div>
   );

@@ -1,6 +1,11 @@
 import BudgetTabs from "@/components/budget/BudgetTabs";
 import Navbar from "@/components/Navbar";
 import PageTransitionWrapper from "@/components/PageTransitionWrapper";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Your Budgets",
+};
 
 export default function BudgetingPage() {
   return (

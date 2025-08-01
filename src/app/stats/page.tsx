@@ -1,3 +1,4 @@
+import StatTabs from "@/components/stats/StatTab";
 import Navbar from "@/components/Navbar";
 import PageTransitionWrapper from "@/components/PageTransitionWrapper";
 import { Metadata } from "next";
@@ -18,6 +19,9 @@ export default function StatsPage() {
               </h1>
               <Navbar />
             </div>
+          </div>
+          <div className="my-6">
+            <StatTabs />
           </div>
         </div>
       </div>
