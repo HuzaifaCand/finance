@@ -1,4 +1,4 @@
-import StatTabs from "@/components/stats/StatTab";
+import StatTabs from "@/components/stats/StatTabs";
 import Navbar from "@/components/Navbar";
 import PageTransitionWrapper from "@/components/PageTransitionWrapper";
 import { Metadata } from "next";
