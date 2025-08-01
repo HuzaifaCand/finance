@@ -49,21 +49,14 @@ export interface Budget {
 }
 export const budgets: Budget[] = [
   {
-    category: "Food",
-    total: 300,
+    category: "On Groceries",
+    total: 200,
     spent: 160,
     day: 4,
     week: 0,
   },
   {
-    category: "On Others",
-    total: 200,
-    spent: 40,
-    day: 2,
-    week: 1,
-  },
-  {
-    category: "Beverages",
+    category: "Eating Out",
     total: 140,
     spent: 130,
     day: 5,
