@@ -8,8 +8,8 @@ export default function Content() {
       <div className="flex flex-col gap-2 text-muted-foreground text-sm font-medium">
         <button className="text-left hover:text-primary text-muted transition-colors">
           Shortcuts{" "}
-          <kbd className="text-primary/80 bg-secondary/60 text-[10px] ml-2 px-1 py-0.5 hidden lg:inline">
-            Alt + S
+          <kbd className="text-primary/80 bg-secondary/60 text-[10px] ml-2 px-1 rounded py-0.5 hidden lg:inline">
+            Alt+S
           </kbd>
         </button>
         <button className="text-left hover:text-primary text-muted transition-colors">
@@ -27,7 +27,7 @@ export default function Content() {
 
         <p className="text-[11px] text-muted hidden lg:inline">
           <kbd className="px-1 py-0.5 bg-secondary/60 text-primary/80 rounded">
-            Ctrl + B
+            Ctrl+B
           </kbd>{" "}
           to toggle sidebar
         </p>
