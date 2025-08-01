@@ -16,8 +16,8 @@ export default function StatTabs() {
           <button
             onClick={() => setActiveTab("daily")}
             className={clsx(
-              "px-4  py-2 rounded-lg text-xs md:text-sm font-medium",
-              activeTab === "weekly"
+              "sm:px-10 px-4  py-2 rounded-lg text-xs md:text-sm font-medium",
+              activeTab === "daily"
                 ? "bg-secondary/80 text-moreWhite"
                 : "bg-secondary/20 text-moreWhite hover:bg-secondary/60"
             )}
@@ -27,7 +27,7 @@ export default function StatTabs() {
           <button
             onClick={() => setActiveTab("weekly")}
             className={clsx(
-              "px-4  py-2 rounded-lg text-xs md:text-sm font-medium",
+              "sm:px-10 px-4  py-2 rounded-lg text-xs md:text-sm font-medium",
               activeTab === "weekly"
                 ? "bg-secondary/80 text-moreWhite"
                 : "bg-secondary/20 text-moreWhite hover:bg-secondary/60"
@@ -36,9 +36,10 @@ export default function StatTabs() {
             Weekly
           </button>
           <button
+            onClick={() => setActiveTab("monthly")}
             className={clsx(
-              "px-4  py-2 rounded-lg text-xs md:text-sm font-medium",
-              activeTab === "weekly"
+              "sm:px-10 px-4  py-2 rounded-lg text-xs md:text-sm font-medium",
+              activeTab === "monthly"
                 ? "bg-secondary/80 text-moreWhite"
                 : "bg-secondary/20 text-moreWhite hover:bg-secondary/60"
             )}
