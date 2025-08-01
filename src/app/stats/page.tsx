@@ -14,9 +14,15 @@ export default function StatsPage() {
         <div className="w-full max-w-5xl bg-background rounded-xl overflow-hidden relative">
           <div className="pt-8">
             <div className="flex justify-between items-center">
-              <h1 className="sm:text-3xl text-xl font-bold tracking-tight text-moreWhite">
-                Statistics
-              </h1>
+              <div>
+                <h1 className="sm:text-3xl text-xl font-bold tracking-tight text-moreWhite">
+                  Statistics
+                </h1>
+                <div className="hidden sm:inline text-sm">
+                  <span className="text-muted ">Tracking Streak: </span>
+                  <span className="text-primary/80">26 Days</span>
+                </div>
+              </div>
               <Navbar />
             </div>
           </div>

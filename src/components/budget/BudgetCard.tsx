@@ -9,7 +9,7 @@ export default function BudgetCard({ budget, onClick }: BudgetCardProps) {
   return (
     <div
       onClick={onClick}
-      className="rounded-2xl bg-secondary/60 py-10 px-6 min-h-[330px] flex flex-col text-moreWhite shadow-lg hover:cursor-pointer  transition-all hover:bg-secondary duration-300"
+      className="rounded-2xl bg-secondary/60 py-10 px-6 sm:min-h-[330px] min-h-[300px] flex flex-col text-moreWhite shadow-lg hover:cursor-pointer  transition-all hover:bg-secondary duration-300"
     >
       {/* Top Bar */}
       <div className="flex justify-between text-sm text-muted mb-4">
