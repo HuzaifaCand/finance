@@ -1,19 +1,23 @@
 export interface Items {
   name: string;
-  category: Category;
+  category: string;
   method: string;
   cost: number;
 }
 
-export type Category =
-  | "All"
-  | "Food"
-  | "Transport"
-  | "Beverage"
-  | "Education"
-  | "Personal"
-  | "Other";
-
+export const baseCategories = [
+  "Food",
+  "Groceries",
+  "Eating Out",
+  "Transport",
+  "Utilities",
+  "Rent",
+  "Entertainment",
+  "Health",
+  "Education",
+  "Shopping",
+  "Miscellaneous",
+];
 export const tempItems: Items[] = [
   { name: "Biryani - was mid", category: "Food", method: "Cash", cost: 14.0 },
   {

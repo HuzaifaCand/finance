@@ -42,8 +42,8 @@ export default function CategoryInput({
   }, [category]);
 
   return (
-    <div>
-      <label className="block text-sm font-medium text-moreWhite mb-2">
+    <div className="flex flex-col flex-1">
+      <label className="block text-xs font-light text-moreWhite mb-1">
         Category
       </label>
 

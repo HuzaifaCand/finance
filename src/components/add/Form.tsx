@@ -1,10 +1,14 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Desc, Cat, PayMeth, Cost } from "./Fields";
+import CategoryInput from "../budget/CategoryInput";
+import { baseCategories } from "@/data/temp";
 
 export default function AddForm() {
   const descRef = useRef<HTMLInputElement>(null);
+  const [category, setCategory] = useState<string>("");
+  const [customCategory, setCustomCategory] = useState<boolean>(false);
 
   useEffect(() => {
     descRef.current?.focus();
@@ -19,7 +23,13 @@ export default function AddForm() {
         {/* Row 1: Description + Category */}
         <div className="flex flex-col sm:flex-row gap-4">
           <Desc ref={descRef} />
-          <Cat />
+          <CategoryInput
+            category={category}
+            setCategory={setCategory}
+            customCategory={customCategory}
+            setCustomCategory={setCustomCategory}
+            baseCategories={baseCategories}
+          />
         </div>
 
         {/* Row 2: Payment Method + Cost */}

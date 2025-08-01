@@ -3,20 +3,8 @@
 import { useState, ChangeEvent, FormEvent } from "react";
 import clsx from "clsx";
 import CategoryInput from "./CategoryInput";
+import { baseCategories } from "@/data/temp";
 
-const baseCategories = [
-  "Food",
-  "Groceries",
-  "Eating Out",
-  "Transport",
-  "Utilities",
-  "Rent",
-  "Entertainment",
-  "Health",
-  "Education",
-  "Shopping",
-  "Miscellaneous",
-];
 const fieldClass: string =
   "w-full px-3 py-2 rounded-md bg-secondary/50 text-moreWhite border border-muted/10 text-xs focus:outline-none focus:bg-tealBg ";
 
@@ -25,10 +13,6 @@ export default function AddBudgetForm() {
   const [amount, setAmount] = useState<string>("");
   const [customCategory, setCustomCategory] = useState<boolean>(false);
 
-  const filteredCategories = baseCategories.filter((c) =>
-    c.toLowerCase().startsWith(category.toLowerCase())
-  );
-
   const handleDummySubmit = (e: FormEvent<HTMLFormElement>) => {
     // No real submission logic for now
     console.log("Category:", category);
@@ -36,7 +20,7 @@ export default function AddBudgetForm() {
   };
 
   return (
-    <form onSubmit={handleDummySubmit} className="space-y-6 mt-4 ">
+    <form onSubmit={handleDummySubmit} className="space-y-4 mt-4 ">
       <h1 className="text-xl font-bold text-moreWhite mb-4 text-left">
         Add New Budget
       </h1>
@@ -52,7 +36,7 @@ export default function AddBudgetForm() {
 
       {/* Amount Input */}
       <div>
-        <label className="block text-sm font-medium text-moreWhite mb-2">
+        <label className="block text-xs font-light text-moreWhite mb-1">
           Amount (HKD)
         </label>
         <input
