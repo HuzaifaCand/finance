@@ -10,7 +10,7 @@ export default function BudgetTabs() {
   return (
     <div className="rounded-xl overflow-hidden border border-teal/10 bg-background">
       {/* Tabs */}
-      <div className="flex justify-end px-2 sm:px-6 py-6">
+      <div className="flex justify-end px-3 sm:px-6 py-6">
         <div className="flex gap-2 sm:gap-4">
           <button
             onClick={() => setActiveTab("total")}

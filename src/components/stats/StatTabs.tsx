@@ -1,5 +1,6 @@
 "use client";
 
+import clsx from "clsx";
 import { useState } from "react";
 
 export default function StatTabs() {
@@ -14,31 +15,33 @@ export default function StatTabs() {
         <div className="flex gap-2 sm:gap-4">
           <button
             onClick={() => setActiveTab("daily")}
-            className={`sm:px-4 px-2 py-2 rounded-lg text-xs md:text-sm font-medium ${
-              activeTab === "daily"
+            className={clsx(
+              "px-4  py-2 rounded-lg text-xs md:text-sm font-medium",
+              activeTab === "weekly"
                 ? "bg-secondary/80 text-moreWhite"
                 : "bg-secondary/20 text-moreWhite hover:bg-secondary/60"
-            }`}
+            )}
           >
             Daily
           </button>
           <button
             onClick={() => setActiveTab("weekly")}
-            className={`sm:px-4 px-2 py-2 rounded-lg text-xs md:text-sm font-medium ${
+            className={clsx(
+              "px-4  py-2 rounded-lg text-xs md:text-sm font-medium",
               activeTab === "weekly"
                 ? "bg-secondary/80 text-moreWhite"
                 : "bg-secondary/20 text-moreWhite hover:bg-secondary/60"
-            }`}
+            )}
           >
             Weekly
           </button>
           <button
-            onClick={() => setActiveTab("monthly")}
-            className={`sm:px-4 px-2 py-2 rounded-lg text-xs md:text-sm font-medium ${
-              activeTab === "monthly"
+            className={clsx(
+              "px-4  py-2 rounded-lg text-xs md:text-sm font-medium",
+              activeTab === "weekly"
                 ? "bg-secondary/80 text-moreWhite"
                 : "bg-secondary/20 text-moreWhite hover:bg-secondary/60"
-            }`}
+            )}
           >
             Monthly
           </button>
