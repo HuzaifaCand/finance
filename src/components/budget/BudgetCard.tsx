@@ -19,8 +19,10 @@ export default function BudgetCard({ budget, onClick }: BudgetCardProps) {
 
       {/* Center Content */}
       <div className="text-center mb-2 mt-8">
-        <h2 className="text-xl font-semibold">{budget.category}</h2>
-        <p className="text-2xl font-bold text-primary">{budget.total} HKD</p>
+        <h2 className="sm:text-xl text-lg font-semibold">{budget.category}</h2>
+        <p className="sm:text-2xl text-xl font-bold text-primary">
+          {budget.total} HKD
+        </p>
       </div>
 
       {/* Progress */}

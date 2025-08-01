@@ -9,9 +9,9 @@ export default function StatTabs() {
   );
 
   return (
-    <div className="rounded-xl overflow-hidden border border-teal/10 bg-background">
+    <div className="rounded-xl overflow-hidden bg-background">
       {/* Tabs */}
-      <div className="flex justify-end px-6 py-6">
+      <div className="flex justify-end px-6 pb-6 pt-3">
         <div className="flex gap-2 sm:gap-4">
           <button
             onClick={() => setActiveTab("daily")}
