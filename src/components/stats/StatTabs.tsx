@@ -3,6 +3,9 @@
 import clsx from "clsx";
 import { useState } from "react";
 
+const baseClass =
+  "sm:px-10 px-4 py-2 rounded-lg text-xs md:text-sm font-medium";
+
 export default function StatTabs() {
   const [activeTab, setActiveTab] = useState<"daily" | "weekly" | "monthly">(
     "daily"
@@ -16,7 +19,7 @@ export default function StatTabs() {
           <button
             onClick={() => setActiveTab("daily")}
             className={clsx(
-              "sm:px-10 px-4  py-2 rounded-lg text-xs md:text-sm font-medium",
+              baseClass,
               activeTab === "daily"
                 ? "bg-secondary/80 text-moreWhite"
                 : "bg-secondary/20 text-moreWhite hover:bg-secondary/60"
@@ -27,7 +30,7 @@ export default function StatTabs() {
           <button
             onClick={() => setActiveTab("weekly")}
             className={clsx(
-              "sm:px-10 px-4  py-2 rounded-lg text-xs md:text-sm font-medium",
+              baseClass,
               activeTab === "weekly"
                 ? "bg-secondary/80 text-moreWhite"
                 : "bg-secondary/20 text-moreWhite hover:bg-secondary/60"
@@ -38,7 +41,7 @@ export default function StatTabs() {
           <button
             onClick={() => setActiveTab("monthly")}
             className={clsx(
-              "sm:px-10 px-4  py-2 rounded-lg text-xs md:text-sm font-medium",
+              baseClass,
               activeTab === "monthly"
                 ? "bg-secondary/80 text-moreWhite"
                 : "bg-secondary/20 text-moreWhite hover:bg-secondary/60"

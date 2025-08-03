@@ -5,6 +5,9 @@ import BudgetGrid from "./BudgetGrid";
 import TotalBudgetCard from "./TotalBudgetCard";
 import clsx from "clsx";
 
+const baseClass =
+  "sm:px-10 px-4 py-2 rounded-lg text-xs md:text-sm font-medium";
+
 export default function BudgetTabs() {
   const [activeTab, setActiveTab] = useState<"total" | "categories">("total");
 
@@ -16,7 +19,7 @@ export default function BudgetTabs() {
           <button
             onClick={() => setActiveTab("total")}
             className={clsx(
-              "sm:px-10 px-4 py-2 rounded-lg text-xs md:text-sm font-medium",
+              baseClass,
               activeTab === "total"
                 ? "bg-secondary/80 text-moreWhite"
                 : "bg-secondary/20 text-moreWhite hover:bg-secondary/60"
@@ -27,7 +30,7 @@ export default function BudgetTabs() {
           <button
             onClick={() => setActiveTab("categories")}
             className={clsx(
-              "sm:px-10 px-4 py-2 rounded-lg text-xs md:text-sm font-medium",
+              baseClass,
               activeTab === "categories"
                 ? "bg-secondary/80 text-moreWhite"
                 : "bg-secondary/20 text-moreWhite hover:bg-secondary/60"

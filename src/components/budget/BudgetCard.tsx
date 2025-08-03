@@ -1,4 +1,5 @@
 import { Budget } from "@/data/temp";
+import ActionIcons from "./ActionIcons";
 
 interface BudgetCardProps {
   budget: Budget;
@@ -9,16 +10,21 @@ export default function BudgetCard({ budget, onClick }: BudgetCardProps) {
   return (
     <div
       onClick={onClick}
-      className="rounded-2xl bg-secondary/60 py-10 px-6 sm:min-h-[330px] min-h-[300px] flex flex-col text-moreWhite shadow-lg hover:cursor-pointer  transition-all hover:bg-secondary duration-300"
+      className="relative rounded-2xl bg-secondary/60 py-10 px-6 sm:min-h-[330px] min-h-[300px] flex flex-col text-moreWhite shadow-lg hover:cursor-pointer  items-center justify-center transition-all hover:bg-secondary duration-300"
     >
       {/* Top Bar */}
-      <div className="flex justify-between text-sm text-muted mb-4">
-        <span className="text-primary">Day {budget.day}</span>
-        <span>Week {budget.week}</span>
+      {/* Top Left - Day of Week */}
+      <div className="absolute top-4 left-4 text-sm text-primary py-1 px-2 rounded-md font-medium">
+        Day {budget.day} of 7
+      </div>
+
+      {/* Top Right - Budget Week */}
+      <div className="absolute top-4 right-4 text-sm text-muted py-1 px-2 rounded-md font-medium">
+        Week {budget.week}
       </div>
 
       {/* Center Content */}
-      <div className="text-center mb-2 mt-8">
+      <div className="text-center mb-2">
         <h2 className="sm:text-xl text-lg font-semibold">{budget.category}</h2>
         <p className="sm:text-2xl text-xl font-bold text-primary">
           {budget.total} HKD
@@ -40,11 +46,13 @@ export default function BudgetCard({ budget, onClick }: BudgetCardProps) {
         </p>
       </div>
 
-      {/* Spacer pushes text down */}
-      <div className="flex-grow" />
-
       {/* Bottom fixed text */}
-      <p className="text-center text-xs text-teal/60">Click card for details</p>
+      <div className="absolute bottom-5.5 left-4 px-2 text-center">
+        <p className=" text-xs text-teal/60">Click card for details</p>
+      </div>
+
+      {/* edit delete */}
+      <ActionIcons />
     </div>
   );
 }

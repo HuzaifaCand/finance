@@ -1,5 +1,4 @@
-import { Pencil, Trash2 } from "lucide-react";
-import clsx from "clsx";
+import ActionIcons from "./ActionIcons";
 
 const mockData = {
   totalBudget: 800,
@@ -12,9 +11,6 @@ const mockData = {
     { name: "Transport", amount: 50 },
   ],
 };
-
-const baseIconClass =
-  "p-1.5 rounded-md focus:outline-none transition active:scale-95";
 
 export default function TotalBudgetCard() {
   const progress = Math.min(mockData.spent / mockData.totalBudget, 1) * 100;
@@ -32,7 +28,7 @@ export default function TotalBudgetCard() {
       </div>
 
       {/* Title */}
-      <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-primary text-center mb-4">
+      <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-primary text-center mb-2 sm:mb-4">
         Weekly Budget Overview
       </h1>
 
@@ -73,22 +69,7 @@ export default function TotalBudgetCard() {
       </div>
 
       {/* Bottom Right - Edit/Delete */}
-      <div className="absolute bottom-4 right-4 flex items-center gap-2">
-        <button
-          aria-label="Edit"
-          title="Edit"
-          className={clsx(baseIconClass, "focus:bg-teal/10 hover:bg-teal/10")}
-        >
-          <Pencil className="w-4 h-4 text-teal" />
-        </button>
-        <button
-          aria-label="Delete"
-          title="Delete"
-          className={clsx(baseIconClass, "focus:bg-redBg hover:bg-redBg/80")}
-        >
-          <Trash2 className="w-4 h-4 text-red" />
-        </button>
-      </div>
+      <ActionIcons />
     </div>
   );
 }
