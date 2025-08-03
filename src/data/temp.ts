@@ -18,6 +18,7 @@ export const baseCategories = [
   "Shopping",
   "Miscellaneous",
 ];
+
 export const tempItems: Items[] = [
   { name: "Biryani - was mid", category: "Food", method: "Cash", cost: 14.0 },
   {

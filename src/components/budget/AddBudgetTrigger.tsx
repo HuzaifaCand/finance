@@ -9,7 +9,7 @@ export default function AddBudgetTrigger() {
   const [open, setOpen] = useState(false);
 
   const handleKeyDown = (e: KeyboardEvent) => {
-    if (e.altKey && e.key.toLowerCase() === "b") {
+    if (e.altKey && e.key.toLowerCase() === "a") {
       e.preventDefault();
       setOpen(true);
     }

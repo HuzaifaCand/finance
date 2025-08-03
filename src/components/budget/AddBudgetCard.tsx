@@ -16,7 +16,7 @@ export default function AddBudgetCard({ onAdd }: AddBudgetCardProps) {
       </div>
       <p className="font-medium">Add New Weekly Budget</p>
 
-      <p className="text-xs text-muted mt-1 hidden md:inline">or Alt+B</p>
+      <p className="text-xs text-muted mt-1 hidden md:inline">or Alt+A</p>
     </div>
   );
 }

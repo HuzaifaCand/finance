@@ -82,14 +82,14 @@ export default function CategoryInput({
           )}
 
           {category && filtered.length === 0 && (
-            <p className="text-xs text-teal-400 mt-2">
+            <p className="text-xs text-teal mt-2">
               Category not found.{" "}
               <button
                 type="button"
                 onClick={() => {
                   setCustomCategory(true);
                 }}
-                className="underline underline-offset-2 hover:text-teal"
+                className="underline underline-offset-2 hover:text-teal/70"
               >
                 Add new category
               </button>
