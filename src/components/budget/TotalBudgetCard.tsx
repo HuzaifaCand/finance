@@ -53,7 +53,7 @@ export default function TotalBudgetCard() {
       {/* Top Categories */}
       <div className="mt-6 text-sm w-full max-w-xs">
         <h2 className="text-muted mb-2 text-center font-medium tracking-wide">
-          Top Spending Categories This Week
+          Top Spending Categories
         </h2>
         <ul className="space-y-1">
           {mockData.topCategories.map((cat, idx) => (
