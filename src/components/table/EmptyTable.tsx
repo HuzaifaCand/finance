@@ -11,8 +11,8 @@ export default function EmptyTable() {
             <h3 className="text-lg font-semibold">No expenses yet</h3>
           </div>
 
-          <div className="bg-secondary/70 mt-2 rounded-md shadow-sm border border-stroke/40">
-            <p className="text-sm py-2 px-6">
+          <div className="bg-secondary/70 text-center mt-2 rounded-md shadow-sm border border-stroke/40">
+            <p className="sm:text-sm text-xs py-2 px-6">
               Use the <span className="text-teal font-semibold">＋</span> button
               above to add your first entry
             </p>
