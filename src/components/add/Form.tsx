@@ -1,14 +1,27 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Desc, Cat, PayMeth, Cost } from "./Fields";
-import CategoryInput from "../budget/CategoryInput";
+import { Desc, Cost } from "./Fields";
+import CategoryInput from "../formInputs/CategoryInput";
 import { baseCategories } from "@/data/temp";
+import MethodInput from "../formInputs/MethodInput";
+
+const methods = [
+  "Cash",
+  "Card",
+  "Octopus",
+  "Online",
+  "Other",
+  "Bank Transfer",
+  "Mobile Pay",
+];
 
 export default function AddForm() {
   const descRef = useRef<HTMLInputElement>(null);
   const [category, setCategory] = useState<string>("");
   const [customCategory, setCustomCategory] = useState<boolean>(false);
+
+  const [method, setMethod] = useState<string>("");
 
   useEffect(() => {
     descRef.current?.focus();
@@ -34,7 +47,11 @@ export default function AddForm() {
 
         {/* Row 2: Payment Method + Cost */}
         <div className="flex flex-col sm:flex-row gap-4">
-          <PayMeth />
+          <MethodInput
+            method={method}
+            setMethod={setMethod}
+            methods={methods}
+          />
           <Cost />
         </div>
 

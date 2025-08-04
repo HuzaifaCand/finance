@@ -2,7 +2,7 @@
 
 import { useState, ChangeEvent, FormEvent } from "react";
 import clsx from "clsx";
-import CategoryInput from "./CategoryInput";
+import CategoryInput from "../formInputs/CategoryInput";
 import { baseCategories } from "@/data/temp";
 
 const fieldClass: string =
