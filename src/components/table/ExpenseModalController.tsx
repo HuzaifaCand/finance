@@ -3,7 +3,7 @@
 import { useState } from "react";
 import AddButtonPopover from "./AddButton";
 import AddExpenseModal from "../add/AddExpense";
-import QuickAddModal from "../add/QuickAdd"; // or wherever it lives
+import QuickAddModal from "../add/QuickAdd";
 
 export default function ExpenseModalController() {
   const [modalType, setModalType] = useState<null | "addExpense" | "quickAdd">(

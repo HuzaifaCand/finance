@@ -27,7 +27,7 @@ export default function BudgetCard({ budget, onClick }: BudgetCardProps) {
       <div className="text-center mb-2">
         <h2 className="sm:text-xl text-lg font-semibold">{budget.category}</h2>
         <p className="sm:text-2xl text-xl font-bold text-primary">
-          {budget.total} HKD
+          HK$ {budget.total}
         </p>
       </div>
 
