@@ -44,10 +44,6 @@
   border-radius: 10px;
 }
 
-td {
-  font-variant-numeric: tabular-nums;
-}
-
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -57,10 +53,4 @@ input[type="number"]::-webkit-inner-spin-button {
 /* Firefox */
 input[type="number"] {
   -moz-appearance: textfield;
-}
-
-select option {
-  background-color: #00120a; /* match your dark theme */
-  color: #e6f4ff; /* your text color */
-  font-size: 0.75rem;
 }
