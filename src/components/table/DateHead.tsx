@@ -40,6 +40,7 @@ export default function DateHead({ date, setDate }: Props) {
           showPopperArrow={false}
           calendarClassName="darkDatepicker"
           wrapperClassName="cursor-pointer"
+          popperPlacement="bottom-end"
         />
       </div>
     </div>
