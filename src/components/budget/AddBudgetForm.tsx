@@ -53,34 +53,16 @@ export default function AddBudgetForm() {
       </div>
 
       {/* Action Buttons */}
-      <div className="flex md:justify-between justify-end pt-2">
-        <div className="hidden mt-2 md:flex md:flex-col">
-          <p className="text-muted text-[8px] italic">
-            Use<kbd className="px-1">Esc</kbd> to cancel.
-          </p>
-          <p className="text-muted text-[8px] italic">
-            Use <kbd className="px-1">Tab</kbd> to move between fields.
-          </p>
-        </div>
-        <div className="flex gap-4">
-          <button
-            type="reset"
-            onClick={() => {
-              setCategory("");
-              setAmount("");
-              setCustomCategory(false);
-            }}
-            className="px-6 sm:px-10  py-2 rounded-md focus:outline-none focus:bg-secondary/60 text-xs bg-secondary/30 text-moreWhite hover:bg-secondary/60 transition-all duration-150"
-          >
-            Clear
-          </button>
-          <button
-            type="submit"
-            className="px-6 sm:px-10 py-2  rounded-md focus:outline-none focus:bg-secondary text-xs bg-secondary/80 text-moreWhite hover:bg-secondary transition-all duration-150"
-          >
-            Add Budget
-          </button>
-        </div>
+      <div className="flex justify-between gap-8 items-center">
+        <p className="text-muted hidden sm:inline text-[10px] italic">
+          Use<kbd className="px-1">Esc</kbd> to cancel.
+        </p>
+        <button
+          type="submit"
+          className="w-1/3 bg-tealBg text-moreWhite font-semibold py-2 text-xs rounded-lg focus:outline-none border border-tealBg focus:bg-tealBg/80 focus:border-stroke active:scale-95 transition"
+        >
+          Add Budget
+        </button>
       </div>
     </form>
   );

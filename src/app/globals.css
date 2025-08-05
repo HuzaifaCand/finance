@@ -54,3 +54,61 @@ input[type="number"]::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+
+/* dark themed datepicker popup */
+
+.darkDatepicker {
+  background-color: #122628; /* secondary */
+
+  color: #e6f4ff; /* moreWhite */
+  font-family: inherit;
+  font-weight: 400;
+}
+
+.darkDatepicker .react-datepicker__header {
+  background-color: #122628;
+  border-bottom: 1px solid #3a5e5a;
+  font-family: inherit;
+  font-weight: 400;
+}
+
+.darkDatepicker .react-datepicker__current-month,
+.darkDatepicker .react-datepicker__day-name {
+  color: #e6f4ff;
+  font-family: inherit;
+  font-weight: 400;
+}
+
+.darkDatepicker .react-datepicker__day {
+  color: #122628;
+}
+
+.darkDatepicker .react-datepicker__day:hover {
+  background-color: #4de0c7; /* deepAccent */
+  color: #122628; /* secondary for contrast */
+}
+
+.darkDatepicker .react-datepicker__day--selected {
+  background-color: #4de0c7; /* accent */
+  color: #000700; /* background (dark) */
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -500px 0;
+  }
+  100% {
+    background-position: 500px 0;
+  }
+}
+
+.shimmer {
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-size: 800px 100%;
+  animation: shimmer 1.4s infinite;
+}

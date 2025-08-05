@@ -4,15 +4,17 @@ import AddForm from "./Form";
 interface AddExpenseModalProps {
   show: boolean;
   setShow: (value: boolean) => void;
+  date: Date;
 }
 
 export default function AddExpenseModal({
   show,
   setShow,
+  date,
 }: AddExpenseModalProps) {
   return (
     <Modal isOpen={show} onClose={() => setShow(false)}>
-      <AddForm />
+      <AddForm date={date} onClose={() => setShow(false)} />
     </Modal>
   );
 }

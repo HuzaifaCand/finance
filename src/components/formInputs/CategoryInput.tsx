@@ -17,9 +17,12 @@ export default function CategoryInput({
 }: Props) {
   const [showDropdown, setShowDropdown] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState(0);
-  const filtered = baseCategories.filter((c) =>
-    c.toLowerCase().startsWith(category.toLowerCase())
-  );
+  const filtered =
+    category === ""
+      ? baseCategories
+      : baseCategories.filter((c) =>
+          c.toLowerCase().startsWith(category.toLowerCase())
+        );
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "ArrowDown") {
@@ -51,6 +54,12 @@ export default function CategoryInput({
         <div className="relative">
           <input
             required
+            onInvalid={(e) => e.preventDefault()}
+            onFocus={() => setShowDropdown(true)}
+            onMouseDown={() => {
+              setCategory(category);
+              setShowDropdown(false);
+            }}
             type="text"
             value={category}
             onChange={(e: ChangeEvent<HTMLInputElement>) => {
@@ -58,12 +67,12 @@ export default function CategoryInput({
               setShowDropdown(true);
             }}
             onKeyDown={handleKeyDown}
-            placeholder="Search or type a category"
+            placeholder="Search categories or create new"
             className="w-full px-3 py-2 rounded-md bg-secondary/50 text-moreWhite border border-muted/10 text-xs focus:outline-none focus:bg-tealBg"
           />
 
-          {category && filtered.length > 0 && showDropdown && (
-            <ul className="absolute z-10 mt-1 w-full text-xs bg-background border border-secondary/30 rounded-md shadow-sm max-h-40 overflow-y-auto">
+          {filtered.length > 0 && showDropdown && (
+            <ul className="absolute z-10 mt-1 w-full text-xs bg-background border border-secondary/30 rounded-md shadow-sm max-h-40 overflow-y-auto custom-scrollbar">
               {filtered.map((item, i) => (
                 <li
                   key={item}
@@ -98,6 +107,8 @@ export default function CategoryInput({
         </div>
       ) : (
         <input
+          required
+          onInvalid={(e) => e.preventDefault()}
           type="text"
           value={category}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>

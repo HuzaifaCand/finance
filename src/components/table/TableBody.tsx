@@ -1,25 +1,59 @@
-import { tempItems } from "@/data/temp";
+"use client";
+
+import { useEffect, useState } from "react";
+import { Expense } from "@/models/expense";
 import ActionIcons from "./ActionIcons";
 import EmptyTable from "./EmptyTable";
+import LoadingRows from "./LoadingRows";
+import { collection, onSnapshot, query } from "firebase/firestore";
+import { db } from "@/lib/firebase";
 
-export default function TableBody() {
-  if (tempItems.length === 0) {
-    return (
-      <tbody className="bg-background">
-        <EmptyTable />
-      </tbody>
+export default function TableBody({ date }: { date: Date }) {
+  const [rows, setRows] = useState<Expense[]>([]);
+
+  const [showFallback, setShowFallback] = useState(false);
+
+  useEffect(() => {
+    setShowFallback(false); // Reset fallback on each date change
+
+    const d = date.toLocaleDateString("en-CA");
+    const q = query(
+      collection(db, "users", "demoUser", "dates", d, "expenses")
     );
+
+    // Start fallback after 200ms
+    const timer = setTimeout(() => setShowFallback(true), 200);
+
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      clearTimeout(timer);
+      setRows(snapshot.docs.map((d) => d.data() as Expense));
+      setShowFallback(false); // we have real data
+    });
+
+    return () => {
+      clearTimeout(timer);
+      unsubscribe();
+    };
+  }, [date]);
+
+  if (showFallback) {
+    return <LoadingRows />;
   }
+
+  if (rows.length === 0) {
+    return <EmptyTable />;
+  }
+
   return (
     <tbody className="bg-background">
-      {tempItems.map((item, idx) => (
+      {rows.map((item, idx) => (
         <tr
-          key={idx}
+          key={item.id}
           className={`${
             idx % 2 === 0 ? "bg-background" : "bg-tealBg/15"
           } hover:bg-secondary/30 hover:shadow-sm transition duration-200`}
         >
-          <td className="py-2 px-4 text-xs text-moreWhite">{item.name}</td>
+          <td className="py-2 px-4 text-xs text-moreWhite">{item.desc}</td>
           <td className="py-2 px-4 text-xs text-moreWhite">{item.category}</td>
           <td className="py-2 px-4 text-xs text-moreWhite">{item.method}</td>
           <td className="py-2 px-4 text-xs text-moreWhite">
@@ -30,6 +64,16 @@ export default function TableBody() {
           </td>
         </tr>
       ))}
+      {rows.length < 5 &&
+        Array.from({ length: 5 - rows.length }).map((_, i) => (
+          <tr key={`placeholder-${i}`} className="opacity-0">
+            <td className="py-2 px-4">&nbsp;</td>
+            <td className="py-2 px-4"></td>
+            <td className="py-2 px-4"></td>
+            <td className="py-2 px-4"></td>
+            <td className="py-2 px-4"></td>
+          </tr>
+        ))}
     </tbody>
   );
 }

@@ -7,13 +7,13 @@ const baseClass: string =
 export default function ActionIcons() {
   return (
     <div className="flex items-center justify-center gap-2">
-      <button
+      {/* <button
         aria-label="Edit"
         title="Edit"
         className={clsx(baseClass, "focus:bg-teal/10 hover:bg-teal/10")}
       >
         <Pencil className="w-4 h-4 text-teal" />
-      </button>
+      </button> */}
       <button
         aria-label="Delete"
         title="Delete"

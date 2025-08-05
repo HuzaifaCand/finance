@@ -20,7 +20,7 @@ export default function Content() {
             href="/"
             className="text-left hover:text-primary transition-colors"
           >
-            Dashboard
+            Expense Tracker
           </Link>
           <Link
             href="/budgets"
@@ -33,6 +33,12 @@ export default function Content() {
             className="text-left hover:text-primary transition-colors"
           >
             Stats
+          </Link>
+          <Link
+            href="/categories"
+            className="text-left hover:text-primary transition-colors"
+          >
+            Edit Categories
           </Link>
         </div>
       </div>
@@ -48,9 +54,6 @@ export default function Content() {
           </button>
           <button className="text-left hidden lg:inline hover:text-primary transition-colors">
             Shortcuts
-            <kbd className="ml-2 bg-secondary/60 text-primary/80 text-[10px] px-1 rounded py-0.5 hidden lg:inline">
-              Alt+S
-            </kbd>
           </button>
           <button className="text-left hover:text-primary transition-colors">
             Why Track Finances?

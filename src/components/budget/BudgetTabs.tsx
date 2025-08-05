@@ -2,8 +2,10 @@
 
 import { useState } from "react";
 import BudgetGrid from "./BudgetGrid";
-import TotalBudgetCard from "./TotalBudgetCard";
+
 import clsx from "clsx";
+
+import TotalBudgetCard from "./TotalBudgetCard";
 
 const baseClass =
   "sm:px-10 px-4 py-2 rounded-lg text-xs md:text-sm font-medium";

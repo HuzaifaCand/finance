@@ -10,9 +10,10 @@ export default function MethodInput({ method, setMethod, methods }: Props) {
   const [showDropdown, setShowDropdown] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState(0);
 
-  const filtered = methods.filter((c) =>
-    c.toLowerCase().startsWith(method.toLowerCase())
-  );
+  const filtered =
+    method === ""
+      ? methods
+      : methods.filter((c) => c.toLowerCase().startsWith(method.toLowerCase()));
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "ArrowDown") {
@@ -43,6 +44,12 @@ export default function MethodInput({ method, setMethod, methods }: Props) {
       <div className="relative">
         <input
           required
+          onFocus={() => setShowDropdown(true)}
+          onMouseDown={() => {
+            setMethod(method);
+            setShowDropdown(false);
+          }}
+          onInvalid={(e) => e.preventDefault()}
           type="text"
           value={method}
           onChange={(e: ChangeEvent<HTMLInputElement>) => {
@@ -54,8 +61,8 @@ export default function MethodInput({ method, setMethod, methods }: Props) {
           className="w-full px-3 py-2 rounded-md bg-secondary/50 text-moreWhite border border-muted/10 text-xs focus:outline-none focus:bg-tealBg"
         />
 
-        {method && filtered.length > 0 && showDropdown && (
-          <ul className="absolute z-10 mt-1 w-full text-xs bg-background border border-secondary/30 rounded-md shadow-sm max-h-40 overflow-y-auto">
+        {filtered.length > 0 && showDropdown && (
+          <ul className="absolute z-10 mt-1 w-full text-xs bg-background border border-secondary/30 rounded-md shadow-sm max-h-40 overflow-y-auto custom-scrollbar">
             {filtered.map((item, i) => (
               <li
                 key={item}
