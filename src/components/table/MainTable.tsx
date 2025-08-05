@@ -2,14 +2,13 @@
 
 import TableBody from "./TableBody";
 import TableHead from "./TableHead";
-
 import DateHead from "./DateHead";
 import ExpenseModalController from "./ExpenseModalController";
-import { totalCost } from "@/data/temp";
 import Navbar from "../Navbar";
 import { useEffect, useState } from "react";
 
 export default function MainTable() {
+  const [totalCost, setTotalCost] = useState(0);
   const [date, setDate] = useState<Date>(() => {
     if (typeof window !== "undefined") {
       const stored = localStorage.getItem("lastDate");
@@ -46,7 +45,7 @@ export default function MainTable() {
         <div className="max-h-[420px] overflow-y-auto overflow-x-auto custom-scrollbar ">
           <table className="min-w-full rounded-xl overflow-hidden">
             <TableHead />
-            <TableBody date={date} />
+            <TableBody date={date} onTotalChange={setTotalCost} />
           </table>
         </div>
 

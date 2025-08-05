@@ -8,7 +8,11 @@ import LoadingRows from "./LoadingRows";
 import { collection, onSnapshot, query } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 
-export default function TableBody({ date }: { date: Date }) {
+interface Props {
+  date: Date;
+  onTotalChange: (t: number) => void;
+}
+export default function TableBody({ date, onTotalChange }: Props) {
   const [rows, setRows] = useState<Expense[]>([]);
 
   const [showFallback, setShowFallback] = useState(false);
@@ -26,8 +30,13 @@ export default function TableBody({ date }: { date: Date }) {
 
     const unsubscribe = onSnapshot(q, (snapshot) => {
       clearTimeout(timer);
-      setRows(snapshot.docs.map((d) => d.data() as Expense));
-      setShowFallback(false); // we have real data
+      const data = snapshot.docs.map((d) => d.data() as Expense);
+      setRows(data);
+      setShowFallback(false);
+
+      // compute total & notify parent
+      const total = data.reduce((sum, e) => sum + e.cost, 0);
+      onTotalChange(total);
     });
 
     return () => {
@@ -36,13 +45,9 @@ export default function TableBody({ date }: { date: Date }) {
     };
   }, [date]);
 
-  if (showFallback) {
-    return <LoadingRows />;
-  }
+  if (showFallback) return <LoadingRows />;
 
-  if (rows.length === 0) {
-    return <EmptyTable />;
-  }
+  if (rows.length === 0) return <EmptyTable />;
 
   return (
     <tbody className="bg-background">
