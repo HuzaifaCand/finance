@@ -5,6 +5,7 @@ import { baseCategories } from "@/data/temp";
 import MethodInput from "../formInputs/MethodInput";
 import clsx from "clsx";
 import { toast } from "sonner";
+import { PaymentMethod } from "@/models/expense";
 
 const fieldClass =
   "w-full px-3 py-2 rounded-md bg-secondary/50 text-moreWhite border border-muted/10 text-xs focus:outline-none focus:bg-tealBg ";
@@ -48,7 +49,7 @@ export default function AddForm({ date, onClose }: Props) {
       await addExpense("demoUser", {
         desc,
         category,
-        method: method as any,
+        method: method as PaymentMethod,
         cost,
         date: stringDate,
       });
