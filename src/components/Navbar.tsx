@@ -9,17 +9,17 @@ const routes = [
   {
     name: "Expense Tracker",
     href: "/",
-    icon: <List width={20} height={20} />,
+    icon: <List className="md:w-5 md:h-5 w-4 h-4" />,
   },
   {
     name: "Statistics",
     href: "/stats",
-    icon: <BarChart width={20} height={20} />,
+    icon: <BarChart className="md:w-5 md:h-5 w-4 h-4" />,
   },
   {
     name: "Budgeting",
     href: "/budgets",
-    icon: <Wallet width={20} height={20} />,
+    icon: <Wallet className="md:w-5 md:h-5 w-4 h-4" />,
   },
 ];
 
@@ -54,7 +54,7 @@ export default function Navbar() {
             title={route.name}
             key={i}
             href={route.href}
-            className={`p-2 sm:p-3 font-semibold rounded-full active:scale-95 active:bg-secondary sm:text-sm text-xs transition-all duration-200
+            className={`p-2 md:p-3 font-semibold rounded-full active:scale-95 active:bg-secondary transition-all duration-200
                 ${
                   isActive(route.href)
                     ? "bg-secondary text-white shadow-lg"

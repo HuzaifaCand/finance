@@ -21,7 +21,7 @@ export default function DateHead({ date, setDate }: Props) {
   }
   return (
     <div className="flex flex-col sm:flex-row items-center gap-1 sm:gap-3">
-      <h1 className="sm:text-2xl md:text-3xl text-xl font-bold text-moreWhite tracking-tight">
+      <h1 className="text-md [@media(min-width:360px)]:text-lg [@media(min-width:400px)]:text-xl sm:text-2xl md:text-3xl font-bold text-moreWhite tracking-tight">
         {date.toLocaleDateString("en-CA", {
           weekday: "long",
           day: "numeric",
@@ -29,7 +29,7 @@ export default function DateHead({ date, setDate }: Props) {
         })}
       </h1>
 
-      <div className="relative max-w-[200px] w-full sm:w-auto hover:cursor-pointer mt-1">
+      <div className="relative [@media(min-width:360px)]:max-w-[200px] max-w-[145px] w-full sm:w-auto hover:cursor-pointer mt-1">
         <DatePicker
           minDate={new Date(new Date().getFullYear(), 0, 1)}
           maxDate={new Date(new Date().getFullYear(), 11, 31)}
