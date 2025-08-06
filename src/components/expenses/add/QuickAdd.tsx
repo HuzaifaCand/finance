@@ -8,7 +8,17 @@ interface QuickAddModalProps {
 export default function QuickAddModal({ show, setShow }: QuickAddModalProps) {
   return (
     <Modal isOpen={show} onClose={() => setShow(false)}>
-      <h1 className="text-3xl text-moreWhite">Quick Add</h1>
+      <div className="flex flex-col gap-2">
+        <h1 className="text-2xl font-bold text-moreWhite">Quick Add</h1>
+        <p className="text-sm text-teal/60 mb-2">
+          Coming soon — gathering real user data before building this!
+        </p>
+        <div className="flex justify-end">
+          <p className="text-muted hidden sm:inline text-[11px] italic">
+            Use<kbd className="px-1">Esc</kbd> to leave.
+          </p>
+        </div>
+      </div>
     </Modal>
   );
 }

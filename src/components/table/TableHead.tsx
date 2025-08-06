@@ -1,6 +1,6 @@
 export default function TableHead() {
   return (
-    <thead className="bg-secondary/60 text-moreWhite text-xs">
+    <thead className="bg-secondary/60 text-moreWhite text-[10px] sm:text-xs">
       <tr>
         <th className="py-4 px-4 text-left font-semibold rounded-tl-xl">
           Desc
