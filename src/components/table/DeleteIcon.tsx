@@ -9,15 +9,13 @@ const baseClass: string =
 
 export default function DeleteIcon({ onDelete }: ActionProps) {
   return (
-    <div className="flex items-center justify-center gap-2">
-      <button
-        onClick={onDelete}
-        aria-label="Delete"
-        title="Delete"
-        className={clsx(baseClass, "focus:bg-redBg hover:bg-redBg/80")}
-      >
-        <Trash2 className="w-4 h-4 text-red" />
-      </button>
-    </div>
+    <button
+      onClick={onDelete}
+      aria-label="Delete"
+      title="Delete"
+      className={clsx(baseClass, "focus:bg-redBg hover:bg-redBg/80")}
+    >
+      <Trash2 className="w-4 h-4 text-red" />
+    </button>
   );
 }
