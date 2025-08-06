@@ -3,7 +3,7 @@
 import { useState, ChangeEvent, FormEvent } from "react";
 import clsx from "clsx";
 import CategoryInput from "../formInputs/CategoryInput";
-import { baseCategories } from "@/data/temp";
+import { baseCategories } from "@/data/category";
 
 const fieldClass: string =
   "w-full px-3 py-2 rounded-md bg-secondary/50 text-moreWhite border border-muted/10 text-xs focus:outline-none focus:bg-tealBg ";

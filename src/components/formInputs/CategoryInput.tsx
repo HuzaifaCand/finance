@@ -1,6 +1,9 @@
 import { useEffect, useState, ChangeEvent, KeyboardEvent } from "react";
+import { addCategory, getCustomCategories } from "@/lib/expense";
+import { toast } from "sonner";
 
 interface Props {
+  userId?: string;
   category: string;
   setCategory: (c: string) => void;
   customCategory: boolean;
@@ -9,6 +12,7 @@ interface Props {
 }
 
 export default function CategoryInput({
+  userId,
   category,
   setCategory,
   customCategory,
@@ -17,10 +21,27 @@ export default function CategoryInput({
 }: Props) {
   const [showDropdown, setShowDropdown] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState(0);
+  const [fullCategories, setFullCategories] =
+    useState<string[]>(baseCategories);
+
+  const id = "demoUser";
+
+  useEffect(() => {
+    async function loadCategories() {
+      const custom = await getCustomCategories(id);
+      const names = custom.map((c) => c.category);
+      // Remove duplicates
+      const merged = Array.from(new Set([...baseCategories, ...names]));
+      setFullCategories(merged);
+    }
+
+    loadCategories();
+  }, [id, baseCategories]);
+
   const filtered =
     category === ""
-      ? baseCategories
-      : baseCategories.filter((c) =>
+      ? fullCategories
+      : fullCategories.filter((c) =>
           c.toLowerCase().startsWith(category.toLowerCase())
         );
 
@@ -44,6 +65,13 @@ export default function CategoryInput({
     setHighlightedIndex(0);
   }, [category]);
 
+  const handleAddCategory = async () => {
+    await addCategory(id, category);
+    setFullCategories((prev) => Array.from(new Set([...prev, category])));
+    setCustomCategory(false);
+    toast.success("Category has been added!");
+  };
+
   return (
     <div className="flex flex-col flex-1">
       <label className="block text-xs font-light text-moreWhite mb-1">
@@ -55,6 +83,9 @@ export default function CategoryInput({
           <input
             required
             onInvalid={(e) => e.preventDefault()}
+            onBlur={() => {
+              setTimeout(() => setShowDropdown(false), 200);
+            }}
             onFocus={() => setShowDropdown(true)}
             onMouseDown={() => {
               setCategory(category);
@@ -106,17 +137,26 @@ export default function CategoryInput({
           )}
         </div>
       ) : (
-        <input
-          required
-          onInvalid={(e) => e.preventDefault()}
-          type="text"
-          value={category}
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            setCategory(e.target.value)
-          }
-          placeholder="Enter new category name"
-          className="w-full px-3 py-2 rounded-md bg-secondary/50 text-moreWhite border border-muted/10 text-xs focus:outline-none focus:bg-tealBg"
-        />
+        <div className="flex gap-2">
+          <input
+            required
+            onInvalid={(e) => e.preventDefault()}
+            type="text"
+            value={category}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setCategory(e.target.value)
+            }
+            placeholder="Enter new category name"
+            className="w-full px-3 py-2 rounded-md bg-secondary/50 text-moreWhite border border-muted/10 text-xs focus:outline-none focus:bg-tealBg"
+          />
+          <button
+            type="button"
+            onClick={handleAddCategory}
+            className="px-3 py-2 text-xs bg-teal text-background active:bg-teal/50 rounded-md"
+          >
+            Save
+          </button>
+        </div>
       )}
     </div>
   );

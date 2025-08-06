@@ -44,6 +44,9 @@ export default function MethodInput({ method, setMethod, methods }: Props) {
       <div className="relative">
         <input
           required
+          onBlur={() => {
+            setTimeout(() => setShowDropdown(false), 200);
+          }}
           onFocus={() => setShowDropdown(true)}
           onMouseDown={() => {
             setMethod(method);

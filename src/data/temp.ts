@@ -1,17 +1,3 @@
-export const baseCategories = [
-  "Food",
-  "Groceries",
-  "Eating Out",
-  "Transport",
-  "Utilities",
-  "Rent",
-  "Entertainment",
-  "Health",
-  "Education",
-  "Shopping",
-  "Miscellaneous",
-];
-
 export interface Budget {
   category: string;
   total: number;
