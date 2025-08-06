@@ -54,7 +54,7 @@ export default function Navbar() {
             title={route.name}
             key={i}
             href={route.href}
-            className={`p-2 md:p-3 font-semibold rounded-full active:scale-95 active:bg-secondary transition-all duration-200
+            className={`p-2 md:p-3 font-semibold rounded-full focus:outline-none focus:bg-secondary focus:text-moreWhite active:scale-95 active:bg-secondary transition-all duration-200
                 ${
                   isActive(route.href)
                     ? "bg-secondary text-white shadow-lg"

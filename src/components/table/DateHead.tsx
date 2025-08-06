@@ -25,7 +25,7 @@ export default function DateHead({ date, setDate }: Props) {
       </h1>
 
       <Popover className="relative mt-1">
-        <PopoverButton className="p-1.5 rounded-md bg-secondary/50 text-moreWhite border border-muted/30 hover:bg-secondary/70">
+        <PopoverButton className="p-1.5 rounded-md bg-secondary/50 focus:outline-none focus:bg-secondary text-moreWhite border border-muted/30 hover:bg-secondary/70">
           <CalendarIcon className="w-3 h-3 sm:w-4 sm:h-4" />
         </PopoverButton>
 
