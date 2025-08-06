@@ -59,7 +59,7 @@ export default function AddForm({ date, onClose }: Props) {
     } finally {
       setLoading(false);
       onClose();
-      toast.success("Expense Added!");
+      toast.success("Expense Added!", { duration: 1500 });
     }
   }
 

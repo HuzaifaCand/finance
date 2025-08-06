@@ -59,19 +59,19 @@ export default function TableBody({ date, onTotalChange }: Props) {
             idx % 2 === 0 ? "bg-background" : "bg-tealBg/15"
           } hover:bg-secondary/30 hover:shadow-sm transition duration-200`}
         >
-          <td className="py-2 px-4 text-[10px] sm:text-xs text-moreWhite">
+          <td className="py-2 px-2 [@media(min-width:460px)]:px-3 sm:px-4 text-[10px] sm:text-xs text-moreWhite">
             {item.desc}
           </td>
-          <td className="py-2 px-4 text-[10px] sm:text-xs text-moreWhite">
+          <td className="py-2 px-2 [@media(min-width:460px)]:px-3 sm:px-4 text-[10px] sm:text-xs text-moreWhite">
             {item.category}
           </td>
-          <td className="py-2 px-4 text-[10px] sm:text-xs text-moreWhite">
+          <td className="py-2 px-2 [@media(min-width:460px)]:px-3 sm:px-4 text-[10px] sm:text-xs text-moreWhite">
             {item.method}
           </td>
-          <td className="py-2 px-4 text-[10px] sm:text-xs text-moreWhite">
+          <td className="py-2 px-2 [@media(min-width:460px)]:px-3 sm:px-4 text-[10px] sm:text-xs text-moreWhite">
             {item.cost.toFixed(2)}
           </td>
-          <td className="py-2 px-4 text-[10px] sm:text-xs text-center">
+          <td className="py-2 px-2 [@media(min-width:460px)]:px-3 sm:px-4 text-[10px] sm:text-xs text-center">
             <DeleteTrigger date={item.date} id={item.id} />
           </td>
         </tr>

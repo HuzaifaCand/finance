@@ -21,11 +21,10 @@ export default function DeleteConfirmation({
       if (!id) return;
 
       await deleteDoc(doc(db, "users", userId, "dates", date, "expenses", id));
-
-      toast.success("Expense successfully deleted");
+      toast.success("Expense successfully deleted", { duration: 1500 });
     } catch (err) {
       console.error("Failed to delete expense:", err);
-      toast.error("Couldn't delete expense");
+      toast.error("Couldn't delete expense", { duration: 1500 });
     } finally {
       onClose();
     }

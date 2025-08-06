@@ -18,12 +18,12 @@ export default function TotalBudgetCard() {
   return (
     <div className="relative rounded-2xl bg-secondary/60 py-10 px-6 sm:h-[600px] h-[500px]  flex flex-col items-center justify-center text-moreWhite">
       {/* Top Left - Day of Week */}
-      <div className="absolute top-4 left-4 text-sm text-primary py-1 px-2 rounded-md font-medium">
+      <div className="absolute top-4 left-4 text-xs sm:text-sm text-primary py-1 px-2 rounded-md font-medium">
         Day {mockData.day} of 7
       </div>
 
       {/* Top Right - Budget Week */}
-      <div className="absolute top-4 right-4 text-sm text-muted py-1 px-2 rounded-md font-medium">
+      <div className="absolute top-4 right-4 text-xs sm:text-sm text-muted py-1 px-2 rounded-md font-medium">
         Week {mockData.week}
       </div>
 
@@ -33,7 +33,7 @@ export default function TotalBudgetCard() {
       </h1>
 
       {/* Total Budget Display */}
-      <div className="text-3xl sm:text-4xl font-extrabold text-moreWhite mb-4">
+      <div className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-moreWhite mb-2 sm:mb-4">
         HK${mockData.totalBudget}
       </div>
 
@@ -51,7 +51,7 @@ export default function TotalBudgetCard() {
       </div>
 
       {/* Top Categories */}
-      <div className="mt-6 text-sm w-full max-w-xs">
+      <div className="mt-6 text-xs sm:text-sm w-full max-w-xs">
         <h2 className="text-muted mb-2 text-center font-medium tracking-wide">
           Top Spending Categories
         </h2>

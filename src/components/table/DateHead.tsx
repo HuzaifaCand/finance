@@ -24,26 +24,38 @@ export default function DateHead({ date, setDate }: Props) {
         {format(date, "EEEE d MMMM")}
       </h1>
 
-      <Popover className="relative mt-1">
-        <PopoverButton className="p-1.5 rounded-md bg-secondary/50 focus:outline-none focus:bg-secondary text-moreWhite border border-muted/30 hover:bg-secondary/70">
-          <CalendarIcon className="w-3 h-3 sm:w-4 sm:h-4" />
-        </PopoverButton>
+      <div className="flex items-center gap-2">
+        <Popover className="relative mt-1">
+          <PopoverButton
+            title="Select Date"
+            className="p-1.5 rounded-md bg-secondary/10 focus:outline-none hover:cursor-pointer focus:bg-secondary text-moreWhite border border-muted/30 hover:bg-secondary/70"
+          >
+            <CalendarIcon className="w-3 h-3 sm:w-4 sm:h-4" />
+          </PopoverButton>
 
-        <PopoverPanel className="fixed inset-0 flex items-start justify-center sm:absolute sm:inset-auto sm:mt-2 z-50">
-          {({ close }) => (
-            <div className="bg-background p-4 rounded-lg shadow-lg w-64 max-h-[80vh] overflow-y-auto">
-              <Calendar
-                selected={date}
-                onSelect={(d) => {
-                  setDate(d);
+          <PopoverPanel className="fixed inset-0 flex items-start justify-center sm:absolute sm:inset-auto sm:mt-2 z-50">
+            {({ close }) => (
+              <div className="bg-background p-4 rounded-lg shadow-lg w-64 max-h-[80vh] overflow-y-auto">
+                <Calendar
+                  selected={date}
+                  onSelect={(d) => {
+                    setDate(d);
+                    close();
+                  }}
+                />
+              </div>
+            )}
+          </PopoverPanel>
+        </Popover>
 
-                  close(); // auto-close popover
-                }}
-              />
-            </div>
-          )}
-        </PopoverPanel>
-      </Popover>
+        {/* Go to Today */}
+        <button
+          className="text-muted text-[10px] sm:text-xs sm:mt-1.5 mt-1 hover:underline"
+          onClick={() => setDate(new Date())}
+        >
+          Go to today →
+        </button>
+      </div>
     </div>
   );
 }
