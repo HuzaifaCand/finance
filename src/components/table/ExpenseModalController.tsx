@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import AddButtonPopover from "./AddButton";
-import AddExpenseModal from "../add/AddExpense";
-import QuickAddModal from "../add/QuickAdd";
+import AddExpenseModal from "../expenses/add/AddExpense";
+import QuickAddModal from "../expenses/add/QuickAdd";
 
 export default function ExpenseModalController({ date }: { date: Date }) {
   const [modalType, setModalType] = useState<null | "addExpense" | "quickAdd">(

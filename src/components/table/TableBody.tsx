@@ -2,11 +2,12 @@
 
 import { useEffect, useState } from "react";
 import { Expense } from "@/models/expense";
-import ActionIcons from "./ActionIcons";
+
 import EmptyTable from "./EmptyTable";
 import LoadingRows from "./LoadingRows";
 import { collection, onSnapshot, query } from "firebase/firestore";
 import { db } from "@/lib/firebase";
+import DeleteTrigger from "../expenses/delete/DeleteExpenseTrigger";
 
 interface Props {
   date: Date;
@@ -65,7 +66,7 @@ export default function TableBody({ date, onTotalChange }: Props) {
             {item.cost.toFixed(2)}
           </td>
           <td className="py-2 px-4 text-xs text-center">
-            <ActionIcons />
+            <DeleteTrigger date={item.date} id={item.id} />
           </td>
         </tr>
       ))}
