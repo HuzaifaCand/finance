@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function Content() {
+export default function Content({ onClose }: { onClose: () => void }) {
   return (
     <div className="space-y-6 pr-4 flex flex-col h-full">
       {/* Greeting */}
@@ -19,24 +19,28 @@ export default function Content() {
         </p>
         <div className="space-y-1 text-xs text-muted flex flex-col gap-1 font-medium">
           <Link
+            onClick={onClose}
             href="/"
             className="text-left hover:text-primary transition-colors"
           >
             Expense Tracker
           </Link>
           <Link
+            onClick={onClose}
             href="/budgets"
             className="text-left hover:text-primary transition-colors"
           >
             Budget
           </Link>
           <Link
+            onClick={onClose}
             href="/stats"
             className="text-left hover:text-primary transition-colors"
           >
             Stats
           </Link>
           <Link
+            onClick={onClose}
             href="/categories"
             className="text-left hover:text-primary transition-colors"
           >
