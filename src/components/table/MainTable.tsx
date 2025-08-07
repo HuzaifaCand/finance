@@ -3,7 +3,7 @@
 import TableBody from "./TableBody";
 import TableHead from "./TableHead";
 import DateHead from "./DateHead";
-import ExpenseModalController from "./ExpenseModalController";
+import ExpenseModalController from "../expenses/ExpenseModalController";
 import Navbar from "../Navbar";
 import { useEffect, useState } from "react";
 

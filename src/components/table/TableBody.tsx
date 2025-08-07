@@ -7,7 +7,7 @@ import EmptyTable from "./EmptyTable";
 import LoadingRows from "./LoadingRows";
 import { collection, onSnapshot, query } from "firebase/firestore";
 import { db } from "@/lib/firebase";
-import DeleteTrigger from "../expenses/delete/DeleteExpenseTrigger";
+import DeleteTrigger from "../delete/DeleteTrigger";
 
 interface Props {
   date: Date;
@@ -72,7 +72,7 @@ export default function TableBody({ date, onTotalChange }: Props) {
             {item.cost.toFixed(2)}
           </td>
           <td className="py-2 px-2 [@media(min-width:460px)]:px-3 sm:px-4 text-[10px] sm:text-xs text-center">
-            <DeleteTrigger date={item.date} id={item.id} />
+            <DeleteTrigger type="expense" date={item.date} id={item.id} />
           </td>
         </tr>
       ))}

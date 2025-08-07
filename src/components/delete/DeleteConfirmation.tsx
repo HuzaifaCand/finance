@@ -2,29 +2,43 @@ import { deleteDoc, doc } from "firebase/firestore";
 import { db } from "@/lib/firebase"; // <-- your firestore instance
 import { toast } from "sonner";
 
+function capitalize(str: string) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
 interface DeleteConfirmationProps {
+  type: "expense" | "category" | "budget";
   onClose: () => void;
-  date: string;
-  id: string | undefined;
+  date?: string;
+  id?: string;
 }
 
 export default function DeleteConfirmation({
   date,
   id,
   onClose,
+  type,
 }: DeleteConfirmationProps) {
   const handleDelete = async () => {
+    const userId = "demoUser";
     try {
-      // adjust to your Firestore path:
-      const userId = "demoUser"; // ideally get from auth or context
-
       if (!id) return;
 
-      await deleteDoc(doc(db, "users", userId, "dates", date, "expenses", id));
-      toast.success("Expense successfully deleted", { duration: 1500 });
+      if (type === "expense") {
+        if (!date) throw new Error("Date is required for deleting expense");
+        await deleteDoc(
+          doc(db, "users", userId, "dates", date, "expenses", id)
+        );
+      } else if (type === "category") {
+        await deleteDoc(doc(db, "users", userId, "customCategories", id));
+      }
+
+      toast.success(`${capitalize(type)} successfully deleted!`, {
+        duration: 1000,
+      });
     } catch (err) {
-      console.error("Failed to delete expense:", err);
-      toast.error("Couldn't delete expense", { duration: 1500 });
+      console.error("Failed to delete", err);
+      toast.error(`Could not delete ${type}`);
     } finally {
       onClose();
     }

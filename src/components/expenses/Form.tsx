@@ -1,8 +1,8 @@
 import { addExpense } from "@/lib/expense";
 import { useState, useRef, useEffect } from "react";
-import CategoryInput from "../../formInputs/CategoryInput";
+import CategoryInput from "../formInputs/CategoryInput";
 import { baseCategories } from "@/data/category";
-import MethodInput from "../../formInputs/MethodInput";
+import MethodInput from "../formInputs/MethodInput";
 import clsx from "clsx";
 import { toast } from "sonner";
 import { PaymentMethod } from "@/models/expense";

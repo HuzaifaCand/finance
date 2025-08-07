@@ -1,4 +1,4 @@
-import Modal from "../../Modal";
+import Modal from "../Modal";
 
 interface QuickAddModalProps {
   show: boolean;
@@ -10,7 +10,7 @@ export default function QuickAddModal({ show, setShow }: QuickAddModalProps) {
     <Modal isOpen={show} onClose={() => setShow(false)}>
       <div className="flex flex-col gap-2">
         <h1 className="text-2xl font-bold text-moreWhite">Quick Add</h1>
-        <p className="text-sm text-teal/60 mb-2">
+        <p className="text-xs sm:text-sm text-teal/60 mb-2">
           Coming soon — gathering real user data before building this!
         </p>
         <div className="flex justify-end">

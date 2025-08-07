@@ -5,6 +5,7 @@ import {
   setDoc,
   Timestamp,
   getDocs,
+  query,
 } from "firebase/firestore";
 import { db } from "./firebase";
 import type { Expense } from "@/models/expense"; // adjust path to wherever you placed the interface
@@ -37,10 +38,23 @@ export async function getExpenses(
   userId: string,
   date: string
 ): Promise<Expense[]> {
-  const ref = collection(db, "users", userId, "dates", date, "expenses");
-  const snapshot = await getDocs(ref);
+  const expensesRef = collection(
+    db,
+    "users",
+    userId,
+    "dates",
+    date,
+    "expenses"
+  );
+  const q = query(expensesRef);
+  const snapshot = await getDocs(q);
 
-  return snapshot.docs.map((d) => d.data() as Expense);
+  const expenses: Expense[] = snapshot.docs.map((doc) => ({
+    ...(doc.data() as Expense),
+    id: doc.id, // override just in case
+  }));
+
+  return expenses;
 }
 
 export async function addCategory(userId: string, category: string) {
