@@ -61,16 +61,16 @@ export default function DailyStats() {
   if (isLoading) {
     return (
       <section className="flex items-center justify-center h-[400px] w-full">
-        <div className="text-moreWhite text-sm animate-pulse">Loading...</div>
+        <div className="text-teal text-sm animate-pulse">Loading...</div>
       </section>
     );
   }
 
   if (activeDates.length === 0) {
     return (
-      <section className="flex items-center justify-center h-[400px] w-full">
+      <section className="flex items-center bg justify-center h-[400px] w-full">
         <div className="text-center space-y-2">
-          <h2 className="text-xl text-moreWhite font-semibold">
+          <h2 className="text-xl text-moreWhite font-bold">
             No expenses tracked yet
           </h2>
           <p className="text-muted text-sm">

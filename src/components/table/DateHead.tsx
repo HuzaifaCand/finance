@@ -20,7 +20,7 @@ export default function DateHead({ date, setDate }: Props) {
 
   return (
     <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
-      <h1 className="text-md [@media(min-width:400px)]:text-lg [@media(min-width:470px)]:text-xl sm:text-2xl md:text-3xl font-bold text-moreWhite tracking-tight">
+      <h1 className="text-md [@media(min-width:400px)]:text-lg [@media(min-width:470px)]:text-xl [@media(min-width:740px)]:text-2xl [@media(min-width:1000px)]:text-3xl font-bold text-moreWhite tracking-tight">
         {format(date, "EEEE d MMMM")}
       </h1>
 

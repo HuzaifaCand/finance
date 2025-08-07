@@ -18,7 +18,7 @@ export default function StatsPage() {
                 <h1 className="sm:text-3xl text-xl font-bold tracking-tight text-moreWhite">
                   Statistics
                 </h1>
-                <div className="hidden sm:inline text-sm">
+                <div className="text-xs sm:text-sm">
                   <span className="text-muted ">Tracking Streak: </span>
                   <span className="text-primary/80">26 Days</span>
                 </div>
