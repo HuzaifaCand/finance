@@ -10,7 +10,7 @@ export default function BaseList() {
         {baseCategories.map((cat) => (
           <li
             key={cat}
-            className="px-3 py-2 rounded-lg bg-secondary/30 hover:bg-secondary/60 transition duration-200 text-moreWhite/90 border border-muted/20 text-sm"
+            className="px-3 py-2 rounded-lg bg-secondary/30 hover:bg-secondary/60 transition duration-200 text-moreWhite/90 border border-muted/20 text-xs sm:text-sm"
           >
             {cat}
           </li>

@@ -32,13 +32,15 @@ export default function CustomList() {
       </div>
 
       {customCategories.length === 0 ? (
-        <p className="text-muted text-sm">No custom categories yet.</p>
+        <p className="text-muted text-xs sm:text-sm">
+          No custom categories yet.
+        </p>
       ) : (
         <ul className="space-y-2">
           {customCategories.map((cat) => (
             <li
               key={cat}
-              className="flex items-center justify-between px-3 py-1 text-moreWhite/90 bg-secondary/40 hover:bg-secondary/80 rounded-lg border border-muted/30 text-sm"
+              className="flex items-center justify-between px-3 py-1 text-moreWhite/90 bg-secondary/30 hover:bg-secondary/60 transition  rounded-lg border border-muted/30 text-xs sm:text-sm"
             >
               <span className="text-moreWhite/90 ">{cat}</span>
 

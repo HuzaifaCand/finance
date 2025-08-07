@@ -1,4 +1,4 @@
-import { addExpense } from "@/lib/expense";
+import { addExpense, updateExpense } from "@/lib/expense";
 import { useState, useRef, useEffect } from "react";
 import CategoryInput from "../formInputs/CategoryInput";
 import { baseCategories } from "@/lib/category";
@@ -21,27 +21,37 @@ const methods = [
 ];
 
 interface Props {
-  date: Date;
+  date?: Date;
   onClose: () => void;
+  expenseToEdit?: {
+    id?: string;
+    desc: string;
+    category: string;
+    method: PaymentMethod;
+    cost: number;
+    date: string; // format: YYYY-MM-DD
+  };
 }
 
-export default function AddForm({ date, onClose }: Props) {
+export default function AddForm({ date, onClose, expenseToEdit }: Props) {
   const descRef = useRef<HTMLInputElement>(null);
-  const [category, setCategory] = useState<string>("");
+
   const [customCategory, setCustomCategory] = useState<boolean>(false);
-  const [method, setMethod] = useState<string>("");
-  const [cost, setCost] = useState<number | "">("");
-  const [desc, setDesc] = useState<string>("");
+  const [desc, setDesc] = useState(expenseToEdit?.desc ?? "");
+  const [category, setCategory] = useState(expenseToEdit?.category ?? "");
+  const [method, setMethod] = useState(expenseToEdit?.method ?? "");
+  const [cost, setCost] = useState<number | "">(expenseToEdit?.cost ?? "");
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     descRef.current?.focus();
+    return;
   }, []);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!category || !method || !cost) return;
-
+    if (!date) return;
     const stringDate = date.toLocaleDateString("en-CA").slice(0, 10);
 
     setLoading(true);
@@ -62,12 +72,38 @@ export default function AddForm({ date, onClose }: Props) {
       toast.success("Expense Added!", { duration: 1500 });
     }
   }
+  async function handleUpdate(e: React.FormEvent) {
+    e.preventDefault();
+    if (!expenseToEdit || !category || !method || !cost) return;
+
+    setLoading(true);
+    try {
+      await updateExpense("demoUser", expenseToEdit.id!, {
+        desc,
+        category,
+        method: method as PaymentMethod,
+        cost,
+        date: expenseToEdit.date, // preserve original date
+      });
+
+      toast.success("Expense Updated!", { duration: 1500 });
+    } catch (err) {
+      console.error("Failed to update expense:", err);
+      toast.error("Failed to update Expense");
+    } finally {
+      setLoading(false);
+      onClose();
+    }
+  }
 
   return (
     <div className="w-full flex justify-center py-3 ">
-      <form onSubmit={handleSubmit} className="space-y-4 w-full max-w-2xl">
+      <form
+        onSubmit={expenseToEdit ? handleUpdate : handleSubmit}
+        className="space-y-4 w-full max-w-2xl"
+      >
         <h1 className="text-xl font-bold text-moreWhite mb-4 text-left">
-          Add Expense
+          {expenseToEdit ? "Edit" : "Add"} Expense
         </h1>
 
         <div className="flex flex-col sm:flex-row gap-4">
@@ -81,6 +117,7 @@ export default function AddForm({ date, onClose }: Props) {
             <input
               onInvalid={(e) => e.preventDefault()}
               required
+              value={desc}
               onChange={(e) => setDesc(e.target.value)}
               id="description"
               type="text"
@@ -115,6 +152,7 @@ export default function AddForm({ date, onClose }: Props) {
             <input
               onInvalid={(e) => e.preventDefault()}
               required
+              value={cost}
               onChange={(e) =>
                 setCost(e.target.value === "" ? "" : Number(e.target.value))
               }

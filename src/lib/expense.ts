@@ -6,6 +6,7 @@ import {
   Timestamp,
   getDocs,
   query,
+  updateDoc,
 } from "firebase/firestore";
 import { db } from "./firebase";
 import type { Expense } from "@/models/expense"; // adjust path to wherever you placed the interface
@@ -55,4 +56,25 @@ export async function getExpenses(
   }));
 
   return expenses;
+}
+
+export async function updateExpense(
+  userId: string,
+  expenseId: string,
+  data: Omit<Expense, "createdAt" | "updatedAt" | "id">
+): Promise<void> {
+  const expenseRef = doc(
+    db,
+    "users",
+    userId,
+    "dates",
+    data.date,
+    "expenses",
+    expenseId
+  );
+
+  await updateDoc(expenseRef, {
+    ...data,
+    updatedAt: Timestamp.now(),
+  });
 }

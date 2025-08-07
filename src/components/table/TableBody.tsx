@@ -8,6 +8,7 @@ import LoadingRows from "./LoadingRows";
 import { collection, onSnapshot, query } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import DeleteTrigger from "../delete/DeleteTrigger";
+import EditTrigger from "../expenses/EditTrigger";
 
 interface Props {
   date: Date;
@@ -71,8 +72,11 @@ export default function TableBody({ date, onTotalChange }: Props) {
           <td className="py-2 px-2 [@media(min-width:460px)]:px-3 sm:px-4 text-[10px] sm:text-xs text-moreWhite">
             {item.cost.toFixed(2)}
           </td>
-          <td className="py-2 px-2 [@media(min-width:460px)]:px-3 sm:px-4 text-[10px] sm:text-xs text-center">
-            <DeleteTrigger type="expense" date={item.date} id={item.id} />
+          <td className="py-2 px-2 [@media(min-width:460px)]:px-3 sm:px-4">
+            <div className="flex items-center gap-2">
+              <EditTrigger expenseToEdit={item} />
+              <DeleteTrigger type="expense" date={item.date} id={item.id} />
+            </div>
           </td>
         </tr>
       ))}

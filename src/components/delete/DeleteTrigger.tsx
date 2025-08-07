@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import DeleteIcon from "../table/DeleteIcon";
+import DeleteIcon from "../DeleteIcon";
 import DeleteModal from "./DeleteModal";
 
 interface Props {

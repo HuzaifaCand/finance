@@ -50,7 +50,7 @@ export default function AddCategory() {
     <>
       <button
         onClick={() => setOpen(true)}
-        className="px-4 py-1 text-sm rounded-md bg-tealBg/60 text-moreWhite border border-teal/20 hover:bg-tealBg focus:outline-none"
+        className="px-4 py-1 hover:cursor-pointer text-xs mt-1  sm:text-sm rounded-md bg-tealBg/60 text-moreWhite border border-teal/20 hover:bg-tealBg focus:outline-none"
       >
         + Add
       </button>
@@ -68,12 +68,13 @@ export default function AddCategory() {
             className={fieldClass}
             placeholder="Enter category name"
           />
-          <div className="flex items-center justify-between sm:mt-2">
+          <div className="flex items-center justify-between">
             <div className="hidden sm:inline">
               <p className="text-muted text-[10px] italic">
                 Use<kbd className="px-1">Esc</kbd> to cancel.
               </p>
             </div>
+            <div className="sm:hidden"></div>
             <button
               type="submit"
               className="text-xs px-10 py-1.5 font-medium bg-tealBg text-moreWhite rounded-md hover:bg-tealBg/80"

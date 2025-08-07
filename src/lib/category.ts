@@ -10,7 +10,6 @@ import { db } from "./firebase";
 export const baseCategories = [
   "Food",
   "Groceries",
-  "Eating Out",
   "Transport",
   "Utilities",
   "Entertainment",
