@@ -31,7 +31,7 @@ export default function MobileDrawer() {
             <X size={20} />
           </button>
         </div>
-        <Content />
+        <Content onClose={() => setOpen(false)} />
       </div>
     </div>
   );

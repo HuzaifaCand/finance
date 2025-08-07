@@ -1,6 +1,9 @@
 import Link from "next/link";
 
-export default function Content({ onClose }: { onClose: () => void }) {
+interface Props {
+  onClose?: () => void;
+}
+export default function Content({ onClose }: Props) {
   return (
     <div className="space-y-6 pr-4 flex flex-col h-full">
       {/* Greeting */}
