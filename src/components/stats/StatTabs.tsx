@@ -2,6 +2,7 @@
 
 import clsx from "clsx";
 import { useState } from "react";
+import DailyStats from "./Daily";
 
 const baseClass =
   "sm:px-10 px-4 py-2 rounded-lg text-xs md:text-sm font-medium";
@@ -37,6 +38,9 @@ export default function StatTabs() {
             Weekly
           </button>
         </div>
+      </div>
+      <div className="px-2 sm:px-6 pb-8">
+        {activeTab === "daily" ? <DailyStats /> : <></>}
       </div>
     </div>
   );
