@@ -1,5 +1,5 @@
 import { useEffect, useState, ChangeEvent, KeyboardEvent } from "react";
-import { addCategory, getCustomCategories } from "@/lib/expense";
+import { addCategory, getCustomCategories } from "@/lib/category";
 import { toast } from "sonner";
 
 interface Props {

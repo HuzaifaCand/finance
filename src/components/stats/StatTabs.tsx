@@ -7,9 +7,7 @@ const baseClass =
   "sm:px-10 px-4 py-2 rounded-lg text-xs md:text-sm font-medium";
 
 export default function StatTabs() {
-  const [activeTab, setActiveTab] = useState<"daily" | "weekly" | "monthly">(
-    "daily"
-  );
+  const [activeTab, setActiveTab] = useState<"daily" | "weekly">("daily");
 
   return (
     <div className="rounded-xl overflow-hidden bg-background">
@@ -37,17 +35,6 @@ export default function StatTabs() {
             )}
           >
             Weekly
-          </button>
-          <button
-            onClick={() => setActiveTab("monthly")}
-            className={clsx(
-              baseClass,
-              activeTab === "monthly"
-                ? "bg-secondary/80 text-moreWhite"
-                : "bg-secondary/20 text-moreWhite hover:bg-secondary/60"
-            )}
-          >
-            Monthly
           </button>
         </div>
       </div>

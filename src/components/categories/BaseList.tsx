@@ -1,4 +1,4 @@
-import { baseCategories } from "@/data/category";
+import { baseCategories } from "@/lib/category";
 
 export default function BaseList() {
   return (

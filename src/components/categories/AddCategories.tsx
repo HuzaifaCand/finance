@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Modal from "../Modal";
-import { addCategory } from "@/lib/expense";
+import { addCategory } from "@/lib/category";
 import { toast } from "sonner";
 
 const fieldClass =
@@ -68,7 +68,7 @@ export default function AddCategory() {
             className={fieldClass}
             placeholder="Enter category name"
           />
-          <div className="flex items-center justify-between mt-2">
+          <div className="flex items-center justify-between sm:mt-2">
             <div className="hidden sm:inline">
               <p className="text-muted text-[10px] italic">
                 Use<kbd className="px-1">Esc</kbd> to cancel.
