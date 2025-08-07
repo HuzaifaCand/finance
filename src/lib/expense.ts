@@ -7,6 +7,7 @@ import {
   getDocs,
   query,
   updateDoc,
+  deleteDoc,
 } from "firebase/firestore";
 import { db } from "./firebase";
 import type { Expense } from "@/models/expense"; // adjust path to wherever you placed the interface
@@ -18,11 +19,13 @@ import type { Expense } from "@/models/expense"; // adjust path to wherever you 
 
 export async function addExpense(
   userId: string,
-  data: Omit<Expense, "id" | "createdAt" | "updatedAt"> // user supplies everything except timestamps/id
+  data: Omit<Expense, "id" | "createdAt" | "updatedAt">
 ) {
-  // Reference to subcollection "expenses" under the specific date
-  const ref = collection(db, "users", userId, "dates", data.date, "expenses");
-  const newDocRef = doc(ref); // this auto-generates a document ID
+  const dateDocRef = doc(db, "users", userId, "dates", data.date);
+  await setDoc(dateDocRef, { exists: true }, { merge: true }); // ensure the date doc exists
+
+  const ref = collection(dateDocRef, "expenses");
+  const newDocRef = doc(ref);
 
   const payload: Expense = {
     ...data,
@@ -77,4 +80,37 @@ export async function updateExpense(
     ...data,
     updatedAt: Timestamp.now(),
   });
+}
+
+export async function getActiveDates(userId: string) {
+  const dateRef = collection(db, "users", userId, "dates");
+  const snapshot = await getDocs(query(dateRef));
+
+  return snapshot.docs.map((d) => d.id).sort();
+}
+
+export async function deleteExpense(
+  userId: string,
+  date: string,
+  expenseId: string
+) {
+  const expenseRef = doc(
+    db,
+    "users",
+    userId,
+    "dates",
+    date,
+    "expenses",
+    expenseId
+  );
+  await deleteDoc(expenseRef);
+
+  const remainingExpenses = await getDocs(
+    collection(db, "users", userId, "dates", date, "expenses")
+  );
+
+  if (remainingExpenses.empty) {
+    const dateDocRef = doc(db, "users", userId, "dates", date);
+    await deleteDoc(dateDocRef);
+  }
 }

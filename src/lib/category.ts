@@ -1,5 +1,6 @@
 import {
   collection,
+  deleteDoc,
   doc,
   getDocs,
   setDoc,
@@ -37,4 +38,8 @@ export async function getCustomCategories(userId: string) {
   const snapshot = await getDocs(ref);
 
   return snapshot.docs.map((d) => d.data());
+}
+
+export async function deleteCategory(userId: string, categoryId: string) {
+  await deleteDoc(doc(db, "users", userId, "customCategories", categoryId));
 }
