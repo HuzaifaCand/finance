@@ -74,3 +74,12 @@ input[type="number"] {
   background-size: 800px 100%;
   animation: shimmer 1.4s infinite;
 }
+
+.no-chevron {
+  appearance: none; /* Remove default styles */
+  -webkit-appearance: none; /* Safari */
+  -moz-appearance: none; /* Firefox */
+  background-color: #122628; /* We’ll use Tailwind for background */
+
+  background-image: none; /* Ensure default chevron is removed */
+}
