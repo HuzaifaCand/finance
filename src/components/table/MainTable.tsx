@@ -30,7 +30,9 @@ export default function MainTable() {
               <DateHead date={date} setDate={setDate} />
               <div className="hidden sm:inline text-sm">
                 <span className="text-muted ">Total Today: </span>
-                <span className="text-primary/80">{totalCost} HKD</span>
+                <span className="text-primary/80">
+                  {totalCost.toFixed(1)} HKD
+                </span>
               </div>
             </div>
             <Navbar />
@@ -51,7 +53,9 @@ export default function MainTable() {
 
         <div className="sm:hidden flex justify-end mt-6 px-4 pb-4 text-sm">
           <span className="text-muted mr-1">Total Today:</span>
-          <span className="text-primary/80 font-semibold">{totalCost} HKD</span>
+          <span className="text-primary/80 font-semibold">
+            {totalCost.toFixed(1)} HKD
+          </span>
         </div>
       </div>
     </div>

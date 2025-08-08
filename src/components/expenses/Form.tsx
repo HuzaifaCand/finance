@@ -121,7 +121,7 @@ export default function AddForm({ date, onClose, expenseToEdit }: Props) {
               onChange={(e) => setDesc(e.target.value)}
               id="description"
               type="text"
-              placeholder="e.g. Lunch - Canteen"
+              placeholder="e.g. MTR to Campus"
               className={clsx(fieldClass, "placeholder-muted")}
               ref={descRef}
             />

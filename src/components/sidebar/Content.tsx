@@ -81,9 +81,9 @@ export default function Content({ onClose }: Props) {
           <span className="text-teal/80 font-medium">Syed Huzaifa</span>
         </p>
         <p className="mt-2 hidden lg:block text-muted">
-          <kbd className="px-1 py-0.5 bg-secondary/60 text-primary/80 rounded">
+          <span className="mr-2 text-xs text-moreWhite/80 bg-background/50">
             Ctrl+B
-          </kbd>{" "}
+          </span>
           to toggle sidebar
         </p>
       </div>
