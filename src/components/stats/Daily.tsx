@@ -84,6 +84,7 @@ export default function DailyStats() {
   return (
     <section className="relative flex flex-col min-h-[600px] items-center justify-center py-10 px-6">
       {/* Top Left: Formatted Date Header */}
+
       <div className="absolute top-4 left-4 space-y-1">
         {selectedDate && (
           <h2 className="text-moreWhite text-2xl font-semibold">
@@ -92,7 +93,7 @@ export default function DailyStats() {
         )}
       </div>
       {/* Top Right: Dropdown */}
-      <div className="absolute top-4 right-4  w-[180px]">
+      <div className="absolute top-4 right-4 sm:w-full sm:max-w-[180px]">
         <select
           value={selectedDate ?? ""}
           onChange={(e) => {
