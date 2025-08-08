@@ -6,8 +6,10 @@ interface Props {
 export default function DeleteUi({ handleDelete, onClose }: Props) {
   return (
     <div className="flex flex-col text-left gap-2 p-4 w-full">
-      <h2 className="text-moreWhite text-xl font-semibold">Delete Expense</h2>
-      <p className="text-moreWhite/80">
+      <h2 className="text-moreWhite text-lg sm:text-xl font-bold">
+        Delete Expense
+      </h2>
+      <p className="text-moreWhite/80 text-xs sm:text-sm">
         Are you sure you want to delete this item? This action cannot be undone.
       </p>
 
