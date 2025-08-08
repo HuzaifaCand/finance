@@ -15,7 +15,7 @@ export default function DeleteIcon({ onDelete }: ActionProps) {
       title="Delete"
       className={clsx(baseClass, "focus:bg-redBg hover:bg-redBg/80")}
     >
-      <Trash2 className="w-4 h-4 text-red" />
+      <Trash2 className="w-3 h-3 sm:w-4 sm:h-4 text-red" />
     </button>
   );
 }

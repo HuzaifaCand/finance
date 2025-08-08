@@ -15,7 +15,7 @@ export default function EditIcon({ onEdit }: ActionProps) {
       title="Edit"
       className={clsx(baseClass, "focus:bg-tealBg hover:bg-tealBg/80")}
     >
-      <Pencil className="w-4 h-4 text-teal" />
+      <Pencil className="w-3 h-3 sm:w-4 sm:h-4 text-teal" />
     </button>
   );
 }
