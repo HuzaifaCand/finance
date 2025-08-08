@@ -5,7 +5,7 @@ import { useState } from "react";
 import DailyStats from "./Daily";
 
 const baseClass =
-  "sm:px-10 px-4 py-2 rounded-lg text-xs md:text-sm font-medium";
+  "sm:px-10 px-6 py-1.5 rounded-lg text-xs md:text-sm font-medium";
 
 export default function StatTabs() {
   const [activeTab, setActiveTab] = useState<"daily" | "weekly">("daily");

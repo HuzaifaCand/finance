@@ -1,0 +1,10 @@
+import { format, parse } from "date-fns";
+
+export default function DateHeader({ dateStr }: { dateStr: string }) {
+  const date = parse(dateStr, "yyyy-MM-dd", new Date());
+  return (
+    <h2 className="text-moreWhite text-xl font-semibold">
+      {format(date, "EEEE, MMMM d")}
+    </h2>
+  );
+}
