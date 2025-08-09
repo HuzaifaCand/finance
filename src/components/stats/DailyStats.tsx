@@ -51,7 +51,7 @@ export default function DailyStatistics({ date }: StatProps) {
           value={`HK$${average.toFixed(2)}`}
         />
       </div>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-2 sm:gap-4">
         <h1 className="text-moreWhite font-semibold text-xl">Breakdown</h1>
         <div className="overflow-y-auto overflow-x-auto custom-scrollbar">
           <table className="rounded-xl">
