@@ -2,7 +2,7 @@
 
 import clsx from "clsx";
 import { useState } from "react";
-import DailyStats from "./Daily";
+import DailyStats from "./DailyMain";
 
 const baseClass =
   "sm:px-10 px-6 py-1.5 rounded-lg text-xs md:text-sm font-medium";
