@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useActiveDates } from "@/hooks/useActiveDates";
 import DateSelector from "./DateSelector";
 import DateHeader from "./DateHeader";
+import DailyStatistics from "./DailyStats";
 
 export default function DailyStats() {
   const userId = "demoUser";
@@ -44,7 +45,7 @@ export default function DailyStats() {
           <h2 className="text-xl text-moreWhite font-bold">
             No expenses tracked yet
           </h2>
-          <p className="text-muted text-sm">
+          <p className="text-muted text-xs sm:text-sm">
             Start tracking expenses to access statistics by date.
           </p>
         </div>
@@ -67,6 +68,7 @@ export default function DailyStats() {
           />
         </div>
       </div>
+      {selectedDate && <DailyStatistics date={selectedDate} />}
     </section>
   );
 }

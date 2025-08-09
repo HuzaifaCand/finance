@@ -58,7 +58,7 @@ export default function DateSelector({
 
       {/* Dropdown menu */}
       {showDropdown && (
-        <ul className="absolute mt-1 w-full z-10 text-xs bg-secondary/50 border border-secondary/30 rounded-md shadow-sm max-h-120 overflow-y-auto custom-scrollbar">
+        <ul className="absolute mt-1 w-full z-10 text-xs bg-background border border-secondary/30 rounded-md shadow-sm max-h-80 overflow-y-auto custom-scrollbar">
           {activeDates.map((date) => (
             <li
               key={date}

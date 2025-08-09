@@ -42,6 +42,8 @@ export async function getExpenses(
   userId: string,
   date: string
 ): Promise<Expense[]> {
+  if (!userId || !date) return [];
+
   const expensesRef = collection(
     db,
     "users",
@@ -53,14 +55,11 @@ export async function getExpenses(
   const q = query(expensesRef);
   const snapshot = await getDocs(q);
 
-  const expenses: Expense[] = snapshot.docs.map((doc) => ({
+  return snapshot.docs.map((doc) => ({
     ...(doc.data() as Expense),
     id: doc.id, // override just in case
   }));
-
-  return expenses;
 }
-
 export async function updateExpense(
   userId: string,
   expenseId: string,
