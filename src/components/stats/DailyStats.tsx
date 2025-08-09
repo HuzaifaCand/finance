@@ -40,7 +40,7 @@ export default function DailyStatistics({ date }: StatProps) {
   return (
     <section className="w-full max-w-5xl bg-background rounded-lg shadow-lg space-y-8 text-moreWhite">
       {/* Summary cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-6">
         <StatCard label="Total Spent" value={`HK$${total.toFixed(2)}`} />
         <StatCard
           label="Median Expenditure"
@@ -51,7 +51,7 @@ export default function DailyStatistics({ date }: StatProps) {
           value={`HK$${average.toFixed(2)}`}
         />
       </div>
-      <div className="flex flex-col gap-2 sm:gap-4">
+      <div className="flex flex-col gap-4">
         <h1 className="text-moreWhite font-semibold text-xl">Breakdown</h1>
         <div className="overflow-y-auto overflow-x-auto custom-scrollbar">
           <table className="rounded-xl">
