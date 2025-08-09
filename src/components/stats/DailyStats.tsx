@@ -66,7 +66,7 @@ export default function DailyStatistics({ date, prevDate }: StatProps) {
           Spending Breakdown
         </h1>
         <div className="overflow-x-auto custom-scrollbar">
-          <table className="w-full min-w-[500px] text-[10px] sm:text-xs rounded-xl">
+          <table className="w-full min-w-[360px] text-[10px] sm:text-xs rounded-xl">
             <thead className="bg-secondary/60 text-moreWhite">
               <tr>
                 <th
