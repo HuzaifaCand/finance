@@ -57,13 +57,13 @@ export default function DailyStatistics({ date }: StatProps) {
           <table className="rounded-xl">
             <thead className="bg-secondary/60 items-center text-moreWhite text-[10px] sm:text-xs">
               <tr>
-                <th className="py-4 px-4 sm:px-16 text-left font-semibold rounded-tl-xl">
+                <th className="py-4 px-6 sm:px-16 text-left font-semibold rounded-tl-xl">
                   Category
                 </th>
-                <th className="py-4 px-4 sm:px-16 text-left font-semibold ">
+                <th className="py-4 px-6 sm:px-16 text-left font-semibold ">
                   Amount Spent
                 </th>
-                <th className="py-4 px-4 sm:px-16 text-left font-semibold rounded-tr-xl">
+                <th className="py-4 px-6 sm:px-16 text-left font-semibold rounded-tr-xl">
                   Percentage
                 </th>
               </tr>
@@ -76,11 +76,11 @@ export default function DailyStatistics({ date }: StatProps) {
                   } hover:bg-secondary/30 hover:shadow-sm transition duration-200 text-moreWhite text-[10px] sm:text-xs`}
                   key={row.category}
                 >
-                  <td className="py-4 px-4 sm:px-16">{row.category}</td>
-                  <td className="py-4 px-4 sm:px-16">
+                  <td className="py-4 px-6 sm:px-16">{row.category}</td>
+                  <td className="py-4 px-6 sm:px-16">
                     {row.amount.toFixed(2)}
                   </td>
-                  <td className="py-4 px-4 sm:px-16">
+                  <td className="py-4 px-6 sm:px-16">
                     {row.percentage.toFixed(1)}%
                   </td>
                 </tr>
