@@ -51,12 +51,10 @@ export default function DailyStatistics({ date }: StatProps) {
           value={`HK$${average.toFixed(2)}`}
         />
       </div>
-      <div>
-        <h1 className="text-moreWhite font-semibold text-xl mb-4 px-4">
-          Breakdown
-        </h1>
-        <div className="flex items-center justify-center">
-          <table>
+      <div className="flex flex-col gap-4">
+        <h1 className="text-moreWhite font-semibold text-xl">Breakdown</h1>
+        <div className="overflow-y-auto overflow-x-auto custom-scrollbar">
+          <table className="rounded-xl">
             <thead className="bg-secondary/60 items-center text-moreWhite text-[10px] sm:text-xs">
               <tr>
                 <th className="py-4 px-16 text-left font-semibold rounded-tl-xl">
