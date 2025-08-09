@@ -4,55 +4,52 @@ import type { Expense } from "@/models/expense";
  * Calculates total spent, number of expenses, and average cost per expense.
  */
 export function getDailySummary(expenses: Expense[]) {
-  if (!expenses.length) return { total: 0, count: 0, average: 0 };
+  if (!expenses.length) return { total: 0, median: 0, count: 0, average: 0 };
 
   const total = expenses.reduce((sum, expense) => sum + expense.cost, 0);
+  const sorted = expenses.map((expense) => expense.cost).sort((a, b) => a - b);
+
+  const mid = Math.floor(sorted.length / 2);
+
+  let median;
+  if (sorted.length % 2 === 0) {
+    median = (sorted[mid - 1] + sorted[mid - 2]) / 2;
+  } else {
+    median = sorted[mid];
+  }
+
   const count = expenses.length;
   const average = total / count;
 
-  return { total, count, average };
+  return { total, median, count, average };
 }
 
-/**
- * Finds the category with the highest total spending.
- */
-export function getTopCategory(expenses: Expense[]) {
-  if (!expenses.length) return { category: null, totalSpent: 0 };
+export function getCategoryStats(expenses: Expense[]) {
+  if (!expenses.length) return [];
 
-  const categoryTotals: Record<string, number> = {};
+  // 1. Calculate total spend
+  const total = expenses.reduce((sum, exp) => sum + exp.cost, 0);
 
-  expenses.forEach(({ category, cost }) => {
-    categoryTotals[category] = (categoryTotals[category] || 0) + cost;
-  });
-
-  const topCategory = Object.entries(categoryTotals).reduce((max, curr) =>
-    curr[1] > max[1] ? curr : max
-  );
-
-  return { category: topCategory[0], totalSpent: topCategory[1] };
-}
-
-/**
- * Calculates the percentage of total spending for each category.
- */
-export function getCategoryPercentages(expenses: Expense[]) {
-  if (!expenses.length) return {};
-
-  const total = expenses.reduce((sum, expense) => sum + expense.cost, 0);
-  if (total === 0) return {}; // no meaningful percentages if total cost is zero
-
-  const categoryTotals: Record<string, number> = {};
-
-  expenses.forEach(({ category, cost }) => {
-    // Assign "Uncategorized" if category is empty or falsy
-    const cat = category?.trim() || "Uncategorized";
-    categoryTotals[cat] = (categoryTotals[cat] || 0) + cost;
-  });
-
-  const categoryPercentages: Record<string, number> = {};
-  for (const category in categoryTotals) {
-    categoryPercentages[category] = (categoryTotals[category] / total) * 100;
+  // 2. Group by category and sum amounts
+  const categoryMap = new Map<string, number>();
+  for (const exp of expenses) {
+    categoryMap.set(
+      exp.category,
+      (categoryMap.get(exp.category) || 0) + exp.cost
+    );
   }
 
-  return categoryPercentages;
+  // 3. Transform to array with percentages
+  const categoryStats = Array.from(categoryMap.entries()).map(
+    ([category, amount]) => ({
+      category,
+      amount,
+      percentage: total > 0 ? (amount / total) * 100 : 0,
+    })
+  );
+
+  // 4. Sort by amount descending
+  categoryStats.sort((a, b) => b.amount - a.amount);
+
+  return categoryStats;
 }

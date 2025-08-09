@@ -1,11 +1,7 @@
 "use client";
 
 import { useExpenses } from "@/hooks/useExpenses";
-import {
-  getCategoryPercentages,
-  getDailySummary,
-  getTopCategory,
-} from "@/utils/stats";
+import { getCategoryStats, getDailySummary } from "@/utils/stats";
 
 interface StatProps {
   date: string;
@@ -38,59 +34,68 @@ export default function DailyStatistics({ date }: StatProps) {
 
   if (!expenses) return null;
 
-  const { total, count, average } = getDailySummary(expenses);
-  const { category: topCategory, totalSpent } = getTopCategory(expenses);
-  const categoryPercentages = getCategoryPercentages(expenses);
+  const { total, median, count, average } = getDailySummary(expenses);
+  const categoryStats = getCategoryStats(expenses);
 
   return (
-    <div className="w-full max-w-5xl bg-background rounded-lg shadow-lg space-y-8 text-moreWhite">
+    <section className="w-full max-w-5xl bg-background rounded-lg shadow-lg space-y-8 text-moreWhite">
       {/* Summary cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
         <StatCard label="Total Spent" value={`HK$${total.toFixed(2)}`} />
-        <StatCard label="Expenses Count" value={count.toString()} />
+        <StatCard
+          label="Median Expenditure"
+          value={`HK$${median.toFixed(2)}`}
+        />
         <StatCard
           label="Average Per Expense"
           value={`HK$${average.toFixed(2)}`}
         />
       </div>
-
-      {/* Top category */}
       <div>
-        <h4 className="text-xl font-semibold mb-1 text-primary">
-          Top Spending Category
-        </h4>
-        <p className="text-accent text-lg">
-          {topCategory} — HK${totalSpent.toFixed(2)}
-        </p>
+        <h1 className="text-moreWhite font-semibold text-xl mb-4 px-4">
+          Breakdown
+        </h1>
+        <div className="flex items-center justify-center">
+          <table>
+            <thead className="bg-secondary/60 items-center text-moreWhite text-[10px] sm:text-xs">
+              <tr>
+                <th className="py-4 px-16 text-left font-semibold rounded-tl-xl">
+                  Category
+                </th>
+                <th className="py-4 px-16 text-left font-semibold ">Cost</th>
+                <th className="py-4 px-16 text-left font-semibold rounded-tr-xl">
+                  Percentage
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {categoryStats.map((row, idx) => (
+                <tr
+                  className={`${
+                    idx % 2 === 0 ? "bg-background" : "bg-tealBg/15"
+                  } hover:bg-secondary/30 hover:shadow-sm transition duration-200 text-moreWhite text-[10px] sm:text-xs`}
+                  key={row.category}
+                >
+                  <td className="py-4 px-16">{row.category}</td>
+                  <td className="py-4 px-16">{row.amount.toFixed(2)}</td>
+                  <td className="py-4 px-16">{row.percentage.toFixed(1)}%</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
-
-      {/* Category breakdown */}
-      <div>
-        <h4 className="text-xl font-semibold mb-2 text-primary">
-          Spending Breakdown
-        </h4>
-        <ul className="flex flex-wrap gap-3">
-          {categoryPercentages &&
-            Object.entries(categoryPercentages).map(([cat, percent]) => (
-              <li
-                key={cat}
-                className="bg-stroke rounded-full px-3 py-1 text-xs font-medium text-moreWhite"
-                title={`${cat}: ${percent.toFixed(1)}%`}
-              >
-                {cat}: {percent.toFixed(1)}%
-              </li>
-            ))}
-        </ul>
-      </div>
-    </div>
+    </section>
   );
 }
 
 function StatCard({ label, value }: { label: string; value: string }) {
   return (
-    <div className="bg-secondary py-6 px-4 rounded-md flex flex-col items-center text-center">
-      <p className="text-2xl font-bold text-accent">{value}</p>
-      <p className="mt-1 text-muted text-xs uppercase tracking-wide">{label}</p>
+    <div className="bg-secondary py-4 sm:py-6 px-4 rounded-md flex flex-col items-center text-center">
+      <p className="text-lg sm:text-xl font-bold text-accent">{value}</p>
+      <p className="mt-1 text-muted text-xs sm:text-sm uppercase tracking-wide">
+        {label}
+      </p>
     </div>
   );
 }
