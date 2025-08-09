@@ -6,6 +6,21 @@ import DateSelector from "./DateSelector";
 import DateHeader from "./DateHeader";
 import DailyStatistics from "./DailyStats";
 
+export function getPrevDate(dateStr: string): string {
+  // Parse the input string as a Date
+  const date = new Date(dateStr);
+
+  // Subtract one day (in milliseconds)
+  date.setDate(date.getDate() - 1);
+
+  // Format back to yyyy-mm-dd with leading zeros
+  const yyyy = date.getFullYear();
+  const mm = String(date.getMonth() + 1).padStart(2, "0"); // Months are 0-based
+  const dd = String(date.getDate()).padStart(2, "0");
+
+  return `${yyyy}-${mm}-${dd}`;
+}
+
 export default function DailyMain() {
   const userId = "demoUser";
   const { activeDates, loading, error } = useActiveDates(userId);
@@ -25,6 +40,9 @@ export default function DailyMain() {
       localStorage.setItem("selectedDate", selectedDate);
     }
   }, [selectedDate]);
+
+  const previousDate = selectedDate && getPrevDate(selectedDate);
+  const prevDateExists = previousDate && activeDates.includes(previousDate);
 
   if (loading) {
     return (
@@ -65,7 +83,12 @@ export default function DailyMain() {
       </div>
 
       {/* Statistics */}
-      {selectedDate && <DailyStatistics date={selectedDate} />}
+      {selectedDate && (
+        <DailyStatistics
+          prevDate={prevDateExists ? previousDate : null}
+          date={selectedDate}
+        />
+      )}
     </div>
   );
 }

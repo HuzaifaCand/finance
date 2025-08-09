@@ -3,17 +3,20 @@
 import { useExpenses } from "@/hooks/useExpenses";
 import { getCategoryStats, getDailySummary } from "@/utils/stats";
 import clsx from "clsx";
+import PrevDayComparison from "./PrevDayComparison";
 
 interface StatProps {
   date: string;
+  prevDate: string | null;
 }
 
 // Simple, fluid padding class
 const tableCellClass = "px-[clamp(1rem,2vw,3rem)] py-4"; // fluid horizontal padding between 16px and 48px
 const tableHeadClass = "py-4 text-left font-semibold";
 
-export default function DailyStatistics({ date }: StatProps) {
-  const { expenses, loading, error } = useExpenses("demoUser", date);
+export default function DailyStatistics({ date, prevDate }: StatProps) {
+  const userId = "demoUser";
+  const { expenses, loading, error } = useExpenses(userId, date);
 
   if (loading) {
     return (
@@ -108,13 +111,16 @@ export default function DailyStatistics({ date }: StatProps) {
           </table>
         </div>
       </div>
+      <div className="mt-2">
+        <PrevDayComparison totalToday={total} prevDate={prevDate} />
+      </div>
     </section>
   );
 }
 
 function StatCard({ label, value }: { label: string; value: string }) {
   return (
-    <div className="bg-secondary py-4 sm:py-6 px-4 rounded-md flex flex-col items-center text-center">
+    <div className="bg-tealBg py-4 sm:py-6 px-4 rounded-md flex flex-col items-center text-center">
       <p className="text-lg sm:text-xl font-bold text-accent">{value}</p>
       <p className="mt-1 text-muted text-xs sm:text-sm uppercase tracking-wide">
         {label}
