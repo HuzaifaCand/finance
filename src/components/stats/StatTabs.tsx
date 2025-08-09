@@ -2,7 +2,7 @@
 
 import clsx from "clsx";
 import { useState } from "react";
-import DailyStats from "./DailyMain";
+import DailyMain from "./DailyMain";
 
 const baseClass =
   "sm:px-10 px-6 py-1.5 rounded-lg text-xs md:text-sm font-medium";
@@ -40,7 +40,7 @@ export default function StatTabs() {
         </div>
       </div>
       <div className="pb-8">
-        {activeTab === "daily" ? <DailyStats /> : <></>}
+        {activeTab === "daily" ? <DailyMain /> : <></>}
       </div>
     </div>
   );

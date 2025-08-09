@@ -6,7 +6,7 @@ import DateSelector from "./DateSelector";
 import DateHeader from "./DateHeader";
 import DailyStatistics from "./DailyStats";
 
-export default function DailyStats() {
+export default function DailyMain() {
   const userId = "demoUser";
   const { activeDates, loading, error } = useActiveDates(userId);
   const [selectedDate, setSelectedDate] = useState<string | null>(null);

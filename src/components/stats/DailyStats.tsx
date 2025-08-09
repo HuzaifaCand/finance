@@ -60,7 +60,9 @@ export default function DailyStatistics({ date }: StatProps) {
                 <th className="py-4 px-16 text-left font-semibold rounded-tl-xl">
                   Category
                 </th>
-                <th className="py-4 px-16 text-left font-semibold ">Cost</th>
+                <th className="py-4 px-16 text-left font-semibold ">
+                  Amount Spent
+                </th>
                 <th className="py-4 px-16 text-left font-semibold rounded-tr-xl">
                   Percentage
                 </th>
