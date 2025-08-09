@@ -2,10 +2,15 @@
 
 import { useExpenses } from "@/hooks/useExpenses";
 import { getCategoryStats, getDailySummary } from "@/utils/stats";
+import clsx from "clsx";
 
 interface StatProps {
   date: string;
 }
+
+const tableResClass =
+  "pl-8 pr-6 [@media(min-width:375px)]:pr-8 [@media(min-width:420px)]:pr-10 [@media(min-width:500px)]:pr-12 [@media(min-width:560px)]:pr-14 [@media(min-width:620px)]:pr-16 [@media(min-width:680px)]:pr-18  [@media(min-width:740px)]:pr-24 [@media(min-width:800px)]:pr-28 [@media(min-width:1000px)]:pr-34";
+const tableHeadClass = "py-4 text-left font-semibold";
 
 export default function DailyStatistics({ date }: StatProps) {
   const { expenses, loading, error } = useExpenses("demoUser", date);
@@ -57,13 +62,23 @@ export default function DailyStatistics({ date }: StatProps) {
           <table className="rounded-xl">
             <thead className="bg-secondary/60 items-center text-moreWhite text-[10px] sm:text-xs">
               <tr>
-                <th className="py-4 px-6 sm:px-16 text-left font-semibold rounded-tl-xl">
+                <th
+                  className={clsx(
+                    tableHeadClass,
+                    tableResClass,
+                    "rounded-tl-xl"
+                  )}
+                >
                   Category
                 </th>
-                <th className="py-4 px-6 sm:px-16 text-left font-semibold ">
-                  Amount Spent
-                </th>
-                <th className="py-4 px-6 sm:px-16 text-left font-semibold rounded-tr-xl">
+                <th className={clsx(tableHeadClass, tableResClass)}>Amount</th>
+                <th
+                  className={clsx(
+                    tableHeadClass,
+                    tableResClass,
+                    "rounded-tr-xl"
+                  )}
+                >
                   Percentage
                 </th>
               </tr>
@@ -76,11 +91,13 @@ export default function DailyStatistics({ date }: StatProps) {
                   } hover:bg-secondary/30 hover:shadow-sm transition duration-200 text-moreWhite text-[10px] sm:text-xs`}
                   key={row.category}
                 >
-                  <td className="py-4 px-6 sm:px-16">{row.category}</td>
-                  <td className="py-4 px-6 sm:px-16">
+                  <td className={clsx(tableResClass, "py-4")}>
+                    {row.category}
+                  </td>
+                  <td className={clsx(tableResClass, "py-4")}>
                     {row.amount.toFixed(2)}
                   </td>
-                  <td className="py-4 px-6 sm:px-16">
+                  <td className={clsx(tableResClass, "py-4")}>
                     {row.percentage.toFixed(1)}%
                   </td>
                 </tr>
