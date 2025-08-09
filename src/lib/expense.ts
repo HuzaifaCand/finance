@@ -42,24 +42,35 @@ export async function getExpenses(
   userId: string,
   date: string
 ): Promise<Expense[]> {
-  if (!userId || !date) return [];
+  if (!userId) {
+    throw new Error("User ID is required.");
+  }
+  if (!date || !/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+    throw new Error("Invalid or missing date. Expected format: yyyy-mm-dd");
+  }
 
-  const expensesRef = collection(
-    db,
-    "users",
-    userId,
-    "dates",
-    date,
-    "expenses"
-  );
-  const q = query(expensesRef);
-  const snapshot = await getDocs(q);
+  try {
+    const expensesRef = collection(
+      db,
+      "users",
+      userId,
+      "dates",
+      date,
+      "expenses"
+    );
+    const q = query(expensesRef);
+    const snapshot = await getDocs(q);
 
-  return snapshot.docs.map((doc) => ({
-    ...(doc.data() as Expense),
-    id: doc.id, // override just in case
-  }));
+    return snapshot.docs.map((doc) => ({
+      ...(doc.data() as Expense),
+      id: doc.id,
+    }));
+  } catch (error) {
+    // Wrap and re-throw Firestore errors to be handled upstream
+    throw new Error("Failed to fetch expenses: " + (error as Error).message);
+  }
 }
+
 export async function updateExpense(
   userId: string,
   expenseId: string,
