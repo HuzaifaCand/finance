@@ -8,8 +8,8 @@ interface StatProps {
   date: string;
 }
 
-const tableResClass =
-  "pl-8 pr-6 [@media(min-width:375px)]:pr-8 [@media(min-width:420px)]:pr-10 [@media(min-width:500px)]:pr-12 [@media(min-width:560px)]:pr-14 [@media(min-width:620px)]:pr-16 [@media(min-width:680px)]:pr-18  [@media(min-width:740px)]:pr-24 [@media(min-width:800px)]:pr-28 [@media(min-width:1000px)]:pr-34";
+// Simple, fluid padding class
+const tableCellClass = "px-[clamp(1rem,2vw,3rem)] py-4"; // fluid horizontal padding between 16px and 48px
 const tableHeadClass = "py-4 text-left font-semibold";
 
 export default function DailyStatistics({ date }: StatProps) {
@@ -28,7 +28,7 @@ export default function DailyStatistics({ date }: StatProps) {
 
   if (error) {
     return (
-      <div className="flex items-center justify-center h-60 text-center text-red">
+      <div className="flex flex-col items-center justify-center h-60 text-center text-red">
         <p className="font-semibold text-lg">Error loading stats</p>
         <p className="text-muted text-sm">
           Something went wrong. Please try again.
@@ -56,26 +56,30 @@ export default function DailyStatistics({ date }: StatProps) {
           value={`HK$${average.toFixed(2)}`}
         />
       </div>
+
+      {/* Breakdown Table */}
       <div className="flex flex-col gap-4">
-        <h1 className="text-moreWhite font-semibold text-xl">Breakdown</h1>
-        <div className="overflow-y-auto overflow-x-auto custom-scrollbar">
-          <table className="rounded-xl">
-            <thead className="bg-secondary/60 items-center text-moreWhite text-[10px] sm:text-xs">
+        <h1 className="text-moreWhite font-semibold text-lg sm:text-xl">
+          Spending Breakdown
+        </h1>
+        <div className="overflow-x-auto custom-scrollbar">
+          <table className="w-full min-w-[500px] text-[10px] sm:text-xs rounded-xl">
+            <thead className="bg-secondary/60 text-moreWhite">
               <tr>
                 <th
                   className={clsx(
                     tableHeadClass,
-                    tableResClass,
+                    tableCellClass,
                     "rounded-tl-xl"
                   )}
                 >
                   Category
                 </th>
-                <th className={clsx(tableHeadClass, tableResClass)}>Amount</th>
+                <th className={clsx(tableHeadClass, tableCellClass)}>Amount</th>
                 <th
                   className={clsx(
                     tableHeadClass,
-                    tableResClass,
+                    tableCellClass,
                     "rounded-tr-xl"
                   )}
                 >
@@ -88,16 +92,14 @@ export default function DailyStatistics({ date }: StatProps) {
                 <tr
                   className={`${
                     idx % 2 === 0 ? "bg-background" : "bg-tealBg/15"
-                  } hover:bg-secondary/30 hover:shadow-sm transition duration-200 text-moreWhite text-[10px] sm:text-xs`}
+                  } hover:bg-secondary/30 hover:shadow-sm transition duration-200 text-moreWhite`}
                   key={row.category}
                 >
-                  <td className={clsx(tableResClass, "py-4")}>
-                    {row.category}
-                  </td>
-                  <td className={clsx(tableResClass, "py-4")}>
+                  <td className={clsx(tableCellClass)}>{row.category}</td>
+                  <td className={clsx(tableCellClass)}>
                     {row.amount.toFixed(2)}
                   </td>
-                  <td className={clsx(tableResClass, "py-4")}>
+                  <td className={clsx(tableCellClass)}>
                     {row.percentage.toFixed(1)}%
                   </td>
                 </tr>
