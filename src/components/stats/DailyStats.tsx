@@ -46,9 +46,9 @@ export default function DailyStatistics({ date, prevDate }: StatProps) {
   const categoryStats = getCategoryStats(expenses);
 
   return (
-    <section className="w-full max-w-5xl bg-background rounded-lg shadow-lg space-y-8 text-moreWhite">
+    <section className="w-full max-w-5xl bg-background rounded-lg shadow-lg space-y-6 text-moreWhite">
       {/* Summary cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4">
         <StatCard label="Total Spent" value={`HK$${total.toFixed(2)}`} />
         <StatCard
           label="Median Expenditure"
@@ -59,12 +59,14 @@ export default function DailyStatistics({ date, prevDate }: StatProps) {
           value={`HK$${average.toFixed(2)}`}
         />
       </div>
+      <PrevDayComparison totalToday={total} prevDate={prevDate} />
 
       {/* Breakdown Table */}
       <div className="flex flex-col gap-4">
         <h1 className="text-moreWhite font-semibold text-lg sm:text-xl">
           Spending Breakdown
         </h1>
+
         <div className="overflow-x-auto custom-scrollbar">
           <table className="w-full min-w-[360px] text-[10px] sm:text-xs rounded-xl">
             <thead className="bg-secondary/60 text-moreWhite">
@@ -110,9 +112,6 @@ export default function DailyStatistics({ date, prevDate }: StatProps) {
             </tbody>
           </table>
         </div>
-      </div>
-      <div className="mt-2">
-        <PrevDayComparison totalToday={total} prevDate={prevDate} />
       </div>
     </section>
   );

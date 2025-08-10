@@ -6,8 +6,7 @@ interface PrevDayComparisonProps {
   totalToday: number;
 }
 
-const baseClass =
-  "mt-4 p-4 text-center text-xs sm:text-sm max-w-sm mx-auto rounded-md";
+const baseClass = "mt-4 py-4 px-4 sm:py-6 text-center text-sm rounded-md";
 export default function PrevDayComparison({
   prevDate,
   totalToday,
@@ -85,20 +84,35 @@ export default function PrevDayComparison({
       )}
     >
       {isIncrease && (
-        <>
-          <span className="font-semibold">+{percentageChange.toFixed(1)}%</span>{" "}
-          compared to yesterday
-        </>
+        <div className="flex flex-col items-center text-center">
+          <p className="font-semibold text-lg sm:text-xl">
+            +{Math.abs(percentageChange).toFixed(1)}%
+          </p>
+          <p className="tracking-wide text-red/80 mt-1 text-xs sm:text-sm">
+            COMPARED TO YESTERDAY
+          </p>
+        </div>
       )}
       {isDecrease && (
-        <>
-          <span className="font-semibold">
+        <div className="flex flex-col items-center text-center">
+          <p className="font-semibold text-lg sm:text-xl">
             −{Math.abs(percentageChange).toFixed(1)}%
-          </span>{" "}
-          compared to yesterday
-        </>
+          </p>
+          <p className="tracking-wide text-muted mt-1 text-xs sm:text-sm">
+            COMPARED TO YESTERDAY
+          </p>
+        </div>
       )}
-      {isNoChange && <>No change compared to yesterday</>}
+      {isNoChange && (
+        <div className="flex flex-col items-center text-center">
+          <p className="font-semibold text-lg sm:text-xl">
+            {Math.abs(percentageChange).toFixed(0)}% Change
+          </p>
+          <p className="tracking-wide text-gray-200/60 mt-1 text-xs sm:text-sm">
+            COMPARED TO YESTERDAY
+          </p>
+        </div>
+      )}
     </div>
   );
 }
