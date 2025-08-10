@@ -5,7 +5,7 @@ import { useState } from "react";
 import DailyMain from "./DailyMain";
 
 const baseClass =
-  "sm:px-10 px-6 py-1.5 rounded-lg text-xs md:text-sm font-medium";
+  "sm:px-10 px-6 py-1.5 rounded-lg text-[10px] sm:text-xs md:text-sm font-medium";
 
 export default function StatTabs() {
   const [activeTab, setActiveTab] = useState<"daily" | "weekly">("daily");
@@ -13,7 +13,8 @@ export default function StatTabs() {
   return (
     <div className="rounded-xl overflow-hidden bg-background">
       {/* Tabs */}
-      <div className="flex pb-6 pt-3">
+
+      <div className="flex items-center justify-between pb-6 pt-3">
         <div className="flex gap-2 sm:gap-4">
           <button
             onClick={() => setActiveTab("daily")}
@@ -38,6 +39,20 @@ export default function StatTabs() {
             Weekly
           </button>
         </div>
+        {activeTab === "daily" ? (
+          <button
+            title="Shortcut to stats for today"
+            aria-label="Shortcut to stats for today"
+            className={clsx(
+              "text-[10px] sm:text-xs tracking-tight",
+              "text-primary/70"
+            )}
+          >
+            Today's Stats →
+          </button>
+        ) : (
+          <div></div>
+        )}
       </div>
       <div className="pb-8">
         {activeTab === "daily" ? <DailyMain /> : <></>}

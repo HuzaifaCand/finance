@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getActiveDates } from "@/lib/expense";
+import { getActiveDates } from "@/lib/stats";
 
 export function useActiveDates(userId: string) {
   const [activeDates, setActiveDates] = useState<string[]>([]);

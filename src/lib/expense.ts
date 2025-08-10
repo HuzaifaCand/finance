@@ -92,13 +92,6 @@ export async function updateExpense(
   });
 }
 
-export async function getActiveDates(userId: string) {
-  const dateRef = collection(db, "users", userId, "dates");
-  const snapshot = await getDocs(query(dateRef));
-
-  return snapshot.docs.map((d) => d.id).sort();
-}
-
 export async function deleteExpense(
   userId: string,
   date: string,

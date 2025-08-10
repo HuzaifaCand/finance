@@ -42,6 +42,7 @@ export default function DailyMain() {
   }, [selectedDate]);
 
   const previousDate = selectedDate && getPrevDate(selectedDate);
+
   const prevDateExists = previousDate && activeDates.includes(previousDate);
 
   if (loading) {
