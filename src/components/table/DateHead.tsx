@@ -1,7 +1,7 @@
 "use client";
 
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
-import { CalendarIcon } from "lucide-react";
+import { ArrowRight, CalendarIcon } from "lucide-react";
 import { format } from "date-fns";
 import { useEffect, useState } from "react";
 import Calendar from "./Calendar";
@@ -50,10 +50,13 @@ export default function DateHead({ date, setDate }: Props) {
 
         {/* Go to Today */}
         <button
-          className="text-muted text-[10px] sm:text-xs sm:mt-1.5 mt-1 hover:underline"
           onClick={() => setDate(new Date())}
+          className="flex items-center gap-1 px-4 py-1.5 mt-1 text-[10px] sm:text-xs bg-tealBg/40 text-moreWhite rounded hover:bg-tealBg transition"
         >
-          Go to today →
+          Today{" "}
+          <span className="hidden mt-0.5 [@media(min-width:330px)]:inline">
+            <ArrowRight className="w-2 h-2" />
+          </span>
         </button>
       </div>
     </div>

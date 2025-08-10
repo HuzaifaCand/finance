@@ -7,6 +7,7 @@ import DateHeader from "./DateHeader";
 import DailyStatistics from "./Stats";
 import { toast } from "sonner";
 import { format } from "date-fns";
+import { ArrowRight } from "lucide-react";
 
 export function getPrevDate(dateStr: string): string {
   // Parse the input string as a Date
@@ -110,10 +111,12 @@ export default function DailyMain() {
 
           <button
             onClick={handleTodayClick}
-            className="flex items-center gap-1 px-4 py-1 text-xs bg-tealBg/40 text-moreWhite rounded hover:bg-tealBg transition"
+            className="flex items-center gap-1 px-4 py-1 text-[10px] sm:text-xs bg-tealBg/40 text-moreWhite rounded hover:bg-tealBg transition"
           >
             Today{" "}
-            <span className="hidden [@media(min-width:330px)]:inline">→</span>
+            <span className="hidden mt-0.75 [@media(min-width:330px)]:inline">
+              <ArrowRight className="w-2 h-2" />
+            </span>
           </button>
         </div>
       </div>
