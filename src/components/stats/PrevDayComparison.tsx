@@ -6,7 +6,21 @@ interface PrevDayComparisonProps {
   totalToday: number;
 }
 
-const baseClass = "mt-4 py-4 px-4 sm:py-6 text-center text-sm rounded-md";
+const baseClass =
+  "mt-4 py-4 px-4 sm:py-6 text-center text-sm rounded-md transition duration-200";
+
+function NoExpenses() {
+  return (
+    <div className={clsx(baseClass, "bg-tealBg/60 hover:bg-tealBg ")}>
+      <div className="my-1.5">
+        <p className="uppercase text-teal/80 text-sm tracking-wide mb-1">
+          Daily Change Comparison unavailable
+        </p>
+        <p className="text-muted">No expenses were tracked yesterday</p>
+      </div>
+    </div>
+  );
+}
 export default function PrevDayComparison({
   prevDate,
   totalToday,
@@ -22,11 +36,7 @@ export default function PrevDayComparison({
 
   // If no prevDate, just show the no data box immediately, ignoring hook state
   if (!prevDate) {
-    return (
-      <div className={clsx(baseClass, "bg-tealBg text-teal")}>
-        No expenses were tracked yesterday
-      </div>
-    );
+    return <NoExpenses />;
   }
   if (loading) {
     return (
@@ -44,17 +54,13 @@ export default function PrevDayComparison({
   if (error) {
     return (
       <div className={clsx(baseClass, "bg-red-700 text-red-100")}>
-        Error loading yesterday expenses
+        Error comparing with yestrerday
       </div>
     );
   }
 
   if (!prevExpenses || prevExpenses.length === 0) {
-    return (
-      <div className="bg-tealBg text-teal">
-        No expenses were tracked yesterday
-      </div>
-    );
+    return <NoExpenses />;
   }
 
   const prevTotal = prevExpenses.reduce(
@@ -77,10 +83,10 @@ export default function PrevDayComparison({
       className={clsx(
         baseClass,
         isIncrease
-          ? "bg-redBg text-red"
+          ? "bg-redBg/60 text-red hover:bg-redBg"
           : isDecrease
-          ? "bg-freshBg text-green-200"
-          : "bg-gray-700 text-gray-300"
+          ? "bg-freshBg/60 hover:bg-freshBg text-fresh"
+          : "bg-gray-700/60 hover:bg-gray-700 text-gray-300"
       )}
     >
       {isIncrease && (
