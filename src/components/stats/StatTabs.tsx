@@ -44,7 +44,7 @@ export default function StatTabs() {
             title="Shortcut to stats for today"
             aria-label="Shortcut to stats for today"
             className={clsx(
-              "text-[10px] sm:text-xs tracking-tight",
+              "text-[7px] sm:text-xs tracking-tight",
               "text-primary/70 hover:text-primary"
             )}
           >
