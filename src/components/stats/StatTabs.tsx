@@ -5,7 +5,7 @@ import { useState } from "react";
 import DailyMain from "./DailyMain";
 
 const baseClass =
-  "sm:px-10 px-6 py-1.5 rounded-lg text-[10px] sm:text-xs md:text-sm font-medium";
+  "sm:px-10 px-4 py-1.5 rounded-lg text-[10px] sm:text-xs md:text-sm font-medium";
 
 export default function StatTabs() {
   const [activeTab, setActiveTab] = useState<"daily" | "weekly" | "monthly">(
@@ -17,7 +17,7 @@ export default function StatTabs() {
       {/* Tabs */}
 
       <div className="flex items-center justify-between pb-6 pt-3">
-        <div className="flex gap-2 sm:gap-4">
+        <div className="flex gap-1 sm:gap-4">
           <button
             onClick={() => setActiveTab("daily")}
             className={clsx(
@@ -57,7 +57,7 @@ export default function StatTabs() {
             title="Shortcut to stats for today"
             aria-label="Shortcut to stats for today"
             className={clsx(
-              "text-[10px] sm:text-xs py-1.5 tracking-tight",
+              "text-[9px] sm:text-xs py-1.5 tracking-tight",
               "text-primary/70 hover:text-primary"
             )}
           >
