@@ -4,7 +4,9 @@ import { useEffect, useState } from "react";
 import { useActiveDates } from "@/hooks/useActiveDates";
 import DateSelector from "./DateSelector";
 import DateHeader from "./DateHeader";
-import DailyStatistics from "./DailyStats";
+import DailyStatistics from "./Stats";
+import { toast } from "sonner";
+import { format } from "date-fns";
 
 export function getPrevDate(dateStr: string): string {
   // Parse the input string as a Date
@@ -41,6 +43,20 @@ export default function DailyMain() {
     }
   }, [selectedDate]);
 
+  const today = format(new Date(), "yyyy-MM-dd");
+
+  const handleTodayClick = () => {
+    if (!activeDates.includes(today)) {
+      toast.error("Nothing tracked today bud.");
+      return;
+    }
+    if (selectedDate === today) {
+      toast.error("Already on today boss");
+      return;
+    }
+    setSelectedDate(today);
+  };
+
   const previousDate = selectedDate && getPrevDate(selectedDate);
 
   const prevDateExists = previousDate && activeDates.includes(previousDate);
@@ -71,15 +87,24 @@ export default function DailyMain() {
 
   return (
     <div className="flex flex-col gap-6 py-6">
-      {/* Header row */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         {selectedDate && <DateHeader dateStr={selectedDate} />}
-        <div className="w-full max-w-[180px]">
-          <DateSelector
-            selectedDate={selectedDate}
-            activeDates={activeDates}
-            setSelectedDate={setSelectedDate}
-          />
+        <div className="flex w-full sm:w-1/2 sm:justify-end gap-2">
+          <div className="w-full max-w-[180px]">
+            <DateSelector
+              selectedDate={selectedDate}
+              activeDates={activeDates}
+              setSelectedDate={setSelectedDate}
+            />
+          </div>
+
+          <button
+            onClick={handleTodayClick}
+            className="flex items-center gap-1 px-4 py-1 text-xs bg-freshBg/80 text-moreWhite rounded hover:bg-tealBg transition"
+          >
+            Today{" "}
+            <span className="hidden [@media(min-width:330px)]:inline">→</span>
+          </button>
         </div>
       </div>
 
