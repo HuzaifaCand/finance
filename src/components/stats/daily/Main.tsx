@@ -58,7 +58,6 @@ export default function DailyMain() {
   };
 
   const previousDate = selectedDate && getPrevDate(selectedDate);
-
   const prevDateExists = previousDate && activeDates.includes(previousDate);
 
   if (loading) {
@@ -68,6 +67,17 @@ export default function DailyMain() {
           <span className="h-3 w-3 rounded-full border-2 border-teal border-t-transparent animate-spin" />
           <span>Loading your stats...</span>
         </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex flex-col items-center justify-center h-60 text-center text-red">
+        <p className="font-semibold text-lg">Error loading stats</p>
+        <p className="text-muted text-sm">
+          Something went wrong. Please try again.
+        </p>
       </div>
     );
   }

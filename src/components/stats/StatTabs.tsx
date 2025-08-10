@@ -7,10 +7,9 @@ import DailyMain from "./daily/Main";
 const baseClass =
   "sm:px-10 px-6 py-1.5 rounded-lg text-[10px] sm:text-xs md:text-sm font-medium";
 
+type tab = "daily" | "weekly" | "monthly";
 export default function StatTabs() {
-  const [activeTab, setActiveTab] = useState<"daily" | "weekly" | "monthly">(
-    "daily"
-  );
+  const [activeTab, setActiveTab] = useState<tab>("daily");
 
   return (
     <div className="rounded-xl overflow-hidden bg-background">
@@ -19,7 +18,7 @@ export default function StatTabs() {
           {["daily", "weekly", "monthly"].map((tab) => (
             <button
               key={tab}
-              onClick={() => setActiveTab(tab as any)}
+              onClick={() => setActiveTab(tab as tab)}
               className={clsx(
                 baseClass,
                 activeTab === tab

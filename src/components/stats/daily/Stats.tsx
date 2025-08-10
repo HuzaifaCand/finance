@@ -38,8 +38,7 @@ export default function DailyStatistics({ date, prevDate }: StatProps) {
 
   if (!expenses) return null;
 
-  const { total, median, count, average, highestExpense } =
-    getDailySummary(expenses);
+  const { total, median, average, highestExpense } = getDailySummary(expenses);
   const categoryStats = getCategoryStats(expenses);
 
   return (
@@ -112,15 +111,16 @@ function HighlightCard({
     </div>
   );
 }
-function MiniStatBadge({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="flex flex-col items-center">
-      <div className="flex items-center justify-center rounded-full bg-tealBg/20 hover:bg-tealBg/40 transition duration-200 text-accent font-extrabold text-xl sm:text-2xl w-12 h-12 sm:h-16 sm:w-16">
-        {value}
-      </div>
-      <p className="mt-2 text-muted uppercase tracking-wide text-xs sm:text-sm">
-        {label}
-      </p>
-    </div>
-  );
-}
+
+// function MiniStatBadge({ label, value }: { label: string; value: string }) {
+//   return (
+//     <div className="flex flex-col items-center">
+//       <div className="flex items-center justify-center rounded-full bg-tealBg/20 hover:bg-tealBg/40 transition duration-200 text-accent font-extrabold text-xl sm:text-2xl w-12 h-12 sm:h-16 sm:w-16">
+//         {value}
+//       </div>
+//       <p className="mt-2 text-muted uppercase tracking-wide text-xs sm:text-sm">
+//         {label}
+//       </p>
+//     </div>
+//   );
+// }
