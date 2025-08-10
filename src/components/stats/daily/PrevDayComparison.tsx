@@ -13,8 +13,8 @@ function NoExpenses() {
   return (
     <div className={clsx(baseClass, "bg-tealBg/60 hover:bg-tealBg ")}>
       <div className="my-1.5">
-        <p className="uppercase text-teal/80 text-sm tracking-wide mb-1">
-          Daily Change Comparison unavailable
+        <p className="uppercase text-teal/80 text-xs sm:text-sm tracking-wide mb-1">
+          Daily Comparison unavailable
         </p>
         <p className="text-muted">No expenses were tracked yesterday</p>
       </div>

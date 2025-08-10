@@ -110,7 +110,7 @@ export default function DailyMain() {
 
           <button
             onClick={handleTodayClick}
-            className="flex items-center gap-1 px-4 py-1 text-xs bg-freshBg/80 text-moreWhite rounded hover:bg-tealBg transition"
+            className="flex items-center gap-1 px-4 py-1 text-xs bg-tealBg/40 text-moreWhite rounded hover:bg-tealBg transition"
           >
             Today{" "}
             <span className="hidden [@media(min-width:330px)]:inline">→</span>
