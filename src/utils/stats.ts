@@ -4,24 +4,35 @@ import type { Expense } from "@/models/expense";
  * Calculates total spent, number of expenses, and average cost per expense.
  */
 export function getDailySummary(expenses: Expense[]) {
-  if (!expenses.length) return { total: 0, median: 0, count: 0, average: 0 };
+  if (!expenses.length)
+    return { total: 0, median: 0, count: 0, average: 0, highestExpense: null };
 
   const total = expenses.reduce((sum, expense) => sum + expense.cost, 0);
-  const sorted = expenses.map((expense) => expense.cost).sort((a, b) => a - b);
 
-  const mid = Math.floor(sorted.length / 2);
+  // Sort the costs for median calculation
+  const sortedCosts = expenses
+    .map((expense) => expense.cost)
+    .sort((a, b) => a - b);
+  const mid = Math.floor(sortedCosts.length / 2);
 
   let median;
-  if (sorted.length % 2 === 0) {
-    median = (sorted[mid - 1] + sorted[mid - 2]) / 2;
+  if (sortedCosts.length % 2 === 0) {
+    median = (sortedCosts[mid - 1] + sortedCosts[mid]) / 2;
   } else {
-    median = sorted[mid];
+    median = sortedCosts[mid];
   }
 
   const count = expenses.length;
   const average = total / count;
 
-  return { total, median, count, average };
+  // Find the expense object with the highest cost
+  const highestExpense = expenses.reduce(
+    (maxExp, currentExp) =>
+      currentExp.cost > maxExp.cost ? currentExp : maxExp,
+    expenses[0]
+  );
+
+  return { total, median, count, average, highestExpense };
 }
 
 export function getCategoryStats(expenses: Expense[]) {

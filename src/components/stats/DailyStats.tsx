@@ -42,7 +42,9 @@ export default function DailyStatistics({ date, prevDate }: StatProps) {
 
   if (!expenses) return null;
 
-  const { total, median, count, average } = getDailySummary(expenses);
+  const uniqueMethods = new Set(expenses.map((e) => e.method)).size;
+  const { total, median, count, average, highestExpense } =
+    getDailySummary(expenses);
   const categoryStats = getCategoryStats(expenses);
 
   return (
@@ -113,6 +115,25 @@ export default function DailyStatistics({ date, prevDate }: StatProps) {
           </table>
         </div>
       </div>
+      <div className="grid grid-cols-1 gap-4 mt-4">
+        {highestExpense ? (
+          <HighlightCard
+            label="Highest Single Expense"
+            value={`HK$${highestExpense.cost.toFixed(2)}`}
+            description={highestExpense.desc}
+          />
+        ) : (
+          <HighlightCard label="Highest Single Expense" value="N/A" />
+        )}
+      </div>
+      <div className="flex justify-center gap-12 mt-8">
+        <MiniStatBadge
+          label="Categories"
+          value={categoryStats.length.toString()}
+        />
+        <MiniStatBadge label="Expenses" value={count.toString()} />
+        <MiniStatBadge label="Methods" value={uniqueMethods.toString()} />
+      </div>
     </section>
   );
 }
@@ -122,6 +143,45 @@ function StatCard({ label, value }: { label: string; value: string }) {
     <div className="bg-tealBg py-4 sm:py-6 px-4 rounded-md flex flex-col items-center text-center">
       <p className="text-lg sm:text-xl font-bold text-accent">{value}</p>
       <p className="mt-1 text-muted text-xs sm:text-sm uppercase tracking-wide">
+        {label}
+      </p>
+    </div>
+  );
+}
+
+function HighlightCard({
+  label,
+  value,
+  description,
+}: {
+  label: string;
+  value: string;
+  description?: string;
+}) {
+  return (
+    <div className="bg-tealBg/20 hover:bg-tealBg/40 transition duration-200 border border-tealBg/50 rounded-md p-4 flex flex-col items-center text-center">
+      <p className="text-muted uppercase tracking-wide text-xs sm:text-sm mb-1">
+        {label}
+      </p>
+      <p className="text-xl sm:text-2xl font-extrabold text-accent">{value}</p>
+      {description && (
+        <p
+          className="mt-1 text-muted text-sm truncate max-w-[14rem]"
+          title={description}
+        >
+          {description}
+        </p>
+      )}
+    </div>
+  );
+}
+function MiniStatBadge({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="flex flex-col items-center">
+      <div className="flex items-center justify-center rounded-full bg-tealBg/30 text-accent font-extrabold text-xl sm:text-2xl w-12 h-12 sm:h-16 sm:w-16">
+        {value}
+      </div>
+      <p className="mt-2 text-muted uppercase tracking-wide text-xs sm:text-sm">
         {label}
       </p>
     </div>
