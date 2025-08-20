@@ -5,12 +5,14 @@ import { db } from "@/lib/firebase";
 import { useEffect, useState } from "react";
 import DeleteTrigger from "@/components/delete/DeleteTrigger";
 import AddCategory from "./AddCategories";
+import { useAuthStore } from "@/stores/useAuthStore";
 
 export default function CustomList() {
   const [customCategories, setCustomCategories] = useState<string[]>([]);
-  const userId = "demoUser";
+  const userId = useAuthStore((state) => state.user?.id);
 
   useEffect(() => {
+    if (!userId) return;
     const q = query(collection(db, "users", userId, "customCategories"));
 
     const unsubscribe = onSnapshot(q, (snapshot) => {
