@@ -2,15 +2,15 @@
 
 export default function PrivacyPage() {
   return (
-    <div className="min-h-screen bg-background text-moreWhite flex items-center text-left justify-center px-6 py-12">
-      <div className="max-w-2xl w-full p-8 text-left rounded-2xl shadow-lg border border-stroke space-y-4">
+    <div className="min-h-120 bg-background text-moreWhite flex items-center text-left justify-center px-1 py-12">
+      <div className="max-w-3xl w-full p-8 text-left rounded-2xl shadow-lg border border-stroke space-y-4">
         {/* Heading */}
-        <h1 className="text-3xl font-bold text-primary text-left">
+        <h1 className="text-2xl sm:text-3xl font-bold text-primary text-left">
           Privacy Policy
         </h1>
 
         {/* Intro */}
-        <p className="text-muted leading-relaxed text-sm">
+        <p className="text-muted leading-relaxed text-xs sm:text-sm">
           This Privacy Policy outlines how your data is handled when using our
           application.
         </p>

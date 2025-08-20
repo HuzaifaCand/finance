@@ -20,7 +20,7 @@ export default function LoginComponent({
       <div className="flex items-center justify-center min-h-screen">
         <div className="flex items-center gap-2 text-teal text-md sm:text-lg font-medium">
           <span className="h-5 w-5 rounded-full border-2 border-teal border-t-transparent animate-spin" />
-          <span>Rerouting...</span>
+          <span>Routing...</span>
         </div>
       </div>
     );
