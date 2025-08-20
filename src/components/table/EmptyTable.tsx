@@ -6,10 +6,12 @@ export default function EmptyTable() {
       <tr>
         <td colSpan={5}>
           <div className="flex flex-col items-center justify-center py-16 gap-3 text-moreWhite">
-            <CircleDollarSign size={80} className="text-teal" />
+            <CircleDollarSign size={60} className="text-teal" />
 
             <div className="flex flex-col items-center gap-1">
-              <h3 className="text-lg font-semibold">No expenses yet :/</h3>
+              <h3 className="text-md sm:text-lg font-semibold">
+                No expenses yet :/
+              </h3>
             </div>
 
             <div className="bg-secondary/70 text-center mt-2 rounded-md shadow-sm border border-stroke/40">
