@@ -32,16 +32,24 @@ export default function LoginPage() {
           createdAt: serverTimestamp(),
         });
       }
-
       router.push("/tracker");
+      toast.success("Logged In Successfully!");
     } catch (err) {
       if (err instanceof FirebaseError) {
-        console.error(err);
-        toast.error(err.message);
+        if (err.code === "auth/popup-closed-by-user") {
+          toast.error("Sign-in cancelled");
+        } else {
+          console.error(err);
+          toast.error(err.message);
+        }
       } else {
         console.error(err);
         toast.error("Failed to sign in with Google");
       }
+      setTimeout(() => {
+        window.location.reload();
+      }, 1500);
+    } finally {
       setLoading(false);
     }
   }

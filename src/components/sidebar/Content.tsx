@@ -1,12 +1,30 @@
 "use client";
 import Link from "next/link";
 import { useAuthStore } from "@/stores/useAuthStore";
+import { signOut } from "firebase/auth";
+import { auth } from "@/lib/firebase";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 interface Props {
   onClose?: () => void;
 }
 export default function Content({ onClose }: Props) {
   const username = useAuthStore((state) => state.user?.username);
+
+  const router = useRouter();
+
+  async function handleSignOut() {
+    try {
+      await signOut(auth);
+      // Optionally redirect to login page
+      router.push("/login");
+      toast.success("Signed out successfully!");
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to sign out");
+    }
+  }
 
   return (
     <div className="space-y-6 pr-4 flex flex-col h-full">
@@ -62,27 +80,47 @@ export default function Content({ onClose }: Props) {
           Help & Info
         </p>
         <div className="space-y-1 text-xs text-muted flex flex-col gap-1 font-medium">
-          <button className="text-left hidden lg:inline hover:text-primary transition-colors">
+          <Link
+            href="/shortcuts"
+            className="text-left hidden lg:inline hover:text-primary transition-colors"
+          >
             Shortcuts
-          </button>
-          <button className="text-left hover:text-primary transition-colors">
+          </Link>
+          <Link
+            href="/about"
+            className="text-left hover:text-primary transition-colors"
+          >
             About
-          </button>
+          </Link>
+          <Link
+            href="/privacy"
+            className="text-left hover:text-primary transition-colors"
+          >
+            Privacy Policy
+          </Link>
         </div>
       </div>
 
       {/* Footer */}
       <div className="mt-auto pt-8 pb-6 text-xs text-muted-foreground">
         <hr className="my-4 border-teal/30" />
-        <p className="text-primary">
-          Built by{" "}
-          <span className="text-teal/80 font-medium">Syed Huzaifa</span>
-        </p>
-        <p className="mt-2 hidden lg:block text-muted">
+        <button
+          onClick={handleSignOut}
+          className="text-xs font-medium text-teal/80 hover:text-primary transition-colors"
+        >
+          Sign out →
+        </button>
+
+        <hr className="my-4 border-teal/30" />
+        <p className="mb-2 hidden lg:block text-muted">
           <span className="mr-2 text-xs text-moreWhite/80 bg-background/50">
             Ctrl+B
           </span>
           to toggle sidebar
+        </p>
+        <p className="text-primary">
+          Built by{" "}
+          <span className="text-teal/80 font-medium">Syed Huzaifa</span>
         </p>
       </div>
     </div>

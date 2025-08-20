@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
 import "./globals.css";
 import AuthProvider from "@/components/AuthProvider";
+import { Toaster } from "sonner";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -42,6 +43,16 @@ export default function RootLayout({
     <html lang="en">
       <body className={manrope.className}>
         <main className="min-h-screen bg-background">
+          <Toaster
+            toastOptions={{
+              style: {
+                backgroundColor: "#122628",
+                color: "#e6f4ff",
+                borderColor: "#122628",
+              },
+            }}
+            position="top-center"
+          />
           <AuthProvider>{children}</AuthProvider>
         </main>
       </body>
