@@ -4,18 +4,17 @@ import { useExpenses } from "@/hooks/useExpenses";
 import { getCategoryStats, getDailySummary } from "@/utils/stats";
 import PrevDayComparison from "./PrevDayComparison";
 import BreakdownTable from "./BreakdownTable";
-import { useAuthStore } from "@/stores/useAuthStore";
 
 interface StatProps {
   date: string;
   prevDate: string | null;
+  userId: string;
 }
 
-export default function DailyStatistics({ date, prevDate }: StatProps) {
-  const user = useAuthStore((state) => state.user);
-  const { expenses, loading, error } = useExpenses(user?.id ?? "", date);
+export default function DailyStatistics({ date, prevDate, userId }: StatProps) {
+  const { expenses, loading, error } = useExpenses(userId, date);
 
-  if (!user) {
+  if (userId === "") {
     return (
       <div className="flex items-center justify-center h-60 text-muted text-sm">
         You must be logged in to view stats.
@@ -64,7 +63,7 @@ export default function DailyStatistics({ date, prevDate }: StatProps) {
           value={`HK$${average.toFixed(2)}`}
         />
       </div>
-      <PrevDayComparison id={user.id} totalToday={total} prevDate={prevDate} />
+      <PrevDayComparison id={userId} totalToday={total} prevDate={prevDate} />
       <BreakdownTable categoryStats={categoryStats} />
       <div className="grid grid-cols-1 gap-4 mt-4">
         {highestExpense ? (

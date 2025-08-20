@@ -8,6 +8,7 @@ import DailyStatistics from "./Stats";
 import { toast } from "sonner";
 import { format } from "date-fns";
 import { ArrowRight } from "lucide-react";
+import { useAuthStore } from "@/stores/useAuthStore";
 
 export function getPrevDate(dateStr: string): string {
   // Parse the input string as a Date
@@ -25,9 +26,9 @@ export function getPrevDate(dateStr: string): string {
 }
 
 export default function DailyMain() {
-  const userId = "demoUser";
-  const { activeDates, loading, error } = useActiveDates(userId);
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
+  const userId = useAuthStore((state) => state.user?.id);
+  const { activeDates, loading, error } = useActiveDates(userId ? userId : "");
 
   useEffect(() => {
     const saved = localStorage.getItem("selectedDate");
@@ -124,6 +125,7 @@ export default function DailyMain() {
       {/* Statistics */}
       {selectedDate && (
         <DailyStatistics
+          userId={userId ? userId : ""}
           prevDate={prevDateExists ? previousDate : null}
           date={selectedDate}
         />
