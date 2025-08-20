@@ -81,12 +81,6 @@ export default function Content({ onClose }: Props) {
         </p>
         <div className="space-y-1 text-xs text-muted flex flex-col gap-1 font-medium">
           <Link
-            href="/shortcuts"
-            className="text-left hidden lg:inline hover:text-primary transition-colors"
-          >
-            Shortcuts
-          </Link>
-          <Link
             href="/about"
             className="text-left hover:text-primary transition-colors"
           >
