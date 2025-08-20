@@ -1,36 +1,35 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FinanceHK 💸
 
-## Getting Started
+FinanceHK is a lightweight, fast, and efficient expense tracking app built for students in Hong Kong.  
+It is **mobile-first**, but also optimized for quick keyboard input so you can log expenses in seconds.  
+The goal is simple: spend less time tracking, and more time living — while still getting useful insights into where your money goes.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Current Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Quick expense entry with categories and payment methods
+- Daily, weekly, and monthly statistics
+- Custom categories so the app adapts to your lifestyle
+- Clean and responsive UI designed for speed and simplicity
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Future Features
 
-## Learn More
+- Export your data and statistics
+- Weekly budgets and automatic progress tracking
+- Budgets by category for more detailed control
+- Streak tracking to build consistent habits
+- Deeper insights into top categories, spending patterns, and savings opportunities
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🛠️ Tech Stack
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- [Next.js](https://nextjs.org/)
+- [Firebase](https://firebase.google.com/) (Auth + Firestore)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Zustand](https://github.com/pmndrs/zustand) for state management
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
