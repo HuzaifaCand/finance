@@ -16,16 +16,9 @@ interface Props {
 }
 export default function TableBody({ date, onTotalChange }: Props) {
   const [rows, setRows] = useState<Expense[]>([]);
-
-  const user = useAuthStore((state) => state.user);
-  const loading = useAuthStore((state) => state.loading);
-
-  if (!user) return <EmptyTable />;
-  if (loading) return <LoadingRows />;
-
   const [showFallback, setShowFallback] = useState(false);
-
   useEffect(() => {
+    if (!user) return;
     setShowFallback(false); // Reset fallback on each date change
 
     const d = date.toLocaleDateString("en-CA");
@@ -50,6 +43,11 @@ export default function TableBody({ date, onTotalChange }: Props) {
       unsubscribe();
     };
   }, [date]);
+  const user = useAuthStore((state) => state.user);
+  const loading = useAuthStore((state) => state.loading);
+
+  if (!user) return <EmptyTable />;
+  if (loading) return <LoadingRows />;
 
   if (showFallback) return <LoadingRows />;
 
