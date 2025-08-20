@@ -1,7 +1,7 @@
 // components/AddBudgetTrigger.tsx
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import AddBudgetCard from "./AddBudgetCard";
 import AddBudgetModal from "./AddBudgetModal";
 
