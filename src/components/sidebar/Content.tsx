@@ -81,12 +81,14 @@ export default function Content({ onClose }: Props) {
         </p>
         <div className="space-y-1 text-xs text-muted flex flex-col gap-1 font-medium">
           <Link
+            onClick={onClose}
             href="/about"
             className="text-left hover:text-primary transition-colors"
           >
             About
           </Link>
           <Link
+            onClick={onClose}
             href="/privacy"
             className="text-left hover:text-primary transition-colors"
           >
