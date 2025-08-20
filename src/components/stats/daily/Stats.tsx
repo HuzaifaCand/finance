@@ -13,6 +13,7 @@ interface StatProps {
 
 export default function DailyStatistics({ date, prevDate }: StatProps) {
   const user = useAuthStore((state) => state.user);
+  const { expenses, loading, error } = useExpenses(user?.id ?? "", date);
 
   if (!user) {
     return (
@@ -21,9 +22,6 @@ export default function DailyStatistics({ date, prevDate }: StatProps) {
       </div>
     );
   }
-
-  const userId = user.id;
-  const { expenses, loading, error } = useExpenses(userId, date);
 
   if (loading) {
     return (
