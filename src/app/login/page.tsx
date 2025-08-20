@@ -6,13 +6,16 @@ import { FirebaseError } from "firebase/app";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { doc, getDoc, setDoc, serverTimestamp } from "firebase/firestore";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { toast } from "sonner";
 
 export default function LoginPage() {
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   async function handleGoogleSignIn() {
     try {
+      setLoading(true);
       const provider = new GoogleAuthProvider();
       const result = await signInWithPopup(auth, provider);
       const firebaseUser = result.user;
@@ -39,8 +42,11 @@ export default function LoginPage() {
         console.error(err);
         toast.error("Failed to sign in with Google");
       }
+      setLoading(false);
     }
   }
 
-  return <LoginComponent handleGoogleSignIn={handleGoogleSignIn} />;
+  return (
+    <LoginComponent loading={loading} handleGoogleSignIn={handleGoogleSignIn} />
+  );
 }

@@ -11,7 +11,7 @@ export default function QuickAddModal({ show, setShow }: QuickAddModalProps) {
       <div className="flex flex-col gap-2">
         <h1 className="text-2xl font-bold text-moreWhite">Quick Add</h1>
         <p className="text-xs sm:text-sm text-teal/60 mb-2">
-          Coming soon — need real user data before adding ts
+          Coming Later — need real user data before adding this
         </p>
         <div className="flex justify-end">
           <p className="text-muted hidden sm:inline text-[11px] italic">

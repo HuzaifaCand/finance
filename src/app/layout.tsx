@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     siteName: "FinanceHK",
     images: [
       {
-        url: "/icons/icon-512.png",
+        url: "/icons/icon-192.png",
         width: 1200,
         height: 630,
         alt: "FinanceHK App",
