@@ -3,6 +3,7 @@
 import clsx from "clsx";
 import { useState } from "react";
 import DailyMain from "./daily/Main";
+import ComingSoon from "../ComingSoon";
 
 const baseClass =
   "sm:px-10 px-6 py-1.5 rounded-lg text-[10px] sm:text-xs md:text-sm font-medium";
@@ -32,7 +33,11 @@ export default function StatTabs() {
         </div>
       </div>
       <div className="pb-8">
-        {activeTab === "daily" ? <DailyMain /> : <></>}
+        {activeTab === "daily" ? (
+          <DailyMain />
+        ) : (
+          <ComingSoon message="Will get to it soon dw" />
+        )}
       </div>
     </div>
   );

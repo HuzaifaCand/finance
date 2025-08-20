@@ -68,9 +68,6 @@ export default function Content({ onClose }: Props) {
           <button className="text-left hover:text-primary transition-colors">
             About
           </button>
-          <button className="text-left hover:text-primary transition-colors">
-            Privacy Policy
-          </button>
         </div>
       </div>
 
