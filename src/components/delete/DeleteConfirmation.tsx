@@ -46,5 +46,11 @@ export default function DeleteConfirmation({
     }
   };
 
-  return <DeleteUi handleDelete={handleDelete} onClose={onClose} />;
+  return (
+    <DeleteUi
+      thing={capitalize(type)}
+      handleDelete={handleDelete}
+      onClose={onClose}
+    />
+  );
 }

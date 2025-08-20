@@ -1,16 +1,21 @@
 interface Props {
+  thing: string;
   handleDelete: () => void;
   onClose: () => void;
 }
+function uncapitalize(str: string) {
+  return str.charAt(0).toLowerCase() + str.slice(1);
+}
 
-export default function DeleteUi({ handleDelete, onClose }: Props) {
+export default function DeleteUi({ thing, handleDelete, onClose }: Props) {
   return (
     <div className="flex flex-col text-left gap-2 p-4 w-full">
       <h2 className="text-moreWhite text-lg sm:text-xl font-bold">
-        Delete Expense
+        Delete {thing}
       </h2>
       <p className="text-moreWhite/80 text-xs sm:text-sm">
-        Are you sure you want to delete this item? This action cannot be undone.
+        Are you sure you want to delete this {uncapitalize(thing)}? This action
+        cannot be undone.
       </p>
 
       <div className="flex flex-col [@media(min-width:350px)]:flex-row justify-end gap-3 mt-4 w-full">
