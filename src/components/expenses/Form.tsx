@@ -53,6 +53,8 @@ export default function AddForm({ date, onClose, expenseToEdit }: Props) {
     descRef.current?.focus();
   }, []);
 
+  if (!user) return;
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!user) return toast.error("You must be logged in to add an expense.");
@@ -139,6 +141,7 @@ export default function AddForm({ date, onClose, expenseToEdit }: Props) {
           </div>
 
           <CategoryInput
+            userId={user.id}
             category={category}
             setCategory={setCategory}
             customCategory={customCategory}

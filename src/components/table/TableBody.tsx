@@ -43,6 +43,7 @@ export default function TableBody({ date, onTotalChange }: Props) {
       unsubscribe();
     };
   }, [date]);
+
   const user = useAuthStore((state) => state.user);
   const loading = useAuthStore((state) => state.loading);
 

@@ -3,7 +3,7 @@ import { addCategory, getCustomCategories } from "@/lib/category";
 import { toast } from "sonner";
 
 interface Props {
-  userId?: string;
+  userId: string | null;
   category: string;
   setCategory: (c: string) => void;
   customCategory: boolean;
@@ -24,11 +24,9 @@ export default function CategoryInput({
   const [fullCategories, setFullCategories] =
     useState<string[]>(baseCategories);
 
-  const id = "demoUser";
-
   useEffect(() => {
     async function loadCategories() {
-      const custom = await getCustomCategories(id);
+      const custom = await getCustomCategories(userId ? userId : "");
       const names = custom.map((c) => c.category);
       // Remove duplicates
       const merged = Array.from(new Set([...baseCategories, ...names]));
@@ -36,7 +34,7 @@ export default function CategoryInput({
     }
 
     loadCategories();
-  }, [id, baseCategories]);
+  }, [userId, baseCategories]);
 
   const filtered =
     category === ""
@@ -66,7 +64,7 @@ export default function CategoryInput({
   }, [category]);
 
   const handleAddCategory = async () => {
-    await addCategory(id, category);
+    await addCategory(userId ? userId : "", category);
     setFullCategories((prev) => Array.from(new Set([...prev, category])));
     setCustomCategory(false);
     toast.success("Category has been added!");
