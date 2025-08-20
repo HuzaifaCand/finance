@@ -23,15 +23,15 @@ export default function EmptyTable() {
 
             {/* shortcut hints */}
             <div className="hidden md:flex gap-6 mt-3">
-              <div className="flex items-center gap-2 text-sm text-muted">
-                <span className="px-2 py-[2px] border border-stroke rounded text-xs text-moreWhite/80 bg-background/50">
+              <div className="flex items-center gap-2 text-xs text-muted">
+                <span className="px-2 py-[2px] border border-stroke rounded text-moreWhite/80 bg-background/50">
                   Alt+A
                 </span>
                 <p>Add Expense</p>
               </div>
 
-              <div className="flex items-center gap-2 text-sm text-muted">
-                <span className="px-2 py-[2px] border border-stroke rounded text-xs text-moreWhite/80 bg-background/50">
+              <div className="flex items-center gap-2 text-xs text-muted">
+                <span className="px-2 py-[2px] border border-stroke rounded text-moreWhite/80 bg-background/50">
                   Alt+Q
                 </span>
                 <p>Quick Add</p>
