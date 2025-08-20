@@ -2,6 +2,7 @@ import { deleteCategory } from "@/lib/category";
 import { deleteExpense } from "@/lib/expense";
 import { toast } from "sonner";
 import DeleteUi from "./DeleteUi";
+import { useAuthStore } from "@/stores/useAuthStore";
 
 function capitalize(str: string) {
   return str.charAt(0).toUpperCase() + str.slice(1);
@@ -20,9 +21,11 @@ export default function DeleteConfirmation({
   onClose,
   type,
 }: DeleteConfirmationProps) {
+  const userId = useAuthStore((state) => state.user?.id);
+
   const handleDelete = async () => {
-    const userId = "demoUser";
     try {
+      if (!userId) return;
       if (!id) return;
 
       if (type === "expense") {
