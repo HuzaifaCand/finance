@@ -20,8 +20,7 @@ The goal is simple: spend less time tracking, and more time living — while sti
 - Export your data and statistics
 - Weekly budgets and automatic progress tracking
 - Budgets by category for more detailed control
-- Streak tracking to build consistent habits
-- Deeper insights into top categories, spending patterns, and savings opportunities
+- More :)
 
 ---
 
