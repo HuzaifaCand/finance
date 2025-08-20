@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "FinanceHK",
-    description: "Track and optimize your student expenses with ease.",
+    description: "Optimized Expense Tracker made for students in Hong Kong",
     url: "https://financehk.vercel.app",
     siteName: "FinanceHK",
     images: [

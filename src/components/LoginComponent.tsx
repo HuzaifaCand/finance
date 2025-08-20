@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function LoginComponent({
   handleGoogleSignIn,
   loading,
@@ -15,10 +17,10 @@ export default function LoginComponent({
       </div>
     );
   return (
-    <div className="flex items-center justify-center h-screen bg-background">
+    <div className="flex flex-col gap-2 items-center justify-center h-screen bg-background">
       <button
         onClick={handleGoogleSignIn}
-        className="py-3 px-8 sm:px-12 sm:py-4 rounded-md bg-secondary text-moreWhite hover:bg-secondary/80 text-md sm:text-lg transition duration-200 font-semibold"
+        className="py-3 px-8 sm:px-12 sm:py-4 rounded-lg bg-secondary text-moreWhite hover:bg-secondary/80 text-md sm:text-lg transition duration-200 font-semibold"
       >
         Sign in with Google
       </button>

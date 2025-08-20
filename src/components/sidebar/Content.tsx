@@ -92,6 +92,12 @@ export default function Content({ onClose }: Props) {
           >
             Privacy Policy
           </Link>
+          <Link
+            href="/tos"
+            className="text-left hover:text-primary transition-colors"
+          >
+            Terms of Service
+          </Link>
         </div>
       </div>
 
