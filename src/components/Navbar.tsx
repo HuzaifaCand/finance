@@ -8,7 +8,7 @@ import { BarChart, Wallet, List } from "lucide-react";
 const routes = [
   {
     name: "Expense Tracker",
-    href: "/",
+    href: "/tracker",
     icon: <List className="md:w-5 md:h-5 w-4 h-4" />,
   },
   {

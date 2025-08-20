@@ -1,3 +1,5 @@
+"use client";
+
 import { addExpense, updateExpense } from "@/lib/expense";
 import { useState, useRef, useEffect } from "react";
 import CategoryInput from "../formInputs/CategoryInput";
@@ -6,6 +8,7 @@ import MethodInput from "../formInputs/MethodInput";
 import clsx from "clsx";
 import { toast } from "sonner";
 import { PaymentMethod } from "@/models/expense";
+import { useAuthStore } from "@/stores/useAuthStore";
 
 const fieldClass =
   "w-full px-3 py-2 rounded-md bg-secondary/50 text-moreWhite border border-muted/10 text-xs focus:outline-none focus:bg-tealBg ";
@@ -43,56 +46,64 @@ export default function AddForm({ date, onClose, expenseToEdit }: Props) {
   const [cost, setCost] = useState<number | "">(expenseToEdit?.cost ?? "");
   const [loading, setLoading] = useState(false);
 
+  // get current user from auth store
+  const user = useAuthStore((state) => state.user);
+
   useEffect(() => {
     descRef.current?.focus();
-    return;
   }, []);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    if (!user) return toast.error("You must be logged in to add an expense.");
     if (!category || !method || !cost) return;
     if (!date) return;
+
     const stringDate = date.toLocaleDateString("en-CA").slice(0, 10);
 
     setLoading(true);
     try {
-      await addExpense("demoUser", {
+      await addExpense(user.id, {
         desc,
         category,
         method: method as PaymentMethod,
         cost,
         date: stringDate,
       });
+
+      toast.success("Expense Added!", { duration: 1500 });
+      onClose();
     } catch (err) {
       console.error("Failed to add expense:", err);
       toast.error("Failed to add Expense");
     } finally {
       setLoading(false);
-      onClose();
-      toast.success("Expense Added!", { duration: 1500 });
     }
   }
+
   async function handleUpdate(e: React.FormEvent) {
     e.preventDefault();
+    if (!user)
+      return toast.error("You must be logged in to update an expense.");
     if (!expenseToEdit || !category || !method || !cost) return;
 
     setLoading(true);
     try {
-      await updateExpense("demoUser", expenseToEdit.id!, {
+      await updateExpense(user.id, expenseToEdit.id!, {
         desc,
         category,
         method: method as PaymentMethod,
         cost,
-        date: expenseToEdit.date, // preserve original date
+        date: expenseToEdit.date,
       });
 
       toast.success("Expense Updated!", { duration: 1500 });
+      onClose();
     } catch (err) {
       console.error("Failed to update expense:", err);
       toast.error("Failed to update Expense");
     } finally {
       setLoading(false);
-      onClose();
     }
   }
 
@@ -170,17 +181,8 @@ export default function AddForm({ date, onClose, expenseToEdit }: Props) {
           disabled={loading}
           className="w-full bg-tealBg text-moreWhite font-semibold py-2 text-xs rounded-lg focus:outline-none border border-tealBg focus:bg-tealBg/80 focus:border-stroke active:scale-95 transition"
         >
-          {loading ? "Saving..." : "Add"}
+          {loading ? "Saving..." : expenseToEdit ? "Update" : "Add"}
         </button>
-
-        <div className="hidden mt-2 md:flex md:justify-between md:items-center">
-          <p className="text-muted text-[10px] italic">
-            Use<kbd className="px-1">Esc</kbd> to cancel.
-          </p>
-          <p className="text-muted text-[10px] italic">
-            Use <kbd className="px-1">Tab</kbd> to move between fields.
-          </p>
-        </div>
       </form>
     </div>
   );

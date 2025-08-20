@@ -1,10 +1,7 @@
 import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
 import "./globals.css";
-
-import Sidebar from "@/components/sidebar/Sidebar";
-import MobileDrawer from "@/components/sidebar/MobileDrawer";
-import { Toaster } from "sonner";
+import AuthProvider from "@/components/AuthProvider";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -13,10 +10,26 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "Expense Tracker",
-  description: "Optimized and Extremely efficient expense tracker",
+  title: "FinanceHK",
+  description: "Optimized Expense Tracker made for students in Hong Kong",
   icons: {
     icon: "/logo.svg",
+  },
+  openGraph: {
+    title: "FinanceHK",
+    description: "Track and optimize your student expenses with ease.",
+    url: "https://financehk.vercel.app",
+    siteName: "FinanceHK",
+    images: [
+      {
+        url: "/icons/icon-512.png",
+        width: 1200,
+        height: 630,
+        alt: "FinanceHK App",
+      },
+    ],
+    locale: "en_HK",
+    type: "website",
   },
 };
 
@@ -29,26 +42,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={manrope.className}>
         <main className="min-h-screen bg-background">
-          <MobileDrawer />
-          <section className="flex gap-4">
-            <div className="hidden lg:flex">
-              <Sidebar />
-            </div>
-
-            <div className="flex-1 min-h-screen overflow-x-hidden">
-              <div className="p-4">{children}</div>
-              <Toaster
-                toastOptions={{
-                  style: {
-                    backgroundColor: "#122628",
-                    color: "#e6f4ff",
-                    borderColor: "#122628",
-                  },
-                }}
-                position="top-center"
-              />
-            </div>
-          </section>
+          <AuthProvider>{children}</AuthProvider>
         </main>
       </body>
     </html>

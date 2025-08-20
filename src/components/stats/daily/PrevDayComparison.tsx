@@ -4,6 +4,7 @@ import clsx from "clsx";
 interface PrevDayComparisonProps {
   prevDate: string | null;
   totalToday: number;
+  id: string;
 }
 
 const baseClass =
@@ -24,13 +25,14 @@ function NoExpenses() {
 export default function PrevDayComparison({
   prevDate,
   totalToday,
+  id,
 }: PrevDayComparisonProps) {
   const {
     expenses: prevExpenses,
     loading,
     error,
   } = useExpenses(
-    "demoUser",
+    id,
     prevDate ?? "" // Pass empty string or some dummy date so hook always runs
   );
 

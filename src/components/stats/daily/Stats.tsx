@@ -4,6 +4,7 @@ import { useExpenses } from "@/hooks/useExpenses";
 import { getCategoryStats, getDailySummary } from "@/utils/stats";
 import PrevDayComparison from "./PrevDayComparison";
 import BreakdownTable from "./BreakdownTable";
+import { useAuthStore } from "@/stores/useAuthStore";
 
 interface StatProps {
   date: string;
@@ -11,7 +12,17 @@ interface StatProps {
 }
 
 export default function DailyStatistics({ date, prevDate }: StatProps) {
-  const userId = "demoUser";
+  const user = useAuthStore((state) => state.user);
+
+  if (!user) {
+    return (
+      <div className="flex items-center justify-center h-60 text-muted text-sm">
+        You must be logged in to view stats.
+      </div>
+    );
+  }
+
+  const userId = user.id;
   const { expenses, loading, error } = useExpenses(userId, date);
 
   if (loading) {
@@ -55,10 +66,8 @@ export default function DailyStatistics({ date, prevDate }: StatProps) {
           value={`HK$${average.toFixed(2)}`}
         />
       </div>
-      <PrevDayComparison totalToday={total} prevDate={prevDate} />
-
+      <PrevDayComparison id={user.id} totalToday={total} prevDate={prevDate} />
       <BreakdownTable categoryStats={categoryStats} />
-
       <div className="grid grid-cols-1 gap-4 mt-4">
         {highestExpense ? (
           <HighlightCard
@@ -111,16 +120,3 @@ function HighlightCard({
     </div>
   );
 }
-
-// function MiniStatBadge({ label, value }: { label: string; value: string }) {
-//   return (
-//     <div className="flex flex-col items-center">
-//       <div className="flex items-center justify-center rounded-full bg-tealBg/20 hover:bg-tealBg/40 transition duration-200 text-accent font-extrabold text-xl sm:text-2xl w-12 h-12 sm:h-16 sm:w-16">
-//         {value}
-//       </div>
-//       <p className="mt-2 text-muted uppercase tracking-wide text-xs sm:text-sm">
-//         {label}
-//       </p>
-//     </div>
-//   );
-// }

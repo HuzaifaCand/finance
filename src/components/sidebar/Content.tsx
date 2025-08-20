@@ -1,15 +1,19 @@
+"use client";
 import Link from "next/link";
+import { useAuthStore } from "@/stores/useAuthStore";
 
 interface Props {
   onClose?: () => void;
 }
 export default function Content({ onClose }: Props) {
+  const username = useAuthStore((state) => state.user?.username);
+
   return (
     <div className="space-y-6 pr-4 flex flex-col h-full">
       {/* Greeting */}
       <div className="mt-8">
         <h1 className="text-moreWhite pr-2 font-bold text-lg">
-          Hey, Danyal 👋
+          Hey, {username} 👋
         </h1>
         <p className="text-muted text-xs mt-1">Welcome!</p>
         <hr className="my-3 border-teal/30" />
@@ -23,7 +27,7 @@ export default function Content({ onClose }: Props) {
         <div className="space-y-1 text-xs text-muted flex flex-col gap-1 font-medium">
           <Link
             onClick={onClose}
-            href="/"
+            href="/tracker"
             className="text-left hover:text-primary transition-colors"
           >
             Expense Tracker

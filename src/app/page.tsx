@@ -1,15 +1,21 @@
-import PageTransitionWrapper from "@/components/PageTransitionWrapper";
-import MainTable from "@/components/table/MainTable";
-import { Metadata } from "next";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Your Tracker",
-};
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useAuthStore } from "@/stores/useAuthStore";
 
-export default function TrackerPage() {
-  return (
-    <PageTransitionWrapper>
-      <MainTable />
-    </PageTransitionWrapper>
-  );
+export default function HomePage() {
+  const router = useRouter();
+  const { user, loading } = useAuthStore();
+
+  useEffect(() => {
+    if (loading) return; // wait for auth check
+    if (user) {
+      router.replace("/tracker");
+    } else {
+      router.replace("/login");
+    }
+  }, [user, loading, router]);
+
+  return null;
 }
