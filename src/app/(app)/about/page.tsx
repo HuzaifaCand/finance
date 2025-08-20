@@ -12,26 +12,48 @@ export default function AboutPage() {
         {/* Sections */}
         <div className="space-y-4 text-xs sm:text-sm leading-relaxed">
           <section>
-            <h2 className="font-semibold text-accent mb-1 ">FinanceHK</h2>
+            <h2 className="font-semibold text-accent mb-1">FinanceHK</h2>
             <p className="text-muted">
-              FinanceHK is a lightweight, fast, efficient, finance tracking app
-              built for students in Hong Kong. It is a mobile-first but
-              keyboard-optimized expense tracker cleaned up for the best
-              possible user experience so you spend as little time tracking
-              expenses as possible. Track expeses and get actual practically
-              useful statistics
+              FinanceHK is a lightweight, fast, and efficient finance tracking
+              app built with students in Hong Kong in mind. It is mobile-first,
+              but also optimized for quick keyboard input so you can log an
+              expense in seconds. The goal is simple: spend less time tracking
+              and more time living (and studying)
             </p>
           </section>
 
           <section>
             <h2 className="font-semibold text-accent mb-1">Current Features</h2>
-            <p className="text-muted"></p>
+            <p className="text-muted">
+              • Quick expense entry with categories and payment methods <br />
+              • Daily, weekly, and monthly statistics to understand your
+              spending <br />
+              • Custom categories so the app adapts to your lifestyle <br />•
+              Clean and responsive UI designed for speed and simplicity
+            </p>
           </section>
+
           <section>
             <h2 className="font-semibold text-accent mb-1">Future Features</h2>
             <p className="text-muted">
-              The ability to export data, export statistics. Set a weekly
-              budget. Set weekly budgets by categories.{" "}
+              • Export your data and statistics for personal records <br />
+              • Set weekly budgets and track progress automatically <br />
+              • Budgets by category for more detailed control <br />• More I
+              guess :)
+            </p>
+          </section>
+
+          <section>
+            <h2 className="font-semibold text-accent mb-1">
+              Why Track Expenses
+            </h2>
+            <p className="text-muted">
+              Student life in Hong Kong can be expensive, and small daily costs
+              add up quickly. By tracking your spending, you can build awareness
+              of your habits, avoid surprises at the end of the month, and start
+              developing healthy financial routines early. Setting budgets keeps
+              you in control. Statistics give you clarity on your spending. Its
+              just an all round win.
             </p>
           </section>
         </div>

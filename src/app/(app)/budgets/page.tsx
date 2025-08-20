@@ -20,7 +20,7 @@ export default function BudgetingPage() {
                   <h1 className="sm:text-3xl text-xl font-bold tracking-tight text-moreWhite">
                     Budgeting
                   </h1>
-                  <div className="hidden sm:inline text-sm">
+                  <div className="sm:inline text-xs sm:text-sm">
                     <span className="text-muted ">Budgeting = </span>
                     <span className="text-primary/80">Control</span>
                   </div>

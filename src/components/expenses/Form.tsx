@@ -18,9 +18,9 @@ const methods = [
   "Card",
   "Octopus",
   "Online",
-  "Other",
   "Bank Transfer",
-  "Mobile Pay",
+  "FPS",
+  "Other",
 ];
 
 interface Props {

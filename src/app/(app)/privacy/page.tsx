@@ -16,7 +16,7 @@ export default function PrivacyPage() {
         </p>
 
         {/* Sections */}
-        <div className="space-y-4 text-sm leading-relaxed">
+        <div className="space-y-4 sm:text-sm text-xs leading-relaxed">
           <section>
             <h2 className="font-semibold text-accent mb-1">1. Data Security</h2>
             <p className="text-muted">
