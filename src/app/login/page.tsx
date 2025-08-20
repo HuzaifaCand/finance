@@ -2,6 +2,7 @@
 
 import LoginComponent from "@/components/LoginComponent";
 import { auth, db } from "@/lib/firebase";
+import { FirebaseError } from "firebase/app";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { doc, getDoc, setDoc, serverTimestamp } from "firebase/firestore";
 import { useRouter } from "next/navigation";
@@ -30,9 +31,14 @@ export default function LoginPage() {
       }
 
       router.push("/tracker");
-    } catch (err: any) {
-      console.error(err);
-      toast.error(err?.message || "Failed to sign in with Google");
+    } catch (err) {
+      if (err instanceof FirebaseError) {
+        console.error(err);
+        toast.error(err.message);
+      } else {
+        console.error(err);
+        toast.error("Failed to sign in with Google");
+      }
     }
   }
 
