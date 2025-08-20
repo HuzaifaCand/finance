@@ -48,12 +48,11 @@ export default function AboutPage() {
               Why Track Expenses
             </h2>
             <p className="text-muted">
-              Student life in Hong Kong can be expensive, and small daily costs
-              add up quickly. By tracking your spending, you can build awareness
-              of your habits, avoid surprises at the end of the month, and start
-              developing healthy financial routines early. Setting budgets keeps
-              you in control. Statistics give you clarity on your spending. Its
-              just an all round win.
+              Small daily costs add up quickly. By tracking your spending, you
+              can build awareness of your habits, avoid surprises at the end of
+              the month, and start developing healthy financial routines early.
+              Setting budgets keeps you in control. Statistics give you clarity
+              on your spending. Its just an all round win.
             </p>
           </section>
         </div>
