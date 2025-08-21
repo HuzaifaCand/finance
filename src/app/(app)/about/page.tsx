@@ -43,8 +43,9 @@ export default function AboutPage() {
               <p className="text-muted">
                 • Export your data and statistics for personal records <br />
                 • Set weekly budgets and track progress automatically <br />
-                • Budgets by category for more detailed control <br />• More I
-                guess :)
+                • Budgets by category for more detailed control <br />• Weekly
+                Email Summaries of expense data including key insights <br />•
+                More I guess :)
               </p>
             </section>
 

@@ -20,6 +20,7 @@ The goal is simple: spend less time tracking, and more time living — while sti
 - Export your data and statistics
 - Weekly budgets and automatic progress tracking
 - Budgets by category for more detailed control
+- Weekly Email Summaries of expnese data including very important insights
 - More :)
 
 ---

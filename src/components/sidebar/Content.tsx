@@ -18,8 +18,6 @@ export default function Content({ onClose }: Props) {
     try {
       onClose;
       await signOut(auth);
-      
-
       // Optionally redirect to login page
       router.push("/login");
       toast.success("Signed out successfully!");
