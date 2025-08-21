@@ -39,7 +39,7 @@ export default function LoginComponent({
       </div>
       <button
         onClick={handleGoogleSignIn}
-        className="py-3.5 px-16 sm:px-24 rounded-lg bg-secondary text-moreWhite hover:bg-secondary/80 text-sm sm:text-md  transition duration-200 font-semibold"
+        className="py-3.5 px-16 sm:px-24 rounded-lg bg-secondary focus:outline-none focus:bg-secondary/80 text-moreWhite hover:bg-secondary/80 text-sm sm:text-md  transition duration-200 font-semibold"
       >
         Sign in with Google
       </button>
