@@ -51,7 +51,7 @@ export default function MainTable() {
           </table>
         </div>
 
-        <div className="sm:hidden flex justify-end mt-6 px-4 pb-4 text-sm">
+        <div className="sm:hidden flex justify-end mt-6 px-4 pb-4 text-xs">
           <span className="text-muted mr-1">Total Today:</span>
           <span className="text-primary/80 font-semibold">
             {totalCost.toFixed(1)} HKD

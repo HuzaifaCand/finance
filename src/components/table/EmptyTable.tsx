@@ -4,7 +4,7 @@ export default function EmptyTable() {
   return (
     <tbody className="bg-background">
       <tr>
-        <td colSpan={5}>
+        <td colSpan={8}>
           <div className="flex flex-col items-center justify-center py-16 gap-3 text-moreWhite">
             <CircleDollarSign size={60} className="text-teal" />
 
@@ -15,7 +15,7 @@ export default function EmptyTable() {
             </div>
 
             <div className="bg-secondary/70 text-center rounded-md shadow-sm border border-stroke/40">
-              <p className="text-xs py-2 px-3.5">
+              <p className="text-[10px] sm:text-xs py-2 px-3.5">
                 Use the <span className="text-teal font-semibold">＋</span>{" "}
                 button above to add your first entry
               </p>
