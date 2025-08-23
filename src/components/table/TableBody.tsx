@@ -5,10 +5,12 @@ import { Expense } from "@/models/expense";
 import { useAuthStore } from "@/stores/useAuthStore";
 import EmptyTable from "./EmptyTable";
 import LoadingRows from "./LoadingRows";
-import { collection, onSnapshot, query } from "firebase/firestore";
+import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import DeleteTrigger from "../delete/DeleteTrigger";
 import EditTrigger from "../expenses/EditTrigger";
+
+const bodyClass = "py-2 px-3 sm:px-4 text-[10px] sm:text-xs text-moreWhite";
 
 interface Props {
   date: Date;
@@ -19,10 +21,13 @@ export default function TableBody({ date, onTotalChange }: Props) {
   const [showFallback, setShowFallback] = useState(false);
   useEffect(() => {
     if (!user) return;
-    setShowFallback(false); // Reset fallback on each date change
+    setShowFallback(false);
 
     const d = date.toLocaleDateString("en-CA");
-    const q = query(collection(db, "users", user.id, "dates", d, "expenses"));
+    const q = query(
+      collection(db, "users", user.id, "dates", d, "expenses"),
+      orderBy("createdAt", "desc")
+    );
 
     // Start fallback after 200ms
     const timer = setTimeout(() => setShowFallback(true), 200);
@@ -63,18 +68,10 @@ export default function TableBody({ date, onTotalChange }: Props) {
             idx % 2 === 0 ? "bg-background" : "bg-tealBg/15"
           } hover:bg-secondary/30 hover:shadow-sm transition duration-200`}
         >
-          <td className="py-2 px-3 sm:px-4 text-[10px] sm:text-xs text-moreWhite">
-            {item.desc}
-          </td>
-          <td className="py-2 px-3 sm:px-4 text-[10px] sm:text-xs text-moreWhite">
-            {item.category}
-          </td>
-          <td className="py-2 px-3 sm:px-4 text-[10px] sm:text-xs text-moreWhite">
-            {item.method}
-          </td>
-          <td className="py-2 px-3 sm:px-4 text-[10px] sm:text-xs text-moreWhite">
-            {item.cost.toFixed(2)}
-          </td>
+          <td className={bodyClass}>{item.desc}</td>
+          <td className={bodyClass}>{item.category}</td>
+          <td className={bodyClass}>{item.method}</td>
+          <td className={bodyClass}>{item.cost.toFixed(2)}</td>
           <td className="py-2 px-3 sm:px-4">
             <div className="flex items-center gap-1 sm:gap-2">
               <EditTrigger expenseToEdit={item} />
