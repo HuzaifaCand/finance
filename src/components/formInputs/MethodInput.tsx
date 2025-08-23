@@ -70,9 +70,13 @@ export default function MethodInput({ method, setMethod, methods }: Props) {
               <li
                 key={item}
                 onBlur={() => {
-                  setTimeout(() => setShowDropdown(false), 100);
+                  setTimeout(() => setShowDropdown(false), 200);
                 }}
                 onClick={() => {
+                  setMethod(item);
+                  setShowDropdown(false);
+                }}
+                onMouseDown={() => {
                   setMethod(item);
                   setShowDropdown(false);
                 }}

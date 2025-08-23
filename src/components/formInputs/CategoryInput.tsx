@@ -105,7 +105,14 @@ export default function CategoryInput({
               {filtered.map((item, i) => (
                 <li
                   key={item}
+                  onBlur={() => {
+                    setTimeout(() => setShowDropdown(false), 200);
+                  }}
                   onClick={() => {
+                    setCategory(item);
+                    setShowDropdown(false);
+                  }}
+                  onMouseDown={() => {
                     setCategory(item);
                     setShowDropdown(false);
                   }}

@@ -186,6 +186,11 @@ export default function AddForm({ date, onClose, expenseToEdit }: Props) {
         >
           {loading ? "Saving..." : expenseToEdit ? "Update" : "Add"}
         </button>
+        <div className="flex hidden sm:block">
+          <p className="text-muted text-[10px] italic">
+            Use<kbd className="px-1">Esc</kbd> to cancel.
+          </p>
+        </div>
       </form>
     </div>
   );
