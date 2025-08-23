@@ -16,10 +16,10 @@ export default function AboutPage() {
               <h2 className="font-semibold text-accent mb-1">FinanceHK</h2>
               <p className="text-muted">
                 FinanceHK is a lightweight, fast, and efficient finance tracking
-                app built with students in Hong Kong in mind. It is
-                mobile-first, but also optimized for quick keyboard input so you
-                can log an expense in seconds. The goal is simple: spend less
-                time tracking and more time living (and studying)
+                app built for students in Hong Kong. It is mobile-first, but
+                also optimized for quick keyboard input so you can log an
+                expense in seconds. The goal is simple: spend less time tracking
+                and more time living (and studying)
               </p>
             </section>
 
