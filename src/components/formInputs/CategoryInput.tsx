@@ -117,7 +117,9 @@ export default function CategoryInput({
                     setShowDropdown(false);
                   }}
                   className={`px-4 py-2 cursor-pointer hover:bg-secondary/50 text-moreWhite ${
-                    i === highlightedIndex ? "bg-secondary/50" : ""
+                    i === highlightedIndex
+                      ? "bg-secondary/80 font-semibold"
+                      : ""
                   }`}
                 >
                   {item}
