@@ -32,7 +32,7 @@ export default function LoginPage() {
           createdAt: serverTimestamp(),
         });
       }
-      router.push("/tracker");
+      router.replace("/tracker");
       toast.success("Logged In Successfully!");
     } catch (err) {
       if (err instanceof FirebaseError) {
