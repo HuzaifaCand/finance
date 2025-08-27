@@ -32,7 +32,14 @@ export default function Content({ onClose }: Props) {
       {/* Greeting */}
       <div className="mt-8">
         <h1 className="text-moreWhite pr-2 font-bold text-lg">
-          Hey, {username?.split(" ")[0]} 👋
+          Hey,{" "}
+          {username
+            ? username
+                .split(" ")[0]
+                .toLowerCase()
+                .replace(/^./, (c) => c.toUpperCase())
+            : ""}{" "}
+          👋
         </h1>
         <p className="text-muted text-xs mt-1">Welcome!</p>
         <hr className="my-3 border-teal/30" />
