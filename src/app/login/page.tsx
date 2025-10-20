@@ -33,7 +33,7 @@ export default function LoginPage() {
         });
       }
       router.replace("/tracker");
-      toast.success("Logged In Successfully!");
+      toast.success("Logged In!");
     } catch (err) {
       if (err instanceof FirebaseError) {
         if (err.code === "auth/popup-closed-by-user") {

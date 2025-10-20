@@ -7,15 +7,18 @@ import { Toaster } from "sonner";
 const manrope = Manrope({
   subsets: ["latin"],
   display: "swap",
-  weight: ["200", "300", "400", "500", "600", "700", "800"],
 });
 
 export const metadata: Metadata = {
   title: "FinanceHK",
   description: "Optimized Expense Tracker made for students in Hong Kong",
+
   icons: {
-    icon: "/logo.svg",
+    icon: "/logo.svg", // Standard favicon
+    shortcut: "/favicon.ico", // For older browsers
+    apple: "/apple-touch-icon.png", // iOS devices
   },
+
   openGraph: {
     title: "FinanceHK",
     description: "Optimized Expense Tracker made for students in Hong Kong",
@@ -23,15 +26,17 @@ export const metadata: Metadata = {
     siteName: "FinanceHK",
     images: [
       {
-        url: "/icons/icon-192.png",
-        width: 1200,
-        height: 630,
+        url: "/android-chrome-512x512.png",
+        width: 512,
+        height: 512,
         alt: "FinanceHK App",
       },
     ],
     locale: "en_HK",
     type: "website",
   },
+
+  manifest: "/site.webmanifest",
 };
 
 export default function RootLayout({
