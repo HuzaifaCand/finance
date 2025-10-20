@@ -20,7 +20,7 @@ export default function MobileDrawer() {
       )}
 
       <div
-        className={`fixed inset-0 w-full h-full bg-secondary/70 text-primary z-50 p-6 overflow-y-auto lg:hidden transition-transform duration-300 ease-in-out scrollbar-thin scrollbar-track-transparent scrollbar-thumb-secondary/50 hover:scrollbar-thumb-secondary/70 ${
+        className={`fixed inset-0 w-4/5 h-full bg-secondary/70 text-primary z-50 p-6 overflow-y-auto lg:hidden transition-transform duration-300 ease-in-out scrollbar-thin scrollbar-track-transparent scrollbar-thumb-secondary/50 hover:scrollbar-thumb-secondary/70 ${
           open
             ? "translate-x-0 opacity-100 pointer-events-auto"
             : "-translate-x-full opacity-0 pointer-events-none"
