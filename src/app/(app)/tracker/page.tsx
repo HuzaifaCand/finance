@@ -5,6 +5,7 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Your Tracker",
+  manifest: "/site.webmanifest",
 };
 
 export default function TrackerPage() {

@@ -41,6 +41,7 @@ export default function AboutPage() {
                 Future Features
               </h2>
               <p className="text-muted">
+                • Import your existing financial data instantly <br />
                 • Export your data and statistics for personal records <br />
                 • Set weekly budgets and track progress automatically <br />
                 • Budgets by category for more detailed control <br />• Weekly

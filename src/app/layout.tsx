@@ -36,7 +36,12 @@ export const metadata: Metadata = {
     type: "website",
   },
 
-  manifest: "/site.webmanifest",
+  twitter: {
+    card: "summary_large_image",
+    title: "FinanceHK",
+    description: "Optimized Expense Tracker made for students in Hong Kong",
+    images: ["/android-chrome-512x512.png"],
+  },
 };
 
 export default function RootLayout({

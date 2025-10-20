@@ -1,7 +1,7 @@
 {
   "name": "FinanceHK",
   "short_name": "FinanceHK",
-  "start_url": "/",
+  "start_url": "/tracker",
   "display": "standalone",
   "background_color": "#000700",
   "theme_color": "#000700",

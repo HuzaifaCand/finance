@@ -16,7 +16,7 @@ export default function Content({ onClose }: Props) {
 
   async function handleSignOut() {
     try {
-      onClose;
+      onClose && onClose();
       await signOut(auth);
       // Optionally redirect to login page
       router.push("/login");
