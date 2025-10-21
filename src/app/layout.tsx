@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "FinanceHK",
     description: "Optimized Expense Tracker made for students in Hong Kong",
-    images: ["/android-chrome-512x512.png"],
+    images: ["/icons/icon-512.png"],
   },
 };
 
