@@ -19,6 +19,9 @@ interface Props {
 export default function TableBody({ date, onTotalChange }: Props) {
   const [rows, setRows] = useState<Expense[]>([]);
   const [showFallback, setShowFallback] = useState(false);
+  const user = useAuthStore((state) => state.user);
+  const loading = useAuthStore((state) => state.loading);
+
   useEffect(() => {
     if (!user) return;
     setShowFallback(false);
@@ -47,10 +50,7 @@ export default function TableBody({ date, onTotalChange }: Props) {
       clearTimeout(timer);
       unsubscribe();
     };
-  }, [date]);
-
-  const user = useAuthStore((state) => state.user);
-  const loading = useAuthStore((state) => state.loading);
+  }, [date, onTotalChange, user]);
 
   if (!user) return <EmptyTable />;
   if (loading) return <LoadingRows />;
