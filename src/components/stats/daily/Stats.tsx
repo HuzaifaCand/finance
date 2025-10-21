@@ -4,6 +4,7 @@ import { useExpenses } from "@/hooks/useExpenses";
 import { getCategoryStats, getDailySummary } from "@/utils/stats";
 import PrevDayComparison from "./PrevDayComparison";
 import BreakdownTable from "./BreakdownTable";
+import Loading from "@/components/Loading";
 
 interface StatProps {
   date: string;
@@ -23,14 +24,7 @@ export default function DailyStatistics({ date, prevDate, userId }: StatProps) {
   }
 
   if (loading) {
-    return (
-      <div className="flex items-center justify-center h-60">
-        <div className="flex items-center gap-2 text-teal text-sm font-medium">
-          <span className="h-3 w-3 rounded-full border-2 border-teal border-t-transparent animate-spin" />
-          <span>Calculating stats...</span>
-        </div>
-      </div>
-    );
+    return <Loading text="Calculating..." />;
   }
 
   if (error) {

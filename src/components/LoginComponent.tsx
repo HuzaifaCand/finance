@@ -16,7 +16,7 @@ export default function LoginComponent({
   handleGoogleSignIn: () => void;
   loading: boolean;
 }) {
-  if (loading) return <Loading text="Routing" />;
+  if (loading) return <Loading text="Routing..." />;
   return (
     <div className="flex flex-col gap-2 items-center justify-center h-screen bg-background">
       <div className="text-center mb-4">

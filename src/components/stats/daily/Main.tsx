@@ -58,7 +58,7 @@ export default function DailyMain({
   const prevDateExists = previousDate && activeDates.includes(previousDate);
 
   if (fetching) {
-    return <Loading text="Fetching stats" />;
+    return <Loading text="Fetching stats..." />;
   }
 
   if (error) {
