@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     siteName: "FinanceHK",
     images: [
       {
-        url: "/android-chrome-512x512.png",
+        url: "/icons/icon-512.png",
         width: 512,
         height: 512,
         alt: "FinanceHK App",
