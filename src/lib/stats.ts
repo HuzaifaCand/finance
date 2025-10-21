@@ -1,40 +1,71 @@
 import { collection, getDocs, query } from "firebase/firestore";
 import { db } from "./firebase";
-import { parseISO, startOfWeek, endOfWeek, format } from "date-fns";
+import { endOfWeek, parse, startOfWeek, format } from "date-fns";
+
+// using date-fns
 
 export async function getActiveDates(userId: string) {
   const dateRef = collection(db, "users", userId, "dates");
   const snapshot = await getDocs(query(dateRef));
 
   return snapshot.docs.map((d) => d.id).sort();
+  // dates are in the format dd-mm-yyyy
 }
 
-// Get all active weeks (only weeks with at least 1 active date)
-export async function getActiveWeeks(userId: string) {
-  const activeDates = await getActiveDates(userId);
+export async function getActiveWeeks(activeDates: string[]) {
+  // convert the string to an actual date object
+  const parsedDates = activeDates.map((dateStr) =>
+    parse(dateStr, "dd-MM-yyyy", new Date())
+  );
 
-  // Use a Set to avoid duplicate weeks
-  const weekSet = new Set<string>();
+  const weeksMap = new Map<
+    string,
+    { label: string; start: string; end: string }
+  >();
 
-  for (const dateStr of activeDates) {
-    // Parse "YYYY-MM-DD" into a Date object
-    const date = parseISO(dateStr);
+  for (const date of parsedDates) {
+    const start = startOfWeek(date, { weekStartsOn: 1 });
+    const end = endOfWeek(date, { weekStartsOn: 1 });
 
-    // Get Monday as start of the week
-    const weekStart = startOfWeek(date, { weekStartsOn: 1 });
+    const label = `${format(start, "MMM dd")} - ${format(end, "MMM dd, yyyy")}`;
+    const startISO = format(start, "yyyy-MM-dd");
+    const endISO = format(end, "yyyy-MM-dd");
 
-    // Store week start date in ISO format (YYYY-MM-DD) to ensure uniqueness
-    weekSet.add(format(weekStart, "yyyy-MM-dd"));
+    if (!weeksMap.has(label)) {
+      weeksMap.set(label, { label, start: startISO, end: endISO });
+    }
   }
 
-  // Convert set → array of week objects, sorted by start date
-  const activeWeeks = Array.from(weekSet)
-    .map((startStr) => {
-      const start = parseISO(startStr);
-      const end = endOfWeek(start, { weekStartsOn: 1 });
-      return { start, end };
-    })
-    .sort((a, b) => a.start.getTime() - b.start.getTime());
+  return Array.from(weeksMap.values()).sort(
+    (a, b) => new Date(a.start).getTime() - new Date(b.start).getTime()
+  );
+}
 
-  return activeWeeks;
+export async function getActiveDatesInWeek(
+  activeDates: string[],
+  start: string,
+  end: string
+) {
+  const startDate = parse(start, "yyyy-MM-dd", new Date());
+  const endDate = parse(end, "yyyy-MM-dd", new Date());
+
+  return activeDates.filter((dateStr) => {
+    const d = parse(dateStr, "dd-MM-yyyy", new Date());
+    return d >= startDate && d <= endDate;
+  });
+}
+
+export function getPrevDate(dateStr: string): string {
+  // Parse the input string as a Date
+  const date = new Date(dateStr);
+
+  // subtract one day (in ms)
+  date.setDate(date.getDate() - 1);
+
+  // format back to yyyy-mm-dd with leading zeros
+  const yyyy = date.getFullYear();
+  const mm = String(date.getMonth() + 1).padStart(2, "0"); // Months are 0-based
+  const dd = String(date.getDate()).padStart(2, "0");
+
+  return `${yyyy}-${mm}-${dd}`;
 }
