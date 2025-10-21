@@ -16,10 +16,9 @@ export default function Protected({ children }: { children: React.ReactNode }) {
 
   if (loading)
     return (
-      <div className="flex items-center justify-center h-60">
+      <div className="flex items-center justify-center min-h-screen">
         <div className="flex items-center gap-2 text-teal text-sm font-medium">
-          <span className="h-3 w-3 rounded-full border-2 border-teal border-t-transparent animate-spin" />
-          <span>Authenticating...</span>
+          <span className="h-5 w-5 rounded-full border-2 border-teal border-t-transparent animate-spin" />
         </div>
       </div>
     );
