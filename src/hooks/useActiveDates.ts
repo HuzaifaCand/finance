@@ -3,23 +3,23 @@ import { getActiveDates } from "@/lib/stats";
 
 export function useActiveDates(userId: string) {
   const [activeDates, setActiveDates] = useState<string[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [fetching, setFetching] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
     let isMounted = true;
-    setLoading(true);
+    setFetching(true);
     getActiveDates(userId)
       .then((dates) => {
         if (isMounted) {
           setActiveDates(dates);
-          setLoading(false);
+          setFetching(false);
         }
       })
       .catch((err) => {
         if (isMounted) {
           setError(err);
-          setLoading(false);
+          setFetching(false);
         }
       });
     return () => {
@@ -27,5 +27,5 @@ export function useActiveDates(userId: string) {
     };
   }, [userId]);
 
-  return { activeDates, loading, error };
+  return { activeDates, fetching, error };
 }
