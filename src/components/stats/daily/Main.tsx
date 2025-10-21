@@ -1,34 +1,29 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useActiveDates } from "@/hooks/useActiveDates";
 import DateSelector from "./DateSelector";
 import DateHeader from "./DateHeader";
 import DailyStatistics from "./Stats";
 import { toast } from "sonner";
 import { format } from "date-fns";
 import { ArrowRight } from "lucide-react";
-import { useAuthStore } from "@/stores/useAuthStore";
+import { getPrevDate } from "@/lib/stats";
+import Loading from "@/components/Loading";
 
-export function getPrevDate(dateStr: string): string {
-  // Parse the input string as a Date
-  const date = new Date(dateStr);
-
-  // Subtract one day (in milliseconds)
-  date.setDate(date.getDate() - 1);
-
-  // Format back to yyyy-mm-dd with leading zeros
-  const yyyy = date.getFullYear();
-  const mm = String(date.getMonth() + 1).padStart(2, "0"); // Months are 0-based
-  const dd = String(date.getDate()).padStart(2, "0");
-
-  return `${yyyy}-${mm}-${dd}`;
+interface Props {
+  activeDates: string[];
+  fetching: boolean;
+  error: Error | null;
+  userId: string | undefined;
 }
 
-export default function DailyMain() {
+export default function DailyMain({
+  activeDates,
+  fetching,
+  error,
+  userId,
+}: Props) {
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
-  const userId = useAuthStore((state) => state.user?.id);
-  const { activeDates, loading, error } = useActiveDates(userId ? userId : "");
 
   useEffect(() => {
     const saved = localStorage.getItem("selectedDate");
@@ -49,11 +44,11 @@ export default function DailyMain() {
 
   const handleTodayClick = () => {
     if (!activeDates.includes(today)) {
-      toast.error("Nothing tracked today bud.");
+      toast.error("Nothing tracked today.");
       return;
     }
     if (selectedDate === today) {
-      toast.error("Already on today boss");
+      toast.error("Already on today");
       return;
     }
     setSelectedDate(today);
@@ -62,21 +57,14 @@ export default function DailyMain() {
   const previousDate = selectedDate && getPrevDate(selectedDate);
   const prevDateExists = previousDate && activeDates.includes(previousDate);
 
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center h-96">
-        <div className="flex items-center gap-2 text-teal text-sm font-medium">
-          <span className="h-3 w-3 rounded-full border-2 border-teal border-t-transparent animate-spin" />
-          <span>Loading your stats...</span>
-        </div>
-      </div>
-    );
+  if (fetching) {
+    return <Loading text="Fetching stats" />;
   }
 
   if (error) {
     return (
       <div className="flex flex-col items-center justify-center h-60 text-center text-red">
-        <p className="font-semibold text-lg">Error loading stats</p>
+        <p className="font-semibold text-lg">Error fetching stats</p>
         <p className="text-muted text-sm">
           Something went wrong. Please try again.
         </p>

@@ -4,6 +4,8 @@ import clsx from "clsx";
 import { useState } from "react";
 import DailyMain from "./daily/Main";
 import ComingSoon from "../ComingSoon";
+import { useActiveDates } from "@/hooks/useActiveDates";
+import { useAuthStore } from "@/stores/useAuthStore";
 
 const baseClass =
   "sm:px-10 px-6 py-1.5 rounded-lg text-[10px] sm:text-xs md:text-sm font-medium";
@@ -11,6 +13,8 @@ const baseClass =
 type tab = "daily" | "weekly" | "monthly";
 export default function StatTabs() {
   const [activeTab, setActiveTab] = useState<tab>("daily");
+  const userId = useAuthStore((state) => state.user?.id);
+  const { activeDates, fetching, error } = useActiveDates(userId ?? "");
 
   return (
     <div className="rounded-xl overflow-hidden bg-background">
@@ -33,9 +37,18 @@ export default function StatTabs() {
         </div>
       </div>
       <div className="pb-8">
-        {activeTab === "daily" ? (
-          <DailyMain />
-        ) : (
+        {activeTab === "daily" && (
+          <DailyMain
+            activeDates={activeDates}
+            userId={userId}
+            fetching={fetching}
+            error={error}
+          />
+        )}
+        {activeTab === "weekly" && (
+          <ComingSoon message="Will get to it soon dw" />
+        )}
+        {activeTab === "monthly" && (
           <ComingSoon message="Will get to it soon dw" />
         )}
       </div>
