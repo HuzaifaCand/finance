@@ -38,10 +38,10 @@ export function getDailySummary(expenses: Expense[]) {
 export function getCategoryStats(expenses: Expense[]) {
   if (!expenses.length) return [];
 
-  // 1. Calculate total spend
+  // Calc total spend
   const total = expenses.reduce((sum, exp) => sum + exp.cost, 0);
 
-  // 2. Group by category and sum amounts
+  //  Group by category and sum amounts
   const categoryMap = new Map<string, number>();
   for (const exp of expenses) {
     categoryMap.set(
@@ -50,17 +50,118 @@ export function getCategoryStats(expenses: Expense[]) {
     );
   }
 
-  // 3. Transform to array with percentages
+  // transform to array with percentages
   const categoryStats = Array.from(categoryMap.entries()).map(
-    ([category, amount]) => ({
-      category,
+    ([type, amount]) => ({
+      type,
       amount,
       percentage: total > 0 ? (amount / total) * 100 : 0,
     })
   );
 
-  // 4. Sort by amount descending
+  // sort descending
   categoryStats.sort((a, b) => b.amount - a.amount);
 
   return categoryStats;
+}
+
+//- --- weekly computations ---
+
+import { parse, format } from "date-fns";
+
+export function getWeekStats(expensesByDay: Record<string, Expense[]>) {
+  const daysOfWeek = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ];
+
+  // mapp the day name → total
+  const totalsByDay: Record<string, number> = {};
+  let total = 0;
+
+  for (const [dateStr, expenses] of Object.entries(expensesByDay)) {
+    const day = format(parse(dateStr, "yyyy-MM-dd", new Date()), "EEEE"); // full day name
+    const dayTotal = expenses.reduce((sum, e) => sum + e.cost, 0);
+    totalsByDay[day] = (totalsByDay[day] || 0) + dayTotal;
+    total += dayTotal;
+  }
+
+  // Create chart-friendly array with zeros for missing days
+  const dailyTotals = daysOfWeek.map((day) => ({
+    day,
+    total: totalsByDay[day] || 0,
+  }));
+
+  const trackedDays = Object.values(totalsByDay).filter((v) => v > 0).length;
+
+  // daily totals is [{day: "Monday", total: 12031}, ...] so on
+
+  return { total, trackedDays, dailyTotals };
+}
+
+export type Stat = {
+  type: string;
+  amount: number;
+  percentage: number;
+};
+function getWeeklyStatsByKey(
+  expensesByDay: Record<string, Expense[]>,
+  key: "category" | "method"
+): Stat[] {
+  const totals: Record<string, number> = {};
+
+  for (const expenses of Object.values(expensesByDay)) {
+    if (!Array.isArray(expenses)) continue;
+    for (const expense of expenses) {
+      const name = expense[key] || "Unknown";
+      totals[name] = (totals[name] || 0) + (expense.cost || 0);
+    }
+  }
+
+  const totalSpent = Object.values(totals).reduce((sum, amt) => sum + amt, 0);
+
+  return Object.entries(totals)
+    .map(([type, amount]) => ({
+      type,
+      amount,
+      percentage: totalSpent > 0 ? (amount / totalSpent) * 100 : 0,
+    }))
+    .sort((a, b) => b.amount - a.amount);
+}
+
+// Then export both wrappers for clarity:
+export const getWeeklyCategoryStats = (
+  expensesByDay: Record<string, Expense[]>
+) => getWeeklyStatsByKey(expensesByDay, "category");
+
+export const getWeeklyMethodStats = (
+  expensesByDay: Record<string, Expense[]>
+) => getWeeklyStatsByKey(expensesByDay, "method");
+
+export function getHighestExpense(expensesByDay: Record<string, Expense[]>) {
+  let highest: Expense | null = null;
+
+  for (const expenses of Object.values(expensesByDay)) {
+    for (const expense of expenses) {
+      if (!highest || expense.cost > highest.cost) {
+        highest = expense;
+      }
+    }
+  }
+
+  return highest;
+}
+
+export function getHighestSpendingDay(
+  dailyTotals: { day: string; total: number }[]
+) {
+  if (!dailyTotals.length) return null;
+  return dailyTotals.reduce((max, curr) =>
+    curr.total > max.total ? curr : max
+  );
 }
