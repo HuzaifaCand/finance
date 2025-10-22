@@ -7,14 +7,18 @@ import DailyStatistics from "./Stats";
 import { toast } from "sonner";
 import { format } from "date-fns";
 import { ArrowRight } from "lucide-react";
-import { getPrevDate } from "@/lib/stats";
+import { getPrevDate } from "@/lib/date";
 import Loading from "@/components/Loading";
+import ExpensesDontExist from "@/components/stats/ExpensesDontExist";
+import StatsError from "../StatsError";
 
 interface Props {
   activeDates: string[];
   fetching: boolean;
   error: Error | null;
   userId: string | undefined;
+  selectedDate: string | null;
+  setSelectedDate: (d: string | null) => void;
 }
 
 export default function DailyMain({
@@ -22,9 +26,9 @@ export default function DailyMain({
   fetching,
   error,
   userId,
+  selectedDate,
+  setSelectedDate,
 }: Props) {
-  const [selectedDate, setSelectedDate] = useState<string | null>(null);
-
   useEffect(() => {
     const saved = localStorage.getItem("selectedDate");
     if (saved && activeDates.includes(saved)) {
@@ -44,7 +48,7 @@ export default function DailyMain({
 
   const handleTodayClick = () => {
     if (!activeDates.includes(today)) {
-      toast.error("Nothing tracked today.");
+      toast.error("Nothing tracked today");
       return;
     }
     if (selectedDate === today) {
@@ -62,27 +66,11 @@ export default function DailyMain({
   }
 
   if (error) {
-    return (
-      <div className="flex flex-col items-center justify-center h-60 text-center text-red">
-        <p className="font-semibold text-lg">Error fetching stats</p>
-        <p className="text-muted text-sm">
-          Something went wrong. Please try again.
-        </p>
-      </div>
-    );
+    return <StatsError thing="fetching" />;
   }
 
   if (activeDates.length === 0) {
-    return (
-      <div className="flex flex-col items-center justify-center h-96 text-center space-y-2">
-        <h2 className="text-xl text-moreWhite font-bold">
-          No expenses tracked yet
-        </h2>
-        <p className="text-muted text-xs sm:text-sm">
-          Start tracking expenses to access statistics by date.
-        </p>
-      </div>
-    );
+    return <ExpensesDontExist type="day" />;
   }
 
   return (

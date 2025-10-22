@@ -3,8 +3,11 @@
 import { useExpenses } from "@/hooks/useExpenses";
 import { getCategoryStats, getDailySummary } from "@/utils/stats";
 import PrevDayComparison from "./PrevDayComparison";
-import BreakdownTable from "./BreakdownTable";
+import BreakdownTable from "../BreakdownTable";
 import Loading from "@/components/Loading";
+import StatsError from "../StatsError";
+import StatCard from "../StatCard";
+import HighlightCard from "../HighlightCard";
 
 interface StatProps {
   date: string;
@@ -28,14 +31,7 @@ export default function DailyStatistics({ date, prevDate, userId }: StatProps) {
   }
 
   if (error) {
-    return (
-      <div className="flex flex-col items-center justify-center h-60 text-center text-red">
-        <p className="font-semibold text-lg">Error loading stats</p>
-        <p className="text-muted text-sm">
-          Something went wrong. Please try again.
-        </p>
-      </div>
-    );
+    return <StatsError thing="calculating" />;
   }
 
   if (!expenses) return null;
@@ -58,7 +54,11 @@ export default function DailyStatistics({ date, prevDate, userId }: StatProps) {
         />
       </div>
       <PrevDayComparison id={userId} totalToday={total} prevDate={prevDate} />
-      <BreakdownTable categoryStats={categoryStats} />
+      <BreakdownTable
+        stats={categoryStats}
+        title="Spending Breakdown"
+        type="Category"
+      />
       <div className="grid grid-cols-1 gap-4 mt-4">
         {highestExpense ? (
           <HighlightCard
@@ -71,43 +71,5 @@ export default function DailyStatistics({ date, prevDate, userId }: StatProps) {
         )}
       </div>
     </section>
-  );
-}
-
-function StatCard({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="bg-tealBg/50 hover:bg-tealBg transition duration-200 py-4 sm:py-6 px-4 rounded-md flex flex-col items-center text-center">
-      <p className="text-lg sm:text-xl font-bold text-accent">{value}</p>
-      <p className="mt-1 text-muted text-xs sm:text-sm uppercase tracking-wide">
-        {label}
-      </p>
-    </div>
-  );
-}
-
-function HighlightCard({
-  label,
-  value,
-  description,
-}: {
-  label: string;
-  value: string;
-  description?: string;
-}) {
-  return (
-    <div className="bg-tealBg/20 hover:bg-tealBg/40 transition duration-200 border border-tealBg/50 rounded-md p-4 flex flex-col items-center text-center">
-      <p className="text-muted uppercase tracking-wide text-xs sm:text-sm mb-1">
-        {label}
-      </p>
-      <p className="text-xl sm:text-2xl font-extrabold text-accent">{value}</p>
-      {description && (
-        <p
-          className="mt-1 text-muted text-sm truncate max-w-[14rem]"
-          title={description}
-        >
-          {description}
-        </p>
-      )}
-    </div>
   );
 }
