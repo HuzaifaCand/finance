@@ -5,6 +5,7 @@ import { db } from "@/lib/firebase";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { useAuthStore } from "@/stores/useAuthStore";
 import { toast } from "sonner";
+import PageTransitionWrapper from "@/components/PageTransitionWrapper";
 
 export default function FeedbackPage() {
   const user = useAuthStore((state) => state.user);
@@ -43,29 +44,31 @@ export default function FeedbackPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background px-4">
-      <div className="w-full max-w-4xl">
-        <h1 className="text-2xl sm:text-3xl font-semibold text-moreWhite mb-4">
-          Feedback
-        </h1>
+    <PageTransitionWrapper>
+      <div className="min-h-120 flex items-center justify-center bg-background px-4">
+        <div className="w-full max-w-4xl">
+          <h1 className="text-2xl sm:text-3xl font-semibold text-moreWhite mb-4">
+            Feedback
+          </h1>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <textarea
-            value={feedback}
-            onChange={(e) => setFeedback(e.target.value)}
-            placeholder="Write any feedback or feature request..."
-            className="w-full h-40 p-4 bg-tealBg/5 border border-teal/10 text-xs sm:text-sm text-moreWhite placeholder-muted outline-none focus:border-teal/30 transition-all duration-200 resize-none"
-          />
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <textarea
+              value={feedback}
+              onChange={(e) => setFeedback(e.target.value)}
+              placeholder="Write any feedback or feature request..."
+              className="w-full h-40 p-4 bg-tealBg/5 border border-teal/10 text-xs sm:text-sm text-moreWhite placeholder-muted outline-none focus:border-teal/30 transition-all duration-200 resize-none"
+            />
 
-          <button
-            type="submit"
-            disabled={submitting}
-            className="px-12 py-2 rounded-md text-xs sm:text-sm font-medium text-white bg-secondary hover:bg-deepAccent/80 disabled:opacity-50 transition-all duration-200 shadow-sm"
-          >
-            {submitting ? "Submitting..." : "Submit"}
-          </button>
-        </form>
+            <button
+              type="submit"
+              disabled={submitting}
+              className="px-12 py-2 rounded-md text-xs sm:text-sm font-medium text-white bg-secondary hover:bg-deepAccent/80 disabled:opacity-50 transition-all duration-200 shadow-sm"
+            >
+              {submitting ? "Submitting..." : "Submit"}
+            </button>
+          </form>
+        </div>
       </div>
-    </div>
+    </PageTransitionWrapper>
   );
 }
