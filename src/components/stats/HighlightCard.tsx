@@ -18,7 +18,7 @@ export default function HighlightCard({
         <p className="text-muted text-xs uppercase tracking-wide mb-1">
           {label}
         </p>
-        <p className="text-2xl font-bold text-accent">{value}</p>
+        <p className="text-xl sm:text-2xl font-bold text-accent">{value}</p>
         {description && (
           <p className="text-sm text-muted truncate mt-1" title={description}>
             {description}
