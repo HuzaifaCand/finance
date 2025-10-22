@@ -46,7 +46,7 @@ export default function FeedbackPage() {
   return (
     <PageTransitionWrapper>
       <div className="min-h-120 flex items-center justify-center bg-background px-4">
-        <div className="w-full max-w-4xl">
+        <div className="w-full max-w-3xl mx-auto">
           <h1 className="text-2xl sm:text-3xl font-semibold text-moreWhite mb-4">
             Feedback
           </h1>
