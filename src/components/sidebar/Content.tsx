@@ -97,6 +97,13 @@ export default function Content({ onClose }: Props) {
           </Link>
           <Link
             onClick={onClose}
+            href="/feedback"
+            className="text-left hover:text-primary transition-colors"
+          >
+            Feedback
+          </Link>
+          <Link
+            onClick={onClose}
             href="/privacy"
             className="text-left hover:text-primary transition-colors"
           >
