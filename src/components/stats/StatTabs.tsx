@@ -2,18 +2,22 @@
 
 import clsx from "clsx";
 import { useState } from "react";
-import DailyMain from "./daily/Main";
+import DailyMain from "./daily/DailyMain";
 import ComingSoon from "../ComingSoon";
 import { useActiveDates } from "@/hooks/useActiveDates";
 import { useAuthStore } from "@/stores/useAuthStore";
+import WeeklyMain from "./weekly/WeeklyMain";
 
 const baseClass =
   "sm:px-10 px-6 py-1.5 rounded-lg text-[10px] sm:text-xs md:text-sm font-medium";
 
 type tab = "daily" | "weekly" | "monthly";
+
 export default function StatTabs() {
   const [activeTab, setActiveTab] = useState<tab>("daily");
   const userId = useAuthStore((state) => state.user?.id);
+  const [selectedDate, setSelectedDate] = useState<string | null>(null);
+
   const { activeDates, fetching, error } = useActiveDates(userId ?? "");
 
   return (
@@ -43,10 +47,19 @@ export default function StatTabs() {
             userId={userId}
             fetching={fetching}
             error={error}
+            selectedDate={selectedDate}
+            setSelectedDate={setSelectedDate}
           />
         )}
         {activeTab === "weekly" && (
-          <ComingSoon message="Will get to it soon dw" />
+          <WeeklyMain
+            activeDates={activeDates}
+            userId={userId}
+            fetching={fetching}
+            error={error}
+            selectedDate={selectedDate}
+            setSelectedDate={setSelectedDate}
+          />
         )}
         {activeTab === "monthly" && (
           <ComingSoon message="Will get to it soon dw" />

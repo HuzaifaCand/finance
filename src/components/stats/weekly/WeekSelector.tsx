@@ -1,31 +1,25 @@
 "use client";
 
 import { ChevronDown } from "lucide-react";
-import { format, parse } from "date-fns";
 import { useState, useRef } from "react";
+import { Week } from "@/lib/date";
 
-interface DateSelectorProps {
-  selectedDate: string | null;
-  activeDates: string[];
-  setSelectedDate: (v: string) => void;
+interface WeekSelectorProps {
+  selectedWeek: Week | null;
+  activeWeeks: Week[];
+  setSelectedWeek: (week: Week) => void;
 }
 
-export default function DateSelector({
-  selectedDate,
-  activeDates,
-  setSelectedDate,
-}: DateSelectorProps) {
+export default function WeekSelector({
+  selectedWeek,
+  activeWeeks,
+  setSelectedWeek,
+}: WeekSelectorProps) {
   const [showDropdown, setShowDropdown] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  function formatDateDropdown(dateStr: string) {
-    const date = parse(dateStr, "yyyy-MM-dd", new Date());
-    return format(date, "dd-MM-yyyy");
-  }
-
-  function handleDateChange(value: string) {
-    setSelectedDate(value);
-    localStorage.setItem("selectedDate", value);
+  function handleWeekChange(week: Week) {
+    setSelectedWeek(week);
     setShowDropdown(false);
   }
 
@@ -40,14 +34,12 @@ export default function DateSelector({
         }
       }}
     >
-      {/* Clickable "input" area */}
+      {/* Clickable header */}
       <div
         className="bg-secondary/50 text-moreWhite text-xs w-full px-3 py-2 rounded-md cursor-pointer flex items-center justify-between"
         onClick={() => setShowDropdown((prev) => !prev)}
       >
-        <span>
-          {selectedDate ? formatDateDropdown(selectedDate) : "Select a date"}
-        </span>
+        <span>{selectedWeek ? selectedWeek.label : "Select a week"}</span>
         <ChevronDown
           size={12}
           className={`text-moreWhite transition-transform ${
@@ -59,15 +51,15 @@ export default function DateSelector({
       {/* Dropdown menu */}
       {showDropdown && (
         <ul className="absolute mt-1 w-full z-10 text-xs bg-background border border-secondary/30 rounded-md shadow-sm max-h-60 overflow-y-auto custom-scrollbar">
-          {activeDates.map((date) => (
+          {activeWeeks.map((week) => (
             <li
-              key={date}
-              onClick={() => handleDateChange(date)}
+              key={week.start}
+              onClick={() => handleWeekChange(week)}
               className={`px-3 py-2 cursor-pointer text-moreWhite hover:bg-secondary/70 ${
-                selectedDate === date ? "bg-secondary/70" : ""
+                selectedWeek?.start === week.start ? "bg-secondary/70" : ""
               }`}
             >
-              {formatDateDropdown(date)}
+              {week.label}
             </li>
           ))}
         </ul>

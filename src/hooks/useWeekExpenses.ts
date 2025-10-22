@@ -45,7 +45,6 @@ export function useWeekExpenses(
       week.start,
       week.end
     );
-    console.log("activeDatesInWeek:", activeDatesInWeek);
 
     (async () => {
       try {
