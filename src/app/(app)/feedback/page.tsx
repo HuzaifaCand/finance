@@ -14,7 +14,7 @@ export default function FeedbackPage() {
 
   if (loading)
     return (
-      <div className="flex items-center justify-center min-h-screen">
+      <div className="flex items-center justify-center min-h-120">
         <div className="flex items-center gap-2 text-teal text-sm font-medium">
           <span className="h-5 w-5 rounded-full border-2 border-teal border-t-transparent animate-spin" />
         </div>
@@ -54,7 +54,7 @@ export default function FeedbackPage() {
             value={feedback}
             onChange={(e) => setFeedback(e.target.value)}
             placeholder="Write any feedback or feature request..."
-            className="w-full h-40 p-4 bg-tealBg/5 border border-teal/10 text-moreWhite placeholder-muted outline-none focus:border-teal/30 transition-all duration-200 resize-none"
+            className="w-full h-40 p-4 bg-tealBg/5 border border-teal/10 text-xs sm:text-sm text-moreWhite placeholder-muted outline-none focus:border-teal/30 transition-all duration-200 resize-none"
           />
 
           <button
