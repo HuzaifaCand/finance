@@ -42,7 +42,7 @@ export function CustomTooltip({
 
 export default function WeekChart({ data }: WeeklyLineChartProps) {
   return (
-    <div className="w-full h-64">
+    <div className="w-full h-64 focus:outline-none">
       <ResponsiveContainer width="100%" height="100%">
         <LineChart data={data}>
           {/* X Axis (days of week) */}
